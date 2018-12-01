@@ -1,8 +1,24 @@
 const MUST_SHOW_SCORE = Infinity;
 const DO_NOT_SHOW_SCORE = 0;
 
+const STANDARD_SCORE = 1;
+
 function showAfterSpecificChoice(cardId, optionId) {
   return state => hasMadeChoice(state, cardId, optionId) ? MUST_SHOW_SCORE : DO_NOT_SHOW_SCORE;
+}
+
+function showSomeTimeAfterSpecificChoice(cardId, optionId, increasePerTurn) {
+  return state => {
+    const idx = indexOfChoice(state, cardId, optionId);
+    if (indexOfChoice < 0) {
+      return DO_NOT_SHOW_SCORE;
+    }
+    return (state.pastChoices.length - idx) * increasePerTurn;
+  };
+}
+
+function showWithFixedScore(score) {
+  return () => score;
 }
 
 function hasSeenCard(state, cardId) {
@@ -15,79 +31,167 @@ function hasMadeChoice(state, cardId, optionId) {
   ));
 }
 
+function indexOfChoice(state, cardId, optionId) {
+  return state.pastChoices.findIndex(choice => (
+    choice.cardId === cardId && choice.optionId === optionId
+  ));
+}
+
 const SENDER_FRIEND = {
-  name: 'Friendo',
+  name: 'Friend',
+};
+
+const SENDER_ENTREPRENEUR = {
+  name: 'Entrepreneur',
+};
+
+const SENDER_LEGAL = {
+  name: 'Legal',
+};
+
+const SENDER_CFO = {
+  name: 'CFO',
+};
+
+const SENDER_DESIGNER = {
+  name: 'Lead designer',
+};
+
+
+const SENDER_CTO = {
+  name: 'CTO',
 };
 
 export default {
-  helloWorld: {
-    message: 'yo sup',
-    sender: SENDER_FRIEND,
+  drinksWithAnEntrepreneur_1: {
+    message: `Hey, I saw your cool tech! Let's chat about it over drinks!`,
+    sender: SENDER_ENTREPRENEUR,
     options: {
-      sayHello: {
-        message: 'Hello,',
+      yes: {
+        message: `Yeah, let's do it!`,
         reducers: {},
       },
-      sayWorld: {
-        message: 'world!',
-        reducers: {},
-      },
-    },
-    getScore(state) {
-      return Math.random();
-    },
-  },
-  someOtherCard: {
-    message: 'how is the weather?',
-    sender: SENDER_FRIEND,
-    options: {
-      friendly: {
-        message: 'it is nice',
+      no: {
+        message: `I'll pass.`,
         reducers: {
-          money: val => val + 1e7,
-        },
-      },
-      sassy: {
-        message: 'dude wow',
-        reducers: {
-          money: val => val - 1e7,
+          reputation: val => val - 0.1,
         },
       },
     },
     getScore(state) {
-      return Math.random();
+      return STANDARD_SCORE;
     },
   },
-  sassyWeatherResponse: {
-    message: 'dude im just asking what the weather is like',
-    sender: SENDER_FRIEND,
+
+  drinksWithAnEntrepreneur_2: {
+    message: `This bar is so cool! Wanna do shots and talk about our tech?`,
+    sender: SENDER_ENTREPRENEUR,
     options: {
-      sayHello: {
-        message: 'whatever',
-        reducers: {},
+      yes: {
+        message: `Shots, baby!`,
+        reducers: {
+          oldSchool: val => val - 0.1,
+          money: val => val + 0.1,
+        },
       },
-      sayWorld: {
-        message: 'im sorry',
-        reducers: {},
+      no: {
+        message: `Nah, I'm on a no-alchohol cleanse`,
+        reducers: {
+          reputation: val => val - 0.1,
+        },
       },
     },
-    getScore: showAfterSpecificChoice('someOtherCard', 'sassy'),
+    getScore: showAfterSpecificChoice('drinksWithAnEntrepreneur_1', 'yes'),
   },
-  gameOver: {
-    message: 'game over!',
-    sender: SENDER_FRIEND,
+
+  drinksWithAnEntrepreneur_3: {
+    message: `
+      Hey you remember that entreprenur you had drinks yet?
+      Now their tech looks suspciciously like the stuff we patented...
+    `,
+    sender: SENDER_LEGAL,
     options: {
-      sayCool: {
-        message: 'cool',
-        reducers: {},
+      sueThem: {
+        message: `Sue them to hell!`,
+        reducers: {
+          reputation: val => val - 0.1,
+          money: val => val + 0.1,
+        },
       },
-      sayWhatevs: {
-        message: 'whatevs',
-        reducers: {},
+      doNothing: {
+        message: `Ugh, it's ok...`,
+        reducers: {
+          money: val => val - 0.2,
+        },
       },
     },
-    getScore(state) {
-      return 0;
+    getScore: showSomeTimeAfterSpecificChoice('drinksWithAnEntrepreneur_2', 'yes', 0.1),
+  },
+
+  cfoKillProduct: {
+    message: `Hey, we're losing too much money. We should kill some legacy projects.`,
+    sender: SENDER_CFO,
+    options: {
+      yes: {
+        message: `Kill away!`,
+        reducers: {
+          oldSchool: val => val - 0.1,
+          money: val => val + 0.1,
+          controversy: val => val + 0.1,
+        },
+      },
+      no: {
+        message: `We can't, some people DEPEND on those products!`,
+        reducers: {
+          oldSchool: val => val + 0.1,
+          money: val => val - 0.1,
+        },
+      },
     },
+    getScore: showWithFixedScore(STANDARD_SCORE),
+  },
+
+  designerMakeAFont: {
+    message: `
+      Yo, we decided that Helvetica just doesn't cut it.
+      Whaddya say we hire a company to build a custom font for us?
+    `,
+    sender: SENDER_LEGAL,
+    options: {
+      yes: {
+        message: `I mean, we're not a real startup if we don't have our own font.`,
+        reducers: {
+          reputation: val => val + 0.2,
+          money: val => val - 0.2,
+        },
+      },
+      no: {
+        message: `Psh, let's just use Times New Roman instead.`,
+        reducers: {
+          oldSchool: val => val + 0.1,
+        },
+      },
+    },
+    getScore: showWithFixedScore(STANDARD_SCORE),
+  },
+
+  basicSecurityLeak: {
+    message: `Dear lord, we've leaked a few thousand passwords! What should we do?`,
+    sender: SENDER_CTO,
+    options: {
+      yes: {
+        message: `This will not stand, FIRE THE VP OF SECURITY!`,
+        reducers: {
+          oldSchool: val => val - 0.1,
+        },
+      },
+      no: {
+        message: `Let's put out a press release apology`,
+        reducers: {
+          reputation: val => val - 0.2,
+        },
+      },
+    },
+    getScore: showWithFixedScore(STANDARD_SCORE),
   },
 };
