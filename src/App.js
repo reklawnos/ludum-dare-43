@@ -6,6 +6,10 @@ import { TemplateFace } from './avatars/templates';
 
 console.log(Object.keys(cards).length);
 
+function generateProductName() {
+  return "[Product Name]";
+}
+
 function getNextCard(state) {
   const { pastChoices } = state;
   const alreadySeenCardIds = new Set(pastChoices.map(({ cardId }) => cardId));
@@ -73,6 +77,7 @@ class App extends Component {
     };
     this.state = {
       companyName: "Tableify",
+      productName: generateProductName(),
       pastChoices: [],
       stateSlices,
       currentCardId: getNextCard({ pastChoices: [], stateSlices }),
@@ -104,7 +109,7 @@ class App extends Component {
 
   render() {
     console.log(this.state);
-    const { currentCardId, stateSlices, hoverOptionId, companyName } = this.state;
+    const { currentCardId, stateSlices, hoverOptionId, companyName, productName } = this.state;
     const currentCard = cards[currentCardId];
 
     console.log(currentCard, currentCardId);
@@ -160,7 +165,7 @@ class App extends Component {
           From {currentCard.sender.name}
         </div>
         <div>
-          {typeof currentCard.message === "function" ? currentCard.message(companyName) : currentCard.message}
+          {typeof currentCard.message === "function" ? currentCard.message(companyName, productName) : currentCard.message}
         </div>
         <div>
           {Object.keys(currentCard.options).map(optionId => (
@@ -170,7 +175,7 @@ class App extends Component {
               onMouseEnter={() => this.enterHoverOverOption(optionId)}
               onMouseLeave={() => this.leaveHoverOverOption()}
             >
-              {currentCard.options[optionId].message}
+              {typeof currentCard.options[optionId].message === "function" ? currentCard.options[optionId].message(companyName, productName) : currentCard.options[optionId].message}
             </button>
           ))}
         </div>
