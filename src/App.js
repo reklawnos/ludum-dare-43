@@ -69,7 +69,7 @@ class App extends Component {
     this.state = {
       pastChoices: [],
       stateSlices,
-      currentCardId: getNextCard({ pastChoices: [], stateSlices}),
+      currentCardId: getNextCard({ pastChoices: [], stateSlices }),
       hoverOptionId: null,
     };
   }
@@ -128,7 +128,7 @@ class App extends Component {
           sizeOfEffect={sliceDiffs['reputation']}
         />
         <MetricMeter
-          prefix="Old school: "
+          prefix="Crunchy: "
           value={stateSlices.crunchy}
           sizeOfEffect={sliceDiffs['crunchy']}
         />
