@@ -8,6 +8,7 @@ import {
   SENDER_JUDIE,
   SENDER_CHINESE_MANUFACTURER,
   SENDER_TWITTER,
+  SENDER_COMMUNICATIONS,
   showSomeTimeAfterSpecificCard,
   showSomeTimeAfterAllChoices,
   showSomeTimeAfterSpecificChoice,      
@@ -495,5 +496,29 @@ export default {
     getScore: showWithFixedScore(STANDARD_SCORE),
   },
   
-  
+  communityProblems: {
+      message: `I've received several complaints about our company distrubing the communities in rural areas. What should we do about it?`,
+      sender: SENDER_COMMUNICATIONS,
+      options: {
+        yes: {
+          message: `Darn let's do some good. We should donate to charity, that should appease the people.`,
+          reducers: {
+            money: r(-0.2),
+            innovation: r(-0.1),
+            crunchy: r(0.1),
+            reputation: r(0)
+          }
+        },
+        no: {
+          message: `Sounds like non of my business, let's continue to build on their land!`,
+          reducers: {
+            money: r(0.1),
+            innovation: r(0),
+            crunchy: r(-0.2),
+            reputation: r(0)
+          }
+        }
+      },
+      getScore: showWithFixedScore(STANDARD_SCORE),
+    },  
 }

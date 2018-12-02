@@ -107,7 +107,7 @@ export const SENDER_THOUGHT_LEADER = {
 };
 
 export const SENDER_COMMUNICATIONS = {
-  name: 'Marketing Manager'
+  name: 'CMO'
 };
 
 export const SENDER_EMAIL = {
