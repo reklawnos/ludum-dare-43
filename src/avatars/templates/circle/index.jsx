@@ -1,64 +1,64 @@
 import React from 'react';
-import SquareBaseballCap from './top/square_baseball_cap';
-import SquareFedora from './top/square_fedora';
-import SquareHairFlower from './top/square_hair_flower';
-import SquareGlasses from './square_glasses';
-import SquareLongHairTop from './hair/square_long_hair_top';
-import SquareLongHairBottom from './hair/square_long_hair_bottom';
-import SquareHandlebarMustache from './facial_hair/square_handlebar_mustache';
-import SquareBeard from './facial_hair/square_beard';
-import SquareSpikyHair from './hair/square_spiky_hair';
-import SquareCrewCut from './top/square_crew_cut';
-import SquareSuitJacket from './clothes/square_suit_jacket';
-import SquareSuitShirtTie from './clothes/square_suit_shirt_tie';
-import SquareTshirt from './clothes/square_tshirt';
-import SquareFace from './square_face';
+import CircleBaseballCap from './circle_baseball_cap';
+import CircleFedora from './circle_fedora';
+import CircleHairFlower from './circle_hair_flower';
+import CircleGlasses from './circle_glasses';
+import CircleLongHairTop from './circle_long_hair_top';
+import CircleLongHairBottom from './circle_long_hair_bottom';
+import CircleHandlebarMustache from './circle_handlebar_mustache';
+import CircleBeard from './circle_beard';
+import CircleSpikyHair from './circle_spiky_hair';
+import CircleCrewCut from './circle_crew_cut';
+import CircleSuitJacket from './circle_suit_jacket';
+import CircleSuitShirtTie from './circle_suit_tie';
+import CircleTshirt from './circle_tshirt';
+import CircleFace from './circle_face';
 
 const ITEM_ORDER = [
-  SquareBaseballCap,
-  SquareFedora,
-  SquareHairFlower,
-  SquareGlasses,
-  SquareLongHairTop,
-  SquareHandlebarMustache,
-  SquareSpikyHair,
-  SquareCrewCut,
-  SquareBeard,
-  SquareSuitJacket,
-  SquareSuitShirtTie,
-  SquareFace,
-  SquareTshirt,
-  SquareLongHairBottom,
+  CircleBaseballCap,
+  CircleFedora,
+  CircleHairFlower,
+  CircleGlasses,
+  CircleLongHairTop,
+  CircleHandlebarMustache,
+  CircleSpikyHair,
+  CircleCrewCut,
+  CircleBeard,
+  CircleSuitJacket,
+  CircleSuitShirtTie,
+  CircleFace,
+  CircleTshirt,
+  CircleLongHairBottom,
 ].reverse();
 
 const TOP_OPTIONS = [
-  [SquareBaseballCap],
-  [SquareBaseballCap, SquareSpikyHair],
-  [SquareBaseballCap, SquareLongHairBottom, SquareLongHairTop],
-  [SquareBaseballCap, SquareCrewCut],
-  [SquareCrewCut],
-  [SquareFedora],
-  [SquareFedora, SquareLongHairBottom, SquareLongHairTop],
-  [SquareBaseballCap, SquareLongHairBottom, SquareLongHairTop],
-  [SquareHairFlower, SquareLongHairBottom, SquareLongHairTop],
-  [SquareHairFlower, SquareSpikyHair],
-  [SquareHairFlower, SquareCrewCut],
-  [SquareSpikyHair],
-  [SquareLongHairBottom, SquareLongHairTop],
+  [CircleBaseballCap],
+  [CircleBaseballCap, CircleSpikyHair],
+  [CircleBaseballCap, CircleLongHairBottom, CircleLongHairTop],
+  [CircleBaseballCap, CircleCrewCut],
+  [CircleCrewCut],
+  [CircleFedora],
+  [CircleFedora, CircleLongHairBottom, CircleLongHairTop],
+  [CircleBaseballCap, CircleLongHairBottom, CircleLongHairTop],
+  [CircleHairFlower, CircleLongHairBottom, CircleLongHairTop],
+  [CircleHairFlower, CircleSpikyHair],
+  [CircleHairFlower, CircleCrewCut],
+  [CircleSpikyHair],
+  [CircleLongHairBottom, CircleLongHairTop],
 ];
 
 const BOTTOM_OPTIONS = [
-  [SquareSuitJacket, SquareSuitShirtTie],
-  [SquareSuitJacket, SquareTshirt],
-  [SquareTshirt],
+  [CircleSuitJacket, CircleSuitShirtTie],
+  [CircleSuitJacket, CircleTshirt],
+  [CircleTshirt],
 ];
 
 const FACE_OPTIONS = [
-  [SquareHandlebarMustache],
-  [SquareBeard],
-  [SquareGlasses, SquareHandlebarMustache],
-  [SquareGlasses, SquareBeard],
-  [SquareGlasses],
+  [CircleHandlebarMustache],
+  [CircleBeard],
+  [CircleGlasses, CircleHandlebarMustache],
+  [CircleGlasses, CircleBeard],
+  [CircleGlasses],
   [],
   [],
   [],
@@ -73,21 +73,21 @@ const HAIR_COLORS = [
 ];
 
 const ITEM_COLORS = new Map([
-  [SquareSuitJacket, [
+  [CircleSuitJacket, [
     { baseColor: '#2C5AA0', lapelColor: '#214478' },
     { baseColor: '#901919', lapelColor: '#5E0A0A' },
     { baseColor: '#c8beb7', lapelColor: '#ac9393' },
     { baseColor: '#9dac93', lapelColor: '#7c916f' },
     { baseColor: '#666666', lapelColor: '#333333' },
   ]],
-  [SquareTshirt, [
+  [CircleTshirt, [
     { baseColor: '#00aad4', collarColor: '#0083a4' },
     { baseColor: '#8787de', collarColor: '#5f5fd3' },
     { baseColor: '#ffcc00', collarColor: '#d4aa00' },
     { baseColor: '#71c837', collarColor: '#5aa02c' },
     { baseColor: '#4d4d4d', collarColor: '#1a1a1a' },
   ]],
-  [SquareFace, [
+  [CircleFace, [
     { skinTone: '#deaa87' },
     { skinTone: '#d38d5f' },
     { skinTone: '#916f6f' },
@@ -95,13 +95,13 @@ const ITEM_COLORS = new Map([
 ]);
 
 const HAIR_COMPONENTS = new Set([
-  SquareCrewCut,
-  SquareLongHairBottom,
-  SquareLongHairTop,
-  SquareSpikyHair,
-  SquareCrewCut,
-  SquareHandlebarMustache,
-  SquareBeard,
+  CircleCrewCut,
+  CircleLongHairBottom,
+  CircleLongHairTop,
+  CircleSpikyHair,
+  CircleCrewCut,
+  CircleHandlebarMustache,
+  CircleBeard,
 ]);
 
 function getRandomIndex(arr) {
@@ -115,7 +115,7 @@ function randomItemColors() {
   ]));
 }
 
-export function getRandomSquareFace() {
+export function getRandomCircleFace() {
   return {
     topIndex: getRandomIndex(TOP_OPTIONS),
     bottomIndex: getRandomIndex(BOTTOM_OPTIONS),
@@ -125,7 +125,7 @@ export function getRandomSquareFace() {
   };
 }
 
-export default function SquareAvatar({
+export default function CircleAvatar({
   topIndex,
   bottomIndex,
   faceIndex,
@@ -140,7 +140,7 @@ export default function SquareAvatar({
     ...topOption,
     ...bottomOption,
     ...faceOption,
-    SquareFace,
+    CircleFace,
   ]);
 
   return (

@@ -1,10 +1,20 @@
 import React from 'react';
 import SquareAvatar, { getRandomSquareFace } from './square';
+import CircleAvatar, { getRandomCircleFace } from './circle';
+import TriangleAvatar, { getRandomTriangleFace } from './triangle';
 
 const FACE_GENERATORS = [
   () => ({
     Component: SquareAvatar,
     props: getRandomSquareFace(),
+  }),
+  () => ({
+    Component: CircleAvatar,
+    props: getRandomCircleFace(),
+  }),
+  () => ({
+    Component: TriangleAvatar,
+    props: getRandomTriangleFace(),
   }),
 ];
 
