@@ -9,7 +9,7 @@ export function showAfterSpecificChoice(cardId, optionId) {
 export function showSomeTimeAfterSpecificChoice(cardId, optionId, increasePerTurn) {
   return state => {
     const idx = indexOfChoice(state, cardId, optionId);
-    if (indexOfChoice < 0) {
+    if (idx < 0) {
       return DO_NOT_SHOW_SCORE;
     }
     return (state.pastChoices.length - idx) * increasePerTurn;
