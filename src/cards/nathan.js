@@ -10,53 +10,25 @@ import {
 
 export default {
   billionaireExtremist: {
-    message: `A billionaire / political extremist wants to invest`,
-    sender: SENDER_CFO,
-    options: {
-      yes: {
-        message: `Money is apolitical`,
-        reducers: {
-          money: val => val + 0.6,
-          crunchy: val => val - 0.3,
-          innovation: val => val + 0.6,
-          reputation: val => val - 0.3,
-        },
-      },
-      no: {
-        message: `No thank you`,
-        reducers: {
-          money: val => val - 0.6,
-          crunchy: val => val + 0.3,
-          innovation: val => val - 0.6,
-          reputation: val => val + 0.3,
-        },
-      },
-    },
-    getScore: showWithFixedScore(STANDARD_SCORE),
-  },
-  momAndDad: {
     message: `
-        Your Mom and Dad demand to be able to invest and be on the board 
-        because they want to retire soon.
+      Hey, quick question... That one guy who paid lots of money for
+      bots to spread misinformation during the election REALLY likes our product.
+      He wants to invest, what should we say?
     `,
     sender: SENDER_CFO,
     options: {
       yes: {
-        message: `Yes Mom...`,
+        message: `Hey, money is money!`,
         reducers: {
-          money: val => val + 0.3,
-          crunchy: val => val + 0.3,
-          innovation: val => val - 0.3,
-          reputation: val => val - 0.6,
+          money: val => val + 0.4,
+          crunchy: val => val - 0.3,
+          reputation: val => val + 0.3,
         },
       },
       no: {
-        message: `I'M AN ADULT`,
+        message: `No thank you.`,
         reducers: {
-          money: val => val - 0.3,
-          crunchy: val => val - 0.3,
-          innovation: val => val + 0.3,
-          reputation: val => val + 0.6,
+          crunchy: val => val + 0.1,
         },
       },
     },
@@ -74,9 +46,9 @@ export default {
       yes: {
         message: `You bet!`,
         reducers: {
-          money: val => val + 0.6,
-          innovation: val => val - 6.0,
-          reputation: val => val + 0.6,
+          money: val => val + 0.3,
+          crunchy: val => val - 0.1,
+          reputation: val => val + 0.3,
         },
       },
       no: {
@@ -84,9 +56,8 @@ export default {
             I'm not into sports
         `,
         reducers: {
-          money: val => val - 0.6,
-          innovation: val => val + 6.0,
-          reputation: val => val - 0.6,
+          innovation: val => val + 0.1,
+          reputation: val => val - 0.2,
         },
       },
     },
@@ -103,19 +74,15 @@ export default {
       yes: {
         message: `Yes!`,
         reducers: {
-          money: val => val + 0.6,
-          crunchy: val => val - 0.6,
-          innovation: val => + 0.3,
-          reputation: val => val + 0.0,
+          money: val => val + 0.4,
+          reputation: val => val + 0.2,
+          crunchy: val => val - 0.4,
         }
       },
       no: {
         message: `Nyet`,
         reducers: {
-          money: val => val + 0.6,
-          crunchy: val => val - 0.6,
-          innovation: val => + 0.3,
-          reputation: val => val + 0.0,
+          crunchy: val => val + 0.1,
         }
       },
     },
@@ -131,15 +98,14 @@ export default {
       yes: {
         message: `Looks warm`,
         reducers: {
-          money: val => val + 0.6,
+          money: val => val + 0.5,
           crunchy: val => val - 0.6,
         }
       },
       no: {
         message: `What is that`,
         reducers: {
-          money: val => val - 0.6,
-          crunchy: val => val + 0.6,
+          crunchy: val => val + 0.1,
         }
       },
     },
