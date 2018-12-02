@@ -210,4 +210,45 @@ export default {
     },
     getScore: showAfterSpecificCard("congress_6"),
   },
+  patentInfringement_1: {
+    message: `One of the engineers thinks that we might be using a patented process without a license.`,
+    sender: SENDER_LEGAL,
+    options: {
+      yes: {
+        message: `License the patent`,
+        reducers: {
+          money: r(-0.3),
+          innovation: r(0.1)
+        },
+      },
+      no: {
+        message: `Ignore it`,
+        reducers: {
+          money: r(0.1),
+          innovation: r(-0.1)
+        },
+      },
+    },
+    getScore: showWithFixedScore(STANDARD_SCORE),
+  },
+  patentInfringement_2: {
+    message: `Remember that patent that we never licensed? The inventors just filed a lawsuit.`,
+    sender: SENDER_LEGAL,
+    options: {
+      yes: {
+        message: `Fight them in court`,
+        reducers: {
+          money: r(-0.4),
+          reputation: r(-0.2),
+        },
+      },
+      no: {
+        message: `Settle out of court`,
+        reducers: {
+          money: r(-0.6),
+        },
+      },
+    },
+    getScore: showSomeTimeAfterSpecificChoice("patentInfringement_1", "no", 0.1),
+  },
 };
