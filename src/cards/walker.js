@@ -96,7 +96,7 @@ export default {
       yes: {
         message: `Yeah, electric cars really DO fit into our roadmap!`,
         reducers: {
-          money: val => val - 0.5,
+          money: val => val - 0.3,
           innovation: val => val + 0.3,
           reputation: val => val - 0.1,
         },
@@ -104,7 +104,7 @@ export default {
       no: {
         message: `Hmm this might not be the best time`,
         reducers: {
-          innovation: val => val - 0.2,
+          innovation: val => val - 0.3,
         },
       },
     },
@@ -224,7 +224,7 @@ export default {
         reducers: {
           money: val => val - 0.3,
           innovation: val => val + 0.2,
-          crunchy: val => val - 0.4,
+          crunchy: val => val - 0.2,
         },
       },
       no: {
@@ -472,7 +472,7 @@ export default {
   reputation_dadParty: {
     message: `
       Yoooo home-friend let's get blasted at my dad's house in the Hamptons this weekend,
-      lots of good con-ects you could set-it-ty-set up you know? Don't be a square!
+      lots of good connect you could set-it-ty-set up you know? Don't be a square!
     `,
     sender: SENDER_INVESTOR_REPUTATION,
     options: {
@@ -519,7 +519,7 @@ export default {
 
   reputation_exoticDancers: {
     message: `
-      Ok so I got us a sweeeeet con-ect with some "exotic dancers"
+      Ok so I got us a sweeeeet connect with some "exotic dancers"
       who can "perform" at our "launch event" next week, what's the number on your corporate card?
     `,
     sender: SENDER_INVESTOR_REPUTATION,

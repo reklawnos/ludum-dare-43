@@ -53,6 +53,26 @@ export function showSomeTimeAfterAllChoices(cardIds, optionIds, increasePerTurn)
   };
 }
 
+export function showSomeTimeAfterAnyChoices(cardIds, optionIds, increasePerTurn) {
+  return state => {
+    let lastChoiceYouMade = cardIds.reduce((acc, cardId, index) => {
+      let optionId = optionIds[index];
+      const idx = indexOfChoice(state, cardId, optionId);
+      
+      if (idx > acc) {
+        return idx;
+      }
+      
+      return acc;
+    }, -1);
+    
+    if (lastChoiceYouMade < 0) {
+      return DO_NOT_SHOW_SCORE;
+    }
+    return (state.pastChoices.length - lastChoiceYouMade) * increasePerTurn;
+  };
+}
+
 export function showWithFixedScore(score) {
   return () => score;
 }
@@ -166,6 +186,37 @@ export const SENDER_SENATOR = {
   name: getSenatorName(),
 };
 
+export const SENDER_RESEARCH_DEPARTMENT_PERSON = {
+  name: "R&D"
+};
+
+// export const SENDER_HEAD_OF_DESIGN = {
+//   name: "Head of Design"
+// };
+
+export const SENDER_HR = {
+  name: "HR"
+};
+
+export const SENDER_CELEBRITY1 = {
+  name: "Bumblebee Crumplehorn"
+};
+
+export const SENDER_ENGINEER = {
+  name: "Some engineer"
+};
+
+export const SENDER_RECRUITING = {
+  name: "Head of recruiting"
+};
+
+export const SENDER_CNN = {
+  name: "CNN"
+};
+
+export const SENDER_MYSTERIOUS1 = {
+  name: "Mysterious person"
+};
 
 
 export const r = (quantity) => (val) => val + quantity;
@@ -216,7 +267,7 @@ export function getRandomTechBuzzword() {
     return "Machine Learning";
   }
   else if (r < 0.6) {
-    return "Solar Panels";
+    return "Cloud";
   }
   else if (r < 0.7) {
     return "Tunnels";
