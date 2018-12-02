@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "license": "MIT",
   "private": true,
+  "homepage" : "https://reklawnos.github.io/ludum-dare-43",
   "dependencies": {
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
