@@ -1,6 +1,20 @@
-import { SENDER_ENTREPRENEUR, STANDARD_SCORE, showAfterSpecificChoice, SENDER_LEGAL, showSomeTimeAfterSpecificChoice, SENDER_CFO, showWithFixedScore, SENDER_CTO, SENDER_COMMUNICATIONS, r, getRandomTechBuzzword, SENDER_THOUGHT_LEADER, SENDER_EMAIL } from "./shared";
-import * as Walker from './walker';
-import * as Ben from './ben';
+import {
+  STANDARD_SCORE,
+  showAfterSpecificChoice,
+  showSomeTimeAfterSpecificChoice,
+  showWithFixedScore,
+  r,
+  getRandomTechBuzzword,
+  SENDER_ENTREPRENEUR,
+  SENDER_LEGAL,
+  SENDER_CFO,
+  SENDER_CTO,
+  SENDER_COMMUNICATIONS,
+  SENDER_THOUGHT_LEADER,
+  SENDER_EMAIL,
+} from "./shared";
+import Walker from './walker';
+import Ben from './ben';
 
 export default {
   drinksWithAnEntrepreneur_1: {
@@ -199,7 +213,8 @@ export default {
         reducers: {}
       },
       no: {
-        message: `Refuse connection`
+        message: `Refuse connection`,
+        reducers: {}
       }
     },
     getScore: (state) => {

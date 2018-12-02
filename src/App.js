@@ -10,6 +10,7 @@ function getNextCard(state) {
   let sumOfAllScores = 0;
   const allScores = [];
   for (const cardId of viableCardIds) {
+    console.log(cardId);
     const cardScore = cards[cardId].getScore(state);
     if (cardScore < 0) {
       throw new Error(`Card score was negative (${cardScore}) for ${cardId}`);
