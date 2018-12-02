@@ -125,18 +125,15 @@ export default {
         message: `Do it!`,
         reducers: {
           money: val => val + 0.3,
-          crunchy: val => val + 0.6,
-          innovation: val => val - 0.6,
-          reputation: val => val + 0.6,
+          crunchy: val => val + 0.4,
+          innovation: val => val - 0.3,
+          reputation: val => val - 0.3,
         },
       },
       no: {
         message: `Can't right now`,
         reducers: {
-          money: val => val - 0.3,
-          crunchy: val => val - 0.6,
-          innovation: val => val + 0.6,
-          reputation: val => val - 0.6,
+          crunchy: val => val - 0.3,
         },
       },
     },
@@ -153,17 +150,16 @@ export default {
       yes: {
         message: `Yay, chainblocks!`,
         reducers: {
-          money: val => val + 0.6,
-          innovation: val => val + 0.6,
-          reputation: val => val - 0.6,
+          money: val => val + 0.3,
+          innovation: val => val + 0.4,
+          reputation: val => val + 0.1,
+          crunchy: val => val - 0.3,
         }
       },
       no: {
         message: `That's not our expertise`,
         reducers: {
-          money: val => val - 0.6,
-          innovation: val => val - 0.6,
-          reputation: val => val + 0.6,
+          innovation: val => val - 0.3,
         }
       },
     },
@@ -180,18 +176,14 @@ export default {
         message: `Word`,
         reducers: {
           money: val => val + 0.3,
-          crunchy: val => val + 0.3,
-          innovation: val => val - 0.6,
-          reputation: val => val + 0.6,
+          innovation: val => val - 0.2,
+          reputation: val => val + 0.5,
         }
       },
       no: {
         message: `No`,
         reducers: {
-          money: val => val - 0.3,
-          crunchy: val => val - 0.3,
-          innovation: val => val + 0.6,
-          reputation: val => val - 0.6,
+          reputation: val => val - 0.2,
         }
       },
     },
@@ -209,15 +201,14 @@ export default {
         reducers: {
           money: val => val + 0.2,
           innovation: val => val - 0.2,
-          reputation: val => val + 0.5,
+          crunchy: val => val - 0.2,
+          reputation: val => val + 0.3,
         }
       },
       no: {
         message: `Idk if that's our market `,
         reducers: {
-          money: val => val - 0.2,
-          innovation: val => val + 0.2,
-          reputation: val => val - 0.5,
+          reputation: val => val - 0.1,
         }
       },
     },
@@ -225,26 +216,23 @@ export default {
   },
   sameAppButVR: {
     message: `
-      Ok so same idea, but this time, in VR
+      Ok so let's redo our product, but this time, in VR
     `,
     sender: SENDER_INVESTOR_INNOVATION,
     options: {
       yes: {
         message: `Far-out`,
         reducers: {
-          money: val => val - 0.6,
-          crunchy: val => val + 0.1,
-          innovation: val => val - 0.4,
-          reputation: val => val - 0.1,
+          money: val => val - 0.4,
+          crunchy: val => val - 0.4,
+          innovation: val => val + 0.6,
+          reputation: val => val + 0.1,
         }
       },
       no: {
         message: `I only think in 2D`,
         reducers: {
-          money: val => val - 0.6,
-          crunchy: val => val + 0.1,
-          innovation: val => val - 0.4,
-          reputation: val => val - 0.1,
+          innovation: val => val - 0.2,
         }
       },
     },
@@ -260,10 +248,10 @@ export default {
       yes: {
         message: `Surfs up`,
         reducers: {
-          money: val => val - 0.3,
-          crunchy: val => val - 0.4,
-          innovation: val => val - 0.6,
-          reputation: val => val + 0.3,
+          money: val => val - 0.6,
+          crunchy: val => val - 0.2,
+          innovation: val => val + 0.5,
+          reputation: val => val - 0.2,
         },
       },
       no: {
@@ -271,10 +259,7 @@ export default {
           Maybe in a couple of decades
         `,
         reducers: {
-          money: val => val - 0.3,
-          crunchy: val => val - 0.4,
-          innovation: val => val - 0.6,
-          reputation: val => val + 0.3,
+          innovation: val => val - 0.2,
         }
       },
     },
@@ -311,6 +296,7 @@ export default {
       yes: {
         message: `Smart`,
         reducers: {
+          money: val => val - 0.1,
           reputation: val => val + 0.2,
           innovation: val => val - 0.2,
         }
@@ -375,15 +361,14 @@ export default {
       yes: {
         message: `Agreed`,
         reducers: {
-          money: val => val - 0.5,
-          reputation: val => val + 0.2,
+          money: val => val - 0.4,
+          reputation: val => val - 0.1,
           innovation: val => val + 0.5,
         }
       },
       no: {
         message: `Negative`,
         reducers: {
-          reputation: val => val - 0.2,
           innovation: val => val - 0.3,
         }
       },
@@ -397,16 +382,14 @@ export default {
       yes: {
         message: `Upvote`,
         reducers: {
-          money: val => val - 0.5,
+          money: val => val - 0.1,
           reputation: val => val + 0.2,
-          innovation: val => val + 0.5,
         }
       },
       no: {
         message: `Downvote`,
         reducers: {
-          reputation: val => val - 0.2,
-          innovation: val => val - 0.3,
+          reputation: val => val - 0.1,
         }
       },
     },
@@ -420,7 +403,7 @@ export default {
         message: `Let's double`,
         reducers: {
           money: val => val - 0.7,
-          innovation: val => val + 0.7,
+          innovation: val => val + 0.4,
         }
       },
       no: {
