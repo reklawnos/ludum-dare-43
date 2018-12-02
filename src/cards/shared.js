@@ -52,6 +52,15 @@ export function showSomeTimeAfterAllChoices(cardIds, optionIds, increasePerTurn)
 export function showWithFixedScore(score) {
   return () => score;
 }
+export function showAfterWithFixedScore(cardId, optionId, score) {
+  return state => {
+    const idx = state.pastChoices.findIndex(choice => (choice.cardId === cardId && choice.optionId === optionId));
+    if (idx < 0) {
+      return DO_NOT_SHOW_SCORE;
+    }
+    return score;
+  }
+}
 
 export function hasSeenCard(state, cardId) {
   return state.pastChoices.some(choice => choice.cardId === cardId);
@@ -120,6 +129,12 @@ export const SENDER_INVESTOR_CRUNCHY = {
 export const SENDER_HEAD_OF_OFFICE_SECURITY = {
   name: 'Head of Office Security',
 };
+
+export const SENDER_AI = {
+  name: 'AI',
+};
+
+
 
 export const r = (quantity) => (val) => val + quantity;
 
