@@ -33,7 +33,6 @@ const ITEM_ORDER = [
 
 const TOP_OPTIONS = [
   [TriangleBaseballCap],
-  [TriangleBaseballCap, TriangleSpikyHair],
   [TriangleBaseballCap, TriangleLongHairBottom, TriangleLongHairTop],
   [TriangleBaseballCap, TriangleCrewCut],
   [TriangleCrewCut],
@@ -47,7 +46,7 @@ const TOP_OPTIONS = [
   [TriangleLongHairBottom, TriangleLongHairTop],
 ];
 
-const TOP_OPTIONS_FORMAL = [4, 5, 6, 8, 9, 10, 11, 12];
+const TOP_OPTIONS_FORMAL = [3, 4, 5, 7, 8, 9, 10, 11];
 
 const BOTTOM_OPTIONS = [
   [TriangleSuitJacket, TriangleSuitShirtTie],

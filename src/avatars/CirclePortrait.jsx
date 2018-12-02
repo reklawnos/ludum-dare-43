@@ -5,9 +5,13 @@ export default function CirclePortrait({
   size,
   face,
 }) {
+  var bgcolor = 'rgba(0, 0, 0, 0.1)';
+  if ("bgcolor" in face) {
+    bgcolor = face.bgcolor;
+  }
   return (
     <div style={{
-      backgroundColor: 'rgba(0, 0, 0, 0.1)',
+      background: bgcolor,
       width: size * 0.8,
       height: size * 0.8,
       paddingTop: size * 0.2,
