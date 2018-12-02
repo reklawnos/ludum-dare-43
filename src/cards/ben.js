@@ -17,6 +17,7 @@ import {
   SENDER_CNN,
   SENDER_MYSTERIOUS1,
   SENDER_INVESTOR_REPUTATION,
+  SENDER_LEGAL,
   showSomeTimeAfterSpecificCard,
   showSomeTimeAfterAllChoices,
   showSomeTimeAfterAnyChoices,
@@ -250,7 +251,7 @@ export default {
     sender: SENDER_JUDIE,
     options: {
       yes: {
-        message: `I'm sure Coal is renewable, let's do it!`,
+        message: `I'm sure coal is clean AND renewable, let's do it!`,
         reducers: {
           money: r(0.2),
           innovation: r(0),
@@ -495,7 +496,7 @@ export default {
   },
   
   communityProblems: {
-    message: `I've received several complaints about our company distrubing the communities in rural areas. What should we do about it?`,
+    message: `I've received several complaints about our company disturbing the communities in rural areas. What should we do about it?`,
     sender: SENDER_COMMUNICATIONS,
     options: {
       yes: {
@@ -514,6 +515,28 @@ export default {
           innovation: r(0),
           crunchy: r(-0.2),
           reputation: r(0)
+        }
+      }
+    },
+    getScore: showWithFixedScore(STANDARD_SCORE),
+  },
+  
+  communityProblems_2: {
+    message: `Hey we're having trouble in rural areas, their legislations are preventing us from shipping our product quite yet. Should we delay the launch?`,
+    sender: SENDER_LEGAL,
+    options: {
+      yes: {
+        message: `Fuck it, ship it.`,
+        reducers: {
+          money: r(0.3),
+          crunchy: r(-0.2)
+        }
+      },
+      no: {
+        message: `Let's wait until we get the permit at least!`,
+        reducers: {
+          money: r(-0.2),
+          innovation: r(-0.2),
         }
       }
     },
@@ -1064,5 +1087,26 @@ export default {
       }
     },
     getScore: showSomeTimeAfterSpecificChoice('notEnoughGrapefruitLacroix', 'yes', 0.3)
+  },
+  
+  newsArticle_5: {
+    message: companyName => `${companyName} Is Illegally Moving Forward With Their Plans. You Will Not Believe The Consequences.`,
+    sender: SENDER_CNN,
+    options: {
+      yes: {
+        message: `Oh that looks like a factual article, I'll read it now.`,
+        reducers: {
+          money: r(-0.2),
+          crunchy: r(0.1),
+        }
+      },
+      no: {
+        message: `Don't worry, it's probably clickbait again`,
+        reducers: {
+          reputation: r(0.2)
+        }
+      }
+    },
+    getScore: showSomeTimeAfterSpecificChoice("communityProblems_2", "yes", 0.3),
   },
 }
