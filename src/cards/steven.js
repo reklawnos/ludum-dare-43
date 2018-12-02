@@ -1,7 +1,6 @@
 import {
   STANDARD_SCORE,
-  SENDER_CTO,
-  SENDER_CHEF,
+  SENDER_CNN,
   SENDER_EMPLOYEE,
   SENDER_COMMUNICATIONS,
   SENDER_INVESTOR_INNOVATION,
@@ -16,13 +15,14 @@ import {
   SENDER_SENATOR,
   showAfterSpecificChoice,
   showAfterSpecificCard,
+  showAfterAnyCard,
   r
 } from "./shared";
 
 export default {
   productRecall_1: {
-    message: `QA just discovered that our product contains chemicals known to the state of California to cause cancer. Should we issue a recall?`,
-    sender: SENDER_EMPLOYEE,
+    message: `An engineer in my yoga group told me that your product contains chemicals known to the state of California to cause cancer. I think you should consider a recall.`,
+    sender: SENDER_INVESTOR_CRUNCHY,
     options: {
       yes: {
         message: `Of course, the safety of our customers is paramount!`,
@@ -59,17 +59,17 @@ export default {
     },
     getScore: showAfterSpecificChoice("productRecall_1", "yes"),
   },
-  congress_1: {
+  congress_start: {
     message: `The U.S. Congress wants you to testify in front of a committee investigating the company's marketing towards children.`,
     sender: SENDER_LEGAL,
     options: {
-      yes: {
+      go: {
         message: `Go to Washington`,
         reducers: {
           money: r(-0.1),
         },
       },
-      no: {
+      skip: {
         message: `Ignore subpoena`,
         reducers: {
         },
@@ -77,17 +77,17 @@ export default {
     },
     getScore: showWithFixedScore(STANDARD_SCORE),
   },
-  congress_2: {
+  congress_skipped: {
     message: `Senator McBob is upset that you ignored the Congressional investigation. Should we send him a "campaign donation" to make him forget about it?`,
     sender: SENDER_LEGAL,
     options: {
-      yes: {
+      bribe: {
         message: `Send him a check`,
         reducers: {
-          money: r(-0.5),
+          money: r(-0.4),
         },
       },
-      no: {
+      ignore: {
         message: `Ignore it`,
         reducers: {
           reputation: r(-0.2),
@@ -96,78 +96,184 @@ export default {
         },
       },
     },
-    getScore: showAfterSpecificChoice("congress_1", "no"),
+    getScore: showAfterSpecificChoice("congress_start", "skip"),
   },
-  congress_3: {
+  congress_taxation: {
+    message: (companyName, productName) => `As a result of your antics in front of Congress, the government has passed a new law imposing a 20% tax on ${productName}.`,
+    sender: SENDER_CFO,
+    options: {
+      ok: {
+        message: `Ugh, great...`,
+        reducers: {
+          money: r(-0.6)
+        },
+      },
+    },
+    getScore: showSomeTimeAfterSpecificChoice("congress_skipped", "ignore", 0.3),
+  },
+  congress_campaign_finance: {
+    message: `Hey, did you make some weird donations? We're being investigated for campaign finance law violations.`,
+    sender: SENDER_LEGAL,
+    options: {
+      pay_fine: {
+        message: `Pay the fine to make it go away`,
+        reducers: {
+          money: r(-0.1),
+          reputation: r(-0.1),
+          crunchy: r(0.1),
+          innovation: r(0.1),
+        },
+      },
+      lawyer_up: {
+        message: `Hire some lawyers to take care of this`,
+        reducers: {
+          money: r(-0.1),
+          reputation: r(0.1),
+        },
+      },
+    },
+    getScore: showSomeTimeAfterSpecificChoice("congress_skipped", "bribe", 0.3),
+  },
+  congress_attended: {
     message: `Are you aware that your products are being marketed during children's Saturday morning cartoons?`,
     sender: SENDER_SENATOR,
     options: {
       yes: {
         message: `Yes, what's wrong with that?`,
         reducers: {
-          crunchy: r(-0.2),
-          reputation: r(0.2)
+          crunchy: r(-0.1),
+          reputation: r(0.1)
         },
       },
       no: {
         message: `No, not at all`,
         reducers: {
-          reputation: r(-0.2),
-          crunchy: r(0.2),
-        },
-      },
-    },
-    getScore: showAfterSpecificChoice("congress_1", "yes"),
-  },
-  congress_4: {
-    message: `Hmmm, but you sent this message on Chirper yesterday: "Can't wait for the world premiere of our new ad during @MyLittleZebraAnimatedSeries this morning! #hype #blessed"`,
-    sender: SENDER_SENATOR,
-    options: {
-      yes: {
-        message: `Whoa, "My Little Zebra" isn't just a kids show`,
-        reducers: {
-          reputation: r(-0.3),
-          crunchy: r(0.1),
-        },
-      },
-      no: {
-        message: `It was the Ambien`,
-        reducers: {
-          reputation: r(0.3),
-          crunchy: r(-0.1),
-        },
-      },
-    },
-    getScore: showAfterSpecificChoice("congress_3", "no"),
-  },
-  congress_5: {
-    message: `Thank you for your testimony. That will be all.`,
-    sender: SENDER_SENATOR,
-    options: {
-      yes: {
-        message: `Thank you, Senators`,
-        reducers: {
           reputation: r(-0.1),
           crunchy: r(0.1),
-          innovation: r(0.1),
-        },
-      },
-      no: {
-        message: `This was a witch hunt!`,
-        reducers: {
-          reputation: r(0.1),
-          crunchy: r(-0.1),
-          innovation: r(0.1),
         },
       },
     },
-    getScore: showAfterSpecificCard("congress_4"),
+    getScore: showAfterSpecificChoice("congress_start", "go"),
   },
-  congress_6: {
+  congress_tweet_start: {
+    message: `Hmmm, but you posted this message on Chirper yesterday: "Can't wait for the world premiere of our new ad during @MyLittleZebraAnimatedSeries this morning! #hype #blessed #hustle"`,
+    sender: SENDER_SENATOR,
+    options: {
+      weasel: {
+        message: `Whoa, "My Little Zebra" isn't just a kids show`,
+        reducers: {
+          reputation: r(-0.2),
+          crunchy: r(0.1),
+        },
+      },
+      ambien: {
+        message: `It was the Ambien I took`,
+        reducers: {
+          reputation: r(0.2),
+          crunchy: r(-0.1),
+        },
+      },
+    },
+    getScore: showAfterSpecificChoice("congress_attended", "no"),
+  },
+  congress_tweet_ambien: {
+      message: (companyName) => `News Alert: CEO of ${companyName} being investigated for erratic behavior under the influence of Ambien`,
+      sender: SENDER_CNN,
+      options: {
+        flip_channel: {
+          message: `Switch the TV channel`,
+          reducers: {
+            reputation: r(0.1),
+          },
+        },
+        take_more_ambien: {
+          message: `Take another Ambien`,
+          reducers: {
+            money: r(-0.1),
+          },
+        },
+      },
+      getScore: showSomeTimeAfterSpecificChoice("congress_tweet_start", "ambien", 0.3),
+  },
+  congress_tweet_weasel: {
+    message: `"My Little Zebra" is my daughter's favorite show. Are you saying that you watch the same cartoons as a 9-year-old girl?`,
+    sender: SENDER_SENATOR,
+    options: {
+      yes: {
+        message: `Yes`,
+        reducers: {
+        },
+      },
+      fifth: {
+        message: `I'm taking the 5th Amendment and will no longer be answering questions`,
+        reducers: {
+        },
+      },
+    },
+    getScore: showAfterSpecificChoice("congress_tweet_start", "weasel"),
+  },
+  congress_tweet_peta: {
+    message: `Parents for Ethical Toon Advertising (PETA) is upset that you dodged Congress's questions at the recent hearing on Capitol Hill.`,
+    sender: SENDER_COMMUNICATIONS,
+    options: {
+      pay_off: {
+        message: `Pledge donation to PETA`,
+        reducers: {
+          money: r(-0.1),
+          reputation: r(-0.1),
+        },
+      },
+      ignore: {
+        message: `Ignore PETA`,
+        reducers: {
+          reputation: r(0.1),
+          innovation: r(-0.1),
+          crunchy: r(-0.1),
+        },
+      },
+    },
+    getScore: showSomeTimeAfterSpecificChoice("congress_tweet_weasel", "fifth", 0.3),
+  },
+  congress_tweet_brony: {
+    message: `From a fellow My Little Zebra fan, who is your favorite zebra?`,
+    sender: SENDER_EMPLOYEE,
+    options: {
+      none: {
+        message: `I don't watch My Little Zebra`,
+        reducers: {
+          reputation: r(0.2),
+          innovation: r(-0.2),
+        },
+      },
+      lightglow: {
+        message: `Lightglow, because he's so happy`,
+        reducers: {
+          reputation: r(-0.2),
+          innovation: r(0.2),
+        },
+      },
+      skychaser: {
+        message: `Skychaser, because she's so friendly`,
+        reducers: {
+          reputation: r(-0.2),
+          innovation: r(0.2),
+        },
+      },
+      featherflutter: {
+        message: `Featherflutter, because he's always loyal`,
+        reducers: {
+          reputation: r(-0.2),
+          innovation: r(0.2),
+        },
+      }
+    },
+    getScore: showSomeTimeAfterSpecificChoice("congress_tweet_weasel", "yes", 0.3),
+  },
+  congress_admitted: {
     message: `I'm shocked at your cavalier attitude. It seems like the whole industry is a wild west in need of regulation.`,
     sender: SENDER_SENATOR,
     options: {
-      yes: {
+      regulate: {
         message: `I guess a bit of regulation wouldn't hurt`,
         reducers: {
           money: r(-0.3),
@@ -176,7 +282,7 @@ export default {
           innovation: r(-0.1),
         },
       },
-      no: {
+      self_regulate: {
         message: `We can regulate ourselves`,
         reducers: {
           money: r(-0.2),
@@ -185,9 +291,9 @@ export default {
         },
       },
     },
-    getScore: showAfterSpecificChoice("congress_3", "yes"),
+    getScore: showAfterSpecificChoice("congress_attended", "yes"),
   },
-  congress_7: {
+  congress_end: {
     message: `Thank you for your testimony. That will be all.`,
     sender: SENDER_SENATOR,
     options: {
@@ -208,7 +314,7 @@ export default {
         },
       },
     },
-    getScore: showAfterSpecificCard("congress_6"),
+    getScore: showAfterAnyCard(["congress_tweet_start", "congress_admitted", "congress_tweet_weasel"]),
   },
   patentInfringement_1: {
     message: `One of the engineers thinks that we might be using a patented process without a license.`,

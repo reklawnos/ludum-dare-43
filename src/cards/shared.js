@@ -15,6 +15,10 @@ export function showAfterSpecificCard(cardId) {
   return state => state.pastChoices.some(choice => choice.cardId === cardId) ? MUST_SHOW_SCORE : DO_NOT_SHOW_SCORE;
 }
 
+export function showAfterAnyCard(cardIds) {
+  return state => state.pastChoices.some(choice => cardIds.includes(choice.cardId)) ? MUST_SHOW_SCORE : DO_NOT_SHOW_SCORE;
+}
+
 export function showSomeTimeAfterSpecificChoice(cardId, optionId, increasePerTurn) {
   return state => {
     const idx = indexOfChoice(state, cardId, optionId);
