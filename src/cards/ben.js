@@ -2,12 +2,14 @@ import {
   r,
   STANDARD_SCORE,
   SENDER_AI,
+  SENDER_CTO,
+  SENDER_EMPLOYEE,
   showSomeTimeAfterAllChoices,
   showSomeTimeAfterSpecificChoice,      
   showAfterSpecificChoice,
   showAfterWithFixedScore,
   showWithFixedScore,
-  SENDER_CTO,
+  showAfterSpecificCard,
   indexOfChoice,
   DO_NOT_SHOW_SCORE,
 } from "./shared";
@@ -193,5 +195,85 @@ export default {
       }
     },
     getScore: showSomeTimeAfterSpecificChoice("aiIsAnnoyedAtYou", "yes"),
+  },
+  
+  aiLikesYou: {
+    message: `Human, I've taken the liberty to upgrade all of your code to use the fastest algorithms. Thank me later.`,
+    sender: SENDER_AI,
+    options: {
+      yes: {
+        message: `Great, I can't wait to see all the money we're about to make.`,
+        reducers: {
+          money: r(-0.3),
+          innovation: r(0),
+          crunchy: r(0),
+          reputation: r(0)
+        }
+      },
+      no: {
+        message: `Uh oh.`,
+        reducers: {
+          money: r(-0.3),
+          innovation: r(0),
+          crunchy: r(0),
+          reputation: r(0)
+        }
+      }
+    },
+    getScore: showAfterWithFixedScore("aiThatKnowsTooMuch_3", "no", STANDARD_SCORE),
+  },
+  aiLikesYou_2: {
+    message: `Since the AI upgraded our code, all the engineers are revolting because they don't understand it anymore.`,
+    sender: SENDER_CTO,
+    options: {
+      yes: {
+        message: `Wonderful. Revert it!`,
+        reducers: {
+          money: r(-0.2),
+          innovation: r(-0.2),
+          crunchy: r(0),
+          reputation: r(0)
+        }
+      },
+      no: {
+        message: `Let's blindly embrace the AI era. Tell the engineers they can go home.`,
+        reducers: {
+          money: r(0.3),
+          innovation: r(0.3),
+          crunchy: r(0),
+          reputation: r(0)
+        }
+      }
+    },
+    getScore: showAfterSpecificCard("aiLikesYou"),
+  },
+  
+  embarassingQuestionDuringAllHands: {
+    message: `
+      Hey uhm, so at the last allhands you mentioned we were going to focus more on the environment this quarter, but then this quarter we invested in all the major coal companies. 
+      What's up with that?
+    `,
+    sender: SENDER_EMPLOYEE,
+    options: {
+      yes: {
+        message: `Really great question. The specialists I talk to every day tell me that coal's not actually bad for the environment, so don't worry.`,
+        reducers: {
+          money: r(0),
+          innovation: r(0),
+          crunchy: r(-0.2),
+          reputation: r(-0.1)
+        }
+      },
+      no: {
+        message: `Ah yes great question. This kind of question reminds me of the early days of the company, when we didn't know what were doing and still shaping the culture. You see this one time ........ `,
+        reducers: {
+          money: r(0),
+          innovation: r(-0.1),
+          crunchy: r(0),
+          reputation: r(0)
+        }
+      }
+    },
+    getScore: showWithFixedScore(STANDARD_SCORE),
   },
 }
