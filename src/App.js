@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import cards from './cards';
 import MetricMeter from './MetricMeter';
+import SquareAvatar from './avatars/templates/square';
+import { TemplateFace } from './avatars/templates';
 
 console.log(Object.keys(cards).length);
 
@@ -142,6 +144,9 @@ class App extends Component {
           sizeOfEffect={sliceDiffs['innovation']}
         />
         <hr />
+        <div>
+          <TemplateFace {...currentCard.sender.face} />
+        </div>
         <div>
           From {currentCard.sender.name}
         </div>

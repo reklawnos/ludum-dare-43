@@ -1,3 +1,5 @@
+import { getRandomFace } from "../avatars/templates";
+
 export const MUST_SHOW_SCORE = Infinity;
 export const DO_NOT_SHOW_SCORE = 0;
 export const STANDARD_SCORE = 1;
@@ -80,82 +82,102 @@ export function indexOfChoice(state, cardId, optionId) {
 
 export const SENDER_FRIEND = {
   name: 'Friend',
+  face: getRandomFace(),
 };
 
 export const SENDER_ENTREPRENEUR = {
   name: 'Entrepreneur',
+  face: getRandomFace(),
 };
 
 export const SENDER_LEGAL = {
   name: 'Legal',
+  face: getRandomFace(),
 };
 
 export const SENDER_CFO = {
   name: 'CFO',
+  face: getRandomFace(),
 };
 
 export const SENDER_DESIGNER = {
   name: 'Lead designer',
+  face: getRandomFace(),
 };
 
 export const SENDER_CTO = {
   name: 'CTO',
+  face: getRandomFace(),
 };
 
 export const SENDER_THOUGHT_LEADER = {
-  name: 'Thought Leader'
+  name: 'Thought Leader',
+  face: getRandomFace(),
 };
 
 export const SENDER_COMMUNICATIONS = {
-  name: 'CMO'
+  name: 'CMO',
+  face: getRandomFace(),
 };
 
 export const SENDER_EMAIL = {
-  name: 'Mail'
+  name: 'Mail',
+  face: getRandomFace(),
 };
 
 export const SENDER_CHEF = {
   name: 'Head Chef',
+  face: getRandomFace(),
 };
 
 export const SENDER_INVESTOR_INNOVATION = {
   name: 'TODO: "innovation" investor',
+  face: getRandomFace(),
 };
 
 export const SENDER_INVESTOR_REPUTATION = {
   name: 'TODO: "reputation" investor',
+  face: getRandomFace(),
 };
 
 export const SENDER_INVESTOR_CRUNCHY = {
   name: 'TODO: "crunchy" investor',
+  face: getRandomFace(),
 };
 
 export const SENDER_HEAD_OF_OFFICE_SECURITY = {
   name: 'Head of Office Security',
+  face: getRandomFace(),
 };
 
 export const SENDER_HEAD_OF_FACILITIES = {
   name: 'Head of Facilities',
+  face: getRandomFace(),
 };
 
 export const SENDER_AI = {
   name: 'AI',
+  face: getRandomFace(),
 };
 
 export const SENDER_EMPLOYEE = {
   name: getEmployeeName(),
+  face: getRandomFace(),
 };
 
 export const SENDER_JUDIE = {
-  name: "Judie"
+  name: "Judie",
+  face: getRandomFace(),
 };
 
 export const SENDER_CHINESE_MANUFACTURER = {
-  name: "Chinese Manufacturer"
+  name: "Chinese Manufacturer",
+  face: getRandomFace(),
 };
 
 export const SENDER_TWITTER = {
-  name: "Chirper"
+  name: "Chirper",
+  face: getRandomFace(),
 };
 
 
