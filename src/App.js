@@ -63,9 +63,8 @@ class App extends Component {
     const stateSlices = {
       money: 2,
       reputation: 0.5,
-      oldSchool: 0.5,
+      crunchy: 0.5,
       innovation: 0.5,
-      controversy: 0,
     };
     this.state = {
       pastChoices: [],
@@ -130,18 +129,13 @@ class App extends Component {
         />
         <MetricMeter
           prefix="Old school: "
-          value={stateSlices.oldSchool}
-          sizeOfEffect={sliceDiffs['oldSchool']}
+          value={stateSlices.crunchy}
+          sizeOfEffect={sliceDiffs['crunchy']}
         />
         <MetricMeter
           prefix="Innovation: "
           value={stateSlices.innovation}
           sizeOfEffect={sliceDiffs['innovation']}
-        />
-        <MetricMeter
-          prefix="Controversy: "
-          value={stateSlices.controversy}
-          sizeOfEffect={sliceDiffs['controversy']}
         />
         <hr />
         <div>

@@ -90,7 +90,6 @@ export default {
       yes: {
         message: `Shots, baby!`,
         reducers: {
-          oldSchool: val => val - 0.1,
           money: val => val + 0.1,
         },
       },
@@ -98,6 +97,7 @@ export default {
         message: `Nah, I'm on a no-alchohol cleanse`,
         reducers: {
           reputation: val => val - 0.1,
+          crunchy: val => val + 0.1,
         },
       },
     },
@@ -135,15 +135,14 @@ export default {
       yes: {
         message: `Kill away!`,
         reducers: {
-          oldSchool: val => val - 0.1,
+          crunchy: val => val - 0.1,
           money: val => val + 0.1,
-          controversy: val => val + 0.1,
         },
       },
       no: {
         message: `We can't, some people DEPEND on those products!`,
         reducers: {
-          oldSchool: val => val + 0.1,
+          crunchy: val => val + 0.1,
           money: val => val - 0.1,
         },
       },
@@ -161,14 +160,14 @@ export default {
       yes: {
         message: `I mean, we're not a real startup if we don't have our own font.`,
         reducers: {
-          reputation: val => val + 0.2,
+          crunchy: val => val + 0.1,
           money: val => val - 0.2,
         },
       },
       no: {
         message: `Psh, let's just use Times New Roman instead.`,
         reducers: {
-          oldSchool: val => val + 0.1,
+          reputation: val => val + 0.1,
         },
       },
     },
@@ -182,7 +181,8 @@ export default {
       yes: {
         message: `This will not stand, FIRE THE VP OF SECURITY!`,
         reducers: {
-          oldSchool: val => val - 0.1,
+          innovation: val => val - 0.1,
+          reputation: val => val + 0.1,
         },
       },
       no: {
