@@ -67,10 +67,7 @@ export default function InvestorMeter({
           </svg> 
         </div>
       </div>
-      <div
-        style={{
-        }}
-      >
+      <div style={{flexGrow: 1}}>
         {name}
       </div>
       <div style={{ flex: '0 0 16px', alignSelf: 'center' }}>
