@@ -62,6 +62,33 @@ const SENDER_CTO = {
   name: 'CTO',
 };
 
+const r = (quantity) => (val) => val + quantity;
+
+function getRandomTechBuzzword() {
+  let r = Math.random();
+  if (r < 0.1) {
+    return "Elecric cars";
+  } else if (r < 0.2) {
+    return "Augmented Reality";
+  } else if (r < 0.3) {
+    return "Blockchain";
+  } else if (r < 0.4) {
+    return "Voice AI";
+  } else if (r < 0.5) {
+    return "Machine Learning";
+  } else if (r < 0.6) {
+    return "Solar Panels";
+  } else if (r < 0.7) {
+    return "Tunnels";
+  } else if (r < 0.8) {
+    return "Virtual Reality";
+  } else if (r < 0.9) {
+    return "Chatbots";
+  } else if (r < 1.0) {
+    return "Rockets"
+  }
+}
+
 export default {
   drinksWithAnEntrepreneur_1: {
     message: `Hey, I saw your cool tech! Let's chat about it over drinks!`,
@@ -194,4 +221,60 @@ export default {
     },
     getScore: showWithFixedScore(STANDARD_SCORE),
   },
+  
+  thoughtLeaderProgrammer_1: {
+    message: `Hey, this "Thought Leader" on twitter wants to talk to you.`,
+    sender: SENDER_COMMUNICATIONS,
+    options: {
+      yes: {
+        message: `Sure, let's grab coffee.`
+        reducer: {}
+      },
+      no: {
+        message: `Nah, I don't have time for this`,
+        reducer: {
+          innovation: r(-0.1)
+        }
+      }
+    },
+    getScore: showWithFixedScore(STANDARD_SCORE),
+  },
+  
+  thoughtLeaderProgrammer_2: {
+    message: `Ok so let me tell you, I'm an expert in ${getRandomTechBuzzword()} and I'm sure that's the future. Pay me and I'll tell you how to be the first to market.`,
+    sender: SENDER_THOUGHT_LEADER,
+    options: {
+      yes: {
+        message: `Oh yeah you totally sound like you know what you're talking about.`
+        reducer: {
+          money: r(-0.2),
+          innovation: r(0.2)
+        }
+      },
+      no: {
+        message: `Sorry I don't have time for this, I gotta go to a meeting.`,
+        reducer: {
+          innovation: r(-0.1)
+        }
+      }
+    },
+    getScore: showAfterSpecificChoice('thoughtLeaderProgrammer_1', 'yes'),
+  },
+  
+  thoughtLeaderProgrammer_3: {
+    message: `blablabla ... blablablablablabla ...`,
+    sender: SENDER_THOUGHT_LEADER,
+    options: {
+      yes: {
+        message: `Ah yes yes, I understand.`
+        reducer: {}
+      },
+      no: {
+        message: `Mmmh`,
+        reducer: {}
+      }
+    },
+    getScore: showAfterSpecificChoice('thoughtLeaderProgrammer_2', 'yes'),
+  },
+  
 };
