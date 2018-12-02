@@ -144,7 +144,16 @@ class App extends Component {
           sizeOfEffect={sliceDiffs['innovation']}
         />
         <hr />
-        <div>
+        <div style={{
+          backgroundColor: 'rgba(0, 0, 0, 0.1)',
+          width: 80,
+          height: 80,
+          paddingTop: 20,
+          paddingLeft: 10,
+          paddingRight: 10,
+          borderRadius: 50,
+          overflow: 'hidden',
+        }}>
           <TemplateFace {...currentCard.sender.face} />
         </div>
         <div>

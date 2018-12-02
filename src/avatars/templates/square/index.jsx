@@ -144,7 +144,7 @@ export default function SquareAvatar({
   ]);
 
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 33.867 33.867">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 33.867 33.867">
       {ITEM_ORDER.filter(item => items.has(item)).map(Component => {
         let props;
         if (itemColorsMap.has(Component)) {

@@ -1,4 +1,7 @@
 import { getRandomFace } from "../avatars/templates";
+import InvestorBro from "../avatars/templates/investors/investor_bro";
+import InvestorFuturist from "../avatars/templates/investors/investor_futurist";
+import InvestorHippie from "../avatars/templates/investors/investor_hippie";
 
 export const MUST_SHOW_SCORE = Infinity;
 export const DO_NOT_SHOW_SCORE = 0;
@@ -132,17 +135,26 @@ export const SENDER_CHEF = {
 
 export const SENDER_INVESTOR_INNOVATION = {
   name: 'TODO: "innovation" investor',
-  face: getRandomFace(),
+  face: {
+    Component: InvestorFuturist,
+    props: {},
+  },
 };
 
 export const SENDER_INVESTOR_REPUTATION = {
   name: 'TODO: "reputation" investor',
-  face: getRandomFace(),
+  face: {
+    Component: InvestorBro,
+    props: {},
+  },
 };
 
 export const SENDER_INVESTOR_CRUNCHY = {
   name: 'TODO: "crunchy" investor',
-  face: getRandomFace(),
+  face: {
+    Component: InvestorHippie,
+    props: {},
+  },
 };
 
 export const SENDER_HEAD_OF_OFFICE_SECURITY = {
