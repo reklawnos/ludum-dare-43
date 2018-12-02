@@ -62,6 +62,14 @@ const SENDER_CTO = {
   name: 'CTO',
 };
 
+const SENDER_THOUGHT_LEADER = {
+  name: 'Thought Leader'
+};
+
+const SENDER_COMMUNICATIONS = {
+  name: 'Marketing Manager'
+};
+
 const r = (quantity) => (val) => val + quantity;
 
 function getRandomTechBuzzword() {
@@ -228,11 +236,11 @@ export default {
     options: {
       yes: {
         message: `Sure, let's grab coffee.`
-        reducer: {}
+        reducers: {}
       },
       no: {
         message: `Nah, I don't have time for this`,
-        reducer: {
+        reducers: {
           innovation: r(-0.1)
         }
       }
@@ -246,14 +254,14 @@ export default {
     options: {
       yes: {
         message: `Oh yeah you totally sound like you know what you're talking about.`
-        reducer: {
+        reducers: {
           money: r(-0.2),
           innovation: r(0.2)
         }
       },
       no: {
         message: `Sorry I don't have time for this, I gotta go to a meeting.`,
-        reducer: {
+        reducers: {
           innovation: r(-0.1)
         }
       }
@@ -267,11 +275,11 @@ export default {
     options: {
       yes: {
         message: `Ah yes yes, I understand.`
-        reducer: {}
+        reducers: {}
       },
       no: {
         message: `Mmmh`,
-        reducer: {}
+        reducers: {}
       }
     },
     getScore: showAfterSpecificChoice('thoughtLeaderProgrammer_2', 'yes'),
