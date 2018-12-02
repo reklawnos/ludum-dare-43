@@ -703,7 +703,7 @@ export default {
     sender: SENDER_HR,
     options: {
       yes: {
-        message: `That's true, grapefruit is the king of fruits. Replace all water with grapefruit Lacroix!`,
+        message: `That's true, grapefruit is the king of fruits. Replace all water with Pamplemousse Lacroix!`,
         reducers: {
           money: r(-0.4),
           crunchy: r(0.2),
