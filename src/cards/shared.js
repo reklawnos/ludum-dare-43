@@ -16,6 +16,39 @@ export function showSomeTimeAfterSpecificChoice(cardId, optionId, increasePerTur
   };
 }
 
+export function showSomeTimeAfterSpecificCard(cardId, increasePerTurn) {
+  return state => {
+    const idx = state.pastChoices.findIndex(choice => choice.cardId === cardId);
+    if (idx < 0) {
+      return DO_NOT_SHOW_SCORE;
+    }
+    return (state.pastChoices.length - idx) * increasePerTurn;
+  };
+}
+
+export function showSomeTimeAfterAllChoices(cardIds, optionIds, increasePerTurn) {
+  return state => {
+    let lastChoiceYouMade = cardIds.reduce((acc, cardId, index) => {
+      if (acc < 0 && index != 0) return -1;
+      
+      let optionId = optionIds[index];
+      const idx = indexOfChoice(state, cardId, optionId);
+      if (idx < 0) return -1;
+      
+      if (idx > acc) {
+        return idx;
+      }
+      
+      return acc;
+    }, -1);
+    
+    if (lastChoiceYouMade < 0) {
+      return DO_NOT_SHOW_SCORE;
+    }
+    return (state.pastChoices.length - lastChoiceYouMade) * increasePerTurn;
+  };
+}
+
 export function showWithFixedScore(score) {
   return () => score;
 }
