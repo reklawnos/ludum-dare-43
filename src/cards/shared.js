@@ -179,7 +179,7 @@ export const SENDER_CHEF = {
 };
 
 export const SENDER_INVESTOR_INNOVATION = {
-  name: 'TODO: "innovation" investor',
+  name: 'XT-9',
   face: {
     Component: InvestorFuturist,
     bgcolor: "linear-gradient(#2c89a0 0%, #afdde9 100%)",
@@ -188,7 +188,7 @@ export const SENDER_INVESTOR_INNOVATION = {
 };
 
 export const SENDER_INVESTOR_REPUTATION = {
-  name: 'TODO: "reputation" investor',
+  name: 'Brad',
   face: {
     Component: InvestorBro,
     bgcolor: "linear-gradient(#784421 0%, #e9c6af 100%)",
@@ -197,7 +197,7 @@ export const SENDER_INVESTOR_REPUTATION = {
 };
 
 export const SENDER_INVESTOR_CRUNCHY = {
-  name: 'TODO: "crunchy" investor',
+  name: 'Sandra',
   face: {
     Component: InvestorHippie,
     bgcolor: "linear-gradient(#5aa02c 0%, #c6e9af 100%)",

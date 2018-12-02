@@ -622,7 +622,7 @@ export default {
     message: `
       Hey, I really... I really hate to be the one to tell you, but our dear
       CTO died in the cafeteria today after being served seventeen shots of
-      vodka by (TODO: name of reputation guy). We're holding a memorial service this weekend.
+      vodka by Brad. We're holding a memorial service this weekend.
     `,
     sender: SENDER_CFO,
     options: {
