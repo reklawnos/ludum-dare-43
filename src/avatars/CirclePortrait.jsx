@@ -7,7 +7,7 @@ export default function CirclePortrait({
 }) {
   return (
     <div style={{
-      backgroundColor: 'rgba(0, 0, 0, 0.1)',
+      backgroundColor: 'rgba(0, 0, 0, 0.2)',
       width: size * 0.8,
       height: size * 0.8,
       paddingTop: size * 0.2,

@@ -83,7 +83,7 @@ export default {
         },
       },
     },
-    getScore: showSomeTimeAfterSpecificChoice('drinksWithAnEntrepreneur_2', 'yes', 0.1),
+    getScore: showSomeTimeAfterSpecificChoice('drinksWithAnEntrepreneur_2', 'yes', 0.6),
   },
 
   cfoKillProduct: {
@@ -308,7 +308,7 @@ export default {
         }
       }
     },
-    getScore: showSomeTimeAfterSpecificChoice('linkedInPhishing', 'yes', 0.2),
+    getScore: showSomeTimeAfterSpecificChoice('linkedInPhishing', 'yes', 0.6),
   },
   ...Walker,
   ...Ben,

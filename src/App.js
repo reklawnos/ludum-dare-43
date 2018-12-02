@@ -4,6 +4,9 @@ import MetricMeter from './MetricMeter';
 import { getRandomFace } from './avatars/templates';
 import SenderMessage from './SenderMessage';
 import BasicMessage from './BasicMessage';
+import QuackIcon from './QuackIcon';
+import InvestorMeter from './InvestorMeter';
+import { SENDER_INVESTOR_REPUTATION, SENDER_INVESTOR_CRUNCHY, SENDER_INVESTOR_INNOVATION } from './cards/shared';
 
 console.log(Object.keys(cards).length);
 
@@ -149,31 +152,58 @@ class App extends Component {
     }
 
     return (
-      <div>
-        <div style={{filter: isPlayerDead ? "blur(4px)" : undefined}}>
-          <MetricMeter
-            prefix="Money: "
-            value={stateSlices.money}
-            postfix="M"
-            sizeOfEffect={sliceDiffs['money']}
-          />
-          <MetricMeter
-            prefix="Reputation: "
-            value={stateSlices.reputation}
-            sizeOfEffect={sliceDiffs['reputation']}
-          />
-          <MetricMeter
-            prefix="Crunchy: "
-            value={stateSlices.crunchy}
-            sizeOfEffect={sliceDiffs['crunchy']}
-          />
-          <MetricMeter
-            prefix="Innovation: "
-            value={stateSlices.innovation}
-            sizeOfEffect={sliceDiffs['innovation']}
-          />
-          <hr />
-          <div style={{ height: 350, position: 'relative', overflow: 'hidden' }}>
+      <div style={{ display: 'flex' }}>
+        <div
+          style={{
+            backgroundColor: '#703960',
+            color: 'rgba(255, 255, 255, 0.8)',
+            fontSize: 16,
+            flex: '0 0 250px',
+            padding: 10,
+          }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <QuackIcon />
+            <div style={{ color: 'white', fontSize: '22px', marginLeft: 5 }}>
+              Quack
+            </div>
+          </div>
+          <div style={{ marginTop: 10 }}>
+            <div>
+              Corporate Account
+            </div>
+            <div style={{ color: 'white', fontSize: '22px'}}>
+              <MetricMeter
+                prefix="$"
+                value={stateSlices.money}
+                postfix="M"
+                sizeOfEffect={sliceDiffs['money']}
+              />
+            </div>
+          </div>
+          <div style={{ marginTop: 10 }}>
+            <div>
+              Investors
+            </div>
+            <InvestorMeter
+              {...SENDER_INVESTOR_REPUTATION}
+              value={stateSlices.reputation}
+              sizeOfEffect={sliceDiffs['reputation']}
+            />
+            <InvestorMeter
+              {...SENDER_INVESTOR_CRUNCHY}
+              value={stateSlices.crunchy}
+              sizeOfEffect={sliceDiffs['crunchy']}
+            />
+            <InvestorMeter
+              {...SENDER_INVESTOR_INNOVATION}
+              value={stateSlices.innovation}
+              sizeOfEffect={sliceDiffs['innovation']}
+            />
+          </div>
+        </div>
+        <div style={{filter: isPlayerDead ? "blur(4px)" : undefined, paddingRight: 10 }}>
+          <div style={{ height: 350, position: 'relative', overflow: 'hidden'}}>
             <div style={{ position: 'absolute', bottom: 0 }}>
               {pastChoices.slice(-3).map(({ cardId, optionId }) => (
                 <>
@@ -184,33 +214,33 @@ class App extends Component {
             </div>
           </div>
           <SenderMessage card={currentCard} companyName={companyName} productName={productName} />
-        </div>
-        <div
-          style={{
-            margin: 5,
-            borderRadius: 5,
-            border: '2px solid #717274',
-            padding: 2,
-          }}
-        >
-          {Object.keys(currentCard.options).map(optionId => (
-            <button
-              style={{
-                margin: 5,
-                padding: 8,
-                borderRadius: 3,
-                border: '1px solid rgb(215, 218, 224)',
-                background:
-                  'linear-gradient(rgba(253, 253, 253, 1) 0%, rgb(245, 245, 245) 85%, rgb(224, 226, 230) 100%)',
-              }}
-              key={optionId}
-              onClick={() => this.chooseItem(optionId)}
-              onMouseEnter={() => this.enterHoverOverOption(optionId)}
-              onMouseLeave={() => this.leaveHoverOverOption()}
-            >
-              {typeof currentCard.options[optionId].message === "function" ? currentCard.options[optionId].message(companyName, productName) : currentCard.options[optionId].message}
-            </button>
-          ))}
+          <div
+            style={{
+              margin: 10,
+              borderRadius: 5,
+              border: '2px solid #717274',
+              padding: 2,
+            }}
+          >
+            {Object.keys(currentCard.options).map(optionId => (
+              <button
+                style={{
+                  margin: 5,
+                  padding: 8,
+                  borderRadius: 3,
+                  border: '1px solid rgb(215, 218, 224)',
+                  background:
+                    'linear-gradient(rgba(253, 253, 253, 1) 0%, rgb(245, 245, 245) 85%, rgb(224, 226, 230) 100%)',
+                }}
+                key={optionId}
+                onClick={() => this.chooseItem(optionId)}
+                onMouseEnter={() => this.enterHoverOverOption(optionId)}
+                onMouseLeave={() => this.leaveHoverOverOption()}
+              >
+                {typeof currentCard.options[optionId].message === "function" ? currentCard.options[optionId].message(companyName, productName) : currentCard.options[optionId].message}
+              </button>
+            ))}
+          </div>
         </div>
         {
           !isPlayerDead ? null :

@@ -12,12 +12,14 @@ export default function MetricMeter({
       <div
         style={{
           display: 'inline-block',
-          height: 16,
-          width: 16,
-          borderRadius: 8,
+          marginLeft: 5,
+          verticalAlign: 'bottom',
+          height: 20,
+          width: 20,
+          borderRadius: 10,
           transformOrigin: 'center',
-          backgroundColor: 'blue',
-          transform: `scale(${(sizeOfEffect || 0) * 2})`
+          backgroundColor: 'rgba(255, 255, 255, 0.8)',
+          transform: `scale(${Math.min(1, Math.abs(sizeOfEffect || 0)) * 2})`
         }}
       />
     </div>

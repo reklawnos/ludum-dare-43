@@ -60,7 +60,7 @@ export default {
         },
       },
     },
-    getScore: showSomeTimeAfterSpecificChoice('employeeMeatProblems_1', 'meatlessMonday', 0.1),
+    getScore: showSomeTimeAfterSpecificChoice('employeeMeatProblems_1', 'meatlessMonday', 1),
   },
 
   weWantMoreMonitors: {
@@ -318,7 +318,7 @@ export default {
         },
       },
     },
-    getScore: showSomeTimeAfterSpecificChoice('outsourceEngineering_1', 'yes', 0.2),
+    getScore: showSomeTimeAfterSpecificChoice('outsourceEngineering_1', 'yes', 0.7),
   },
 
   toiletPaper_1: {
@@ -417,7 +417,7 @@ export default {
         },
       },
     },
-    getScore: showSomeTimeAfterSpecificChoice('reputation_holidayParty1', 'yes', 0.5),
+    getScore: showSomeTimeAfterSpecificChoice('reputation_holidayParty1', 'yes', 1),
   },
 
   reputation_holidayParty3: {
@@ -441,7 +441,7 @@ export default {
         },
       },
     },
-    getScore: showSomeTimeAfterSpecificChoice('reputation_holidayParty2', 'yes', 0.5),
+    getScore: showSomeTimeAfterSpecificChoice('reputation_holidayParty2', 'yes', 1),
   },
 
   reputation_holidayParty4: {
@@ -466,7 +466,7 @@ export default {
         },
       },
     },
-    getScore: showSomeTimeAfterSpecificChoice('reputation_holidayParty3', 'hideIt', 0.5),
+    getScore: showSomeTimeAfterSpecificChoice('reputation_holidayParty3', 'hideIt', 1),
   },
 
   reputation_dadParty: {

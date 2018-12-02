@@ -109,7 +109,7 @@ export default {
         },
       },
     },
-    getScore: showSomeTimeAfterSpecificChoice("congress_skipped", "ignore", 0.3),
+    getScore: showSomeTimeAfterSpecificChoice("congress_skipped", "ignore", 0.6),
   },
   congress_campaign_finance: {
     message: `Hey, did you make some weird donations? We're being investigated for campaign finance law violations.`,
@@ -132,7 +132,7 @@ export default {
         },
       },
     },
-    getScore: showSomeTimeAfterSpecificChoice("congress_skipped", "bribe", 0.3),
+    getScore: showSomeTimeAfterSpecificChoice("congress_skipped", "bribe", 0.6),
   },
   congress_attended: {
     message: `Are you aware that your products are being marketed during children's Saturday morning cartoons?`,
@@ -193,7 +193,7 @@ export default {
           },
         },
       },
-      getScore: showSomeTimeAfterSpecificChoice("congress_tweet_start", "ambien", 0.3),
+      getScore: showSomeTimeAfterSpecificChoice("congress_tweet_start", "ambien", 0.6),
   },
   congress_tweet_weasel: {
     message: `"My Little Zebra" is my daughter's favorite show. Are you saying that you watch the same cartoons as a 9-year-old girl?`,
@@ -232,7 +232,7 @@ export default {
         },
       },
     },
-    getScore: showSomeTimeAfterSpecificChoice("congress_tweet_weasel", "fifth", 0.3),
+    getScore: showSomeTimeAfterSpecificChoice("congress_tweet_weasel", "fifth", 0.6),
   },
   congress_tweet_brony: {
     message: `From a fellow My Little Zebra fan, who is your favorite zebra?`,
@@ -267,7 +267,7 @@ export default {
         },
       }
     },
-    getScore: showSomeTimeAfterSpecificChoice("congress_tweet_weasel", "yes", 0.3),
+    getScore: showSomeTimeAfterSpecificChoice("congress_tweet_weasel", "yes", 0.6),
   },
   congress_admitted: {
     message: `I'm shocked at your cavalier attitude. It seems like the whole industry is a wild west in need of regulation.`,
@@ -355,6 +355,6 @@ export default {
         },
       },
     },
-    getScore: showSomeTimeAfterSpecificChoice("patentInfringement_1", "no", 0.1),
+    getScore: showSomeTimeAfterSpecificChoice("patentInfringement_1", "no", 0.6),
   },
 };
