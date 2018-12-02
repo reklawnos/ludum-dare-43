@@ -6,6 +6,10 @@ export function showAfterSpecificChoice(cardId, optionId) {
   return state => hasMadeChoice(state, cardId, optionId) ? MUST_SHOW_SCORE : DO_NOT_SHOW_SCORE;
 }
 
+export function showAfterSpecificCard(cardId) {
+  return state => state.pastChoices.some(choice => choice.cardId === cardId) ? MUST_SHOW_SCORE : DO_NOT_SHOW_SCORE;
+}
+
 export function showSomeTimeAfterSpecificChoice(cardId, optionId, increasePerTurn) {
   return state => {
     const idx = indexOfChoice(state, cardId, optionId);
@@ -103,7 +107,7 @@ export const SENDER_THOUGHT_LEADER = {
 };
 
 export const SENDER_COMMUNICATIONS = {
-  name: 'Marketing Manager'
+  name: 'CMO'
 };
 
 export const SENDER_EMAIL = {
@@ -138,7 +142,42 @@ export const SENDER_AI = {
   name: 'AI',
 };
 
+export const SENDER_EMPLOYEE = {
+  name: getEmployeeName(),
+};
+
+export const SENDER_JUDIE = {
+  name: "Judie"
+};
+
+export const SENDER_CHINESE_MANUFACTURER = {
+  name: "Chinese Manufacturer"
+};
+
+export const SENDER_TWITTER = {
+  name: "Chirper"
+};
+
+
+
 export const r = (quantity) => (val) => val + quantity;
+
+export function getEmployeeName() {
+  const r = Math.random();
+  const possibleNames = [
+    "Bob",
+    "Alice",
+    "Cal",
+    "Al",
+    "Ben",
+    "Wen",
+    "Gertrude",
+    "Sam",
+    "Imram",
+    "Arjun",
+  ];
+  return possibleNames[Math.floor(r * possibleNames.length)];
+}
 
 export function getRandomTechBuzzword() {
   let r = Math.random();
@@ -172,4 +211,8 @@ export function getRandomTechBuzzword() {
   else if (r < 1.0) {
     return "Rockets";
   }
+}
+
+export function getTwitterHandleFromCompanyName(companyName) {
+  return companyName.split(" ").join("_").replace(/'"\.,;/g, '')
 }
