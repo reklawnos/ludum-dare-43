@@ -713,6 +713,8 @@ export default {
         message: `Our employees are getting too complacent. Let's remove all free food.`,
         reducers: {
           money: r(0.5),
+          crunchy: r(-0.3),
+          innovation: r(-0.1),
         }
       }
     },

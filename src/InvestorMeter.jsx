@@ -11,7 +11,7 @@ export default function InvestorMeter({
   sizeOfEffect,
 }) {
   console.log(sizeOfEffect);
-  const normValue = Math.min(value, 1);
+  const normValue = Math.max(Math.min(value, 1), 0);
   const dashOffset = (1 - normValue) * CIRCLE_LENGTH;
 
   const hue = normValue * 130;
@@ -38,6 +38,19 @@ export default function InvestorMeter({
         >
           <CirclePortrait size={40} face={face} />
         </div>
+        {value < 0.2 &&
+          <div
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              borderRadius: 20,
+            }}
+            className="pulsing-animation"
+          />
+        }
         <div
           style={{
             position: 'absolute',

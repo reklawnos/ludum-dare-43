@@ -72,3 +72,19 @@ button {
 button:focus {
   outline: none;
 }
+
+.pulsing-animation {
+  animation: pulse 0.75s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    background-color: rgba(255, 0, 0, 0.5);
+  }
+  75% {
+    background-color: rgba(255, 0, 0, 0);
+  }
+  100% {
+    background-color: rgba(255, 0, 0, 0);
+  }
+}
