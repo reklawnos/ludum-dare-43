@@ -11,6 +11,10 @@ function generateProductName() {
   return "[Product Name]";
 }
 
+function getReasonOfDeath(state) {
+  return "You're too much of an asshole";
+}
+
 function getNextCard(state) {
   const { pastChoices } = state;
   const alreadySeenCardIds = new Set(pastChoices.map(({ cardId }) => cardId));
@@ -70,13 +74,18 @@ function applyOptionReducers(stateSlices, cardId, optionId) {
 class App extends Component {
   constructor(props) {
     super(props);
+    
+    this.state = this.getNewStartState();
+  };
+  
+  getNewStartState = () => {
     const stateSlices = {
       money: 2,
       reputation: 0.5,
       crunchy: 0.5,
       innovation: 0.5,
     };
-    this.state = {
+    return {
       companyName: "Tableify",
       productName: generateProductName(),
       pastChoices: [],
@@ -85,7 +94,11 @@ class App extends Component {
       hoverOptionId: null,
       playerFace: getRandomFace(),
     };
-  }
+  };
+  
+  restart = () => {
+    this.setState(this.getNewStartState());
+  };
 
   chooseItem = (optionId) => {
     this.setState(({ pastChoices, currentCardId, stateSlices }) => {
@@ -115,7 +128,15 @@ class App extends Component {
     const currentCard = cards[currentCardId];
 
     console.log(currentCard, currentCardId);
-
+    
+    let isPlayerDead = 
+      stateSlices.money <= 0
+       || stateSlices.reputation <= 0
+       || stateSlices.crunchy <= 0
+       || stateSlices.innovation <= 0;
+     
+    let reasonOfDeath = isPlayerDead ? getReasonOfDeath(this.state) : "";
+     
     let sliceDiffs = [];
     if (hoverOptionId) {
       const newStateSlices = applyOptionReducers(stateSlices, currentCardId, hoverOptionId);
@@ -129,51 +150,65 @@ class App extends Component {
 
     return (
       <div>
-        <MetricMeter
-          prefix="Money: "
-          value={stateSlices.money}
-          postfix="M"
-          sizeOfEffect={sliceDiffs['money']}
-        />
-        <MetricMeter
-          prefix="Reputation: "
-          value={stateSlices.reputation}
-          sizeOfEffect={sliceDiffs['reputation']}
-        />
-        <MetricMeter
-          prefix="Crunchy: "
-          value={stateSlices.crunchy}
-          sizeOfEffect={sliceDiffs['crunchy']}
-        />
-        <MetricMeter
-          prefix="Innovation: "
-          value={stateSlices.innovation}
-          sizeOfEffect={sliceDiffs['innovation']}
-        />
-        <hr />
-        <div style={{ height: 350, position: 'relative', overflow: 'hidden' }}>
-          <div style={{ position: 'absolute', bottom: 0 }}>
-            {pastChoices.slice(-3).map(({ cardId, optionId }) => (
-              <>
-                <SenderMessage card={cards[cardId]} companyName={companyName} productName={productName} />
-                <BasicMessage face={playerFace} name="Me" message={cards[cardId].options[optionId].message} isHighlighted />
-              </>
+        <div style={{filter: isPlayerDead ? "blur(4px)" : undefined}}>
+          <MetricMeter
+            prefix="Money: "
+            value={stateSlices.money}
+            postfix="M"
+            sizeOfEffect={sliceDiffs['money']}
+          />
+          <MetricMeter
+            prefix="Reputation: "
+            value={stateSlices.reputation}
+            sizeOfEffect={sliceDiffs['reputation']}
+          />
+          <MetricMeter
+            prefix="Crunchy: "
+            value={stateSlices.crunchy}
+            sizeOfEffect={sliceDiffs['crunchy']}
+          />
+          <MetricMeter
+            prefix="Innovation: "
+            value={stateSlices.innovation}
+            sizeOfEffect={sliceDiffs['innovation']}
+          />
+          <hr />
+          <div style={{ height: 350, position: 'relative', overflow: 'hidden' }}>
+            <div style={{ position: 'absolute', bottom: 0 }}>
+              {pastChoices.slice(-3).map(({ cardId, optionId }) => (
+                <>
+                  <SenderMessage card={cards[cardId]} companyName={companyName} productName={productName} />
+                  <BasicMessage face={playerFace} name="Me" message={cards[cardId].options[optionId].message} isHighlighted />
+                </>
+              ))}
+            </div>
+          </div>
+          <SenderMessage card={currentCard} companyName={companyName} productName={productName} />
+          <div>
+            {Object.keys(currentCard.options).map(optionId => (
+              <button
+                key={optionId}
+                onClick={() => this.chooseItem(optionId)}
+                onMouseEnter={() => this.enterHoverOverOption(optionId)}
+                onMouseLeave={() => this.leaveHoverOverOption()}
+              >
+                {typeof currentCard.options[optionId].message === "function" ? currentCard.options[optionId].message(companyName, productName) : currentCard.options[optionId].message}
+              </button>
             ))}
           </div>
         </div>
-        <SenderMessage card={currentCard} companyName={companyName} productName={productName} />
-        <div>
-          {Object.keys(currentCard.options).map(optionId => (
-            <button
-              key={optionId}
-              onClick={() => this.chooseItem(optionId)}
-              onMouseEnter={() => this.enterHoverOverOption(optionId)}
-              onMouseLeave={() => this.leaveHoverOverOption()}
-            >
-              {typeof currentCard.options[optionId].message === "function" ? currentCard.options[optionId].message(companyName, productName) : currentCard.options[optionId].message}
-            </button>
-          ))}
-        </div>
+        {
+          !isPlayerDead ? null :
+          <div style={{position: "fixed", left: 0, right: 0, top: 0, bottom: 0, width: "100%", height: "100%"}}>
+            <div style={{ position: "relative", padding: "12px 12px 12px 12px", left: "50%", top: "50%",  backgroundColor: "#ccc", width: "220px", transform: "translate(-50%, -50%)"}}>
+            <div style={{fontSize: 20}}>You've been banned from this Quack channel.</div>
+            <br />
+            <b>Reason</b>: {reasonOfDeath}
+            <br />
+            <button onClick={this.restart}>Restart</button>
+            </div>
+          </div>
+        }
       </div>
     );
   }
