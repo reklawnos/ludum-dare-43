@@ -221,8 +221,23 @@ export const SENDER_TRANSLATOR = {
   face: getRandomFace(),
 };
 
-export const SENDER_SENATOR = {
-  name: getSenatorName(),
+export const SENDER_SENATOR1 = {
+  name: "Senator McBob",
+  face: getRandomFormalFace(),
+};
+
+export const SENDER_SENATOR2 = {
+  name: "Senator Jenkins",
+  face: getRandomFormalFace(),
+};
+
+export const SENDER_SENATOR3 = {
+  name: "Senator Mike",
+  face: getRandomFormalFace(),
+};
+
+export const SENDER_SENATOR4 = {
+  name: "Senator O'Henry",
   face: getRandomFormalFace(),
 };
 
@@ -285,15 +300,10 @@ export function getEmployeeName() {
   return possibleNames[Math.floor(r * possibleNames.length)];
 }
 
-export function getSenatorName() {
+export function getRandomSenator() {
   const r = Math.random();
-  const possibleNames = [
-    "Senator McBob",
-    "Senator Mike",
-    "Senator O'Henry",
-    "Senator Fido"
-  ];
-  return possibleNames[Math.floor(r * possibleNames.length)];
+  const possibleSenators = [SENDER_SENATOR1, SENDER_SENATOR2, SENDER_SENATOR3, SENDER_SENATOR4];
+  return possibleSenators[Math.floor(r * possibleSenators.length)];
 }
 
 export function getRandomTechBuzzword() {

@@ -12,7 +12,7 @@ import {
   SENDER_INVESTOR_CRUNCHY,
   SENDER_HEAD_OF_FACILITIES,
   SENDER_LEGAL,
-  SENDER_SENATOR,
+  getRandomSenator,
   showAfterSpecificChoice,
   showAfterSpecificCard,
   showAfterAnyCard,
@@ -136,7 +136,7 @@ export default {
   },
   congress_attended: {
     message: `Are you aware that your products are being marketed during children's Saturday morning cartoons?`,
-    sender: SENDER_SENATOR,
+    sender: getRandomSenator(),
     options: {
       yes: {
         message: `Yes, what's wrong with that?`,
@@ -157,7 +157,7 @@ export default {
   },
   congress_tweet_start: {
     message: `Hmmm, but you posted this message on Chirper yesterday: "Can't wait for the world premiere of our new ad during @MyLittleZebraAnimatedSeries this morning! #hype #blessed #hustle"`,
-    sender: SENDER_SENATOR,
+    sender: getRandomSenator(),
     options: {
       weasel: {
         message: `Whoa, "My Little Zebra" isn't just a kids show`,
@@ -197,7 +197,7 @@ export default {
   },
   congress_tweet_weasel: {
     message: `"My Little Zebra" is my daughter's favorite show. Are you saying that you watch the same cartoons as a 9-year-old girl?`,
-    sender: SENDER_SENATOR,
+    sender: getRandomSenator(),
     options: {
       yes: {
         message: `Yes`,
@@ -271,7 +271,7 @@ export default {
   },
   congress_admitted: {
     message: `I'm shocked at your cavalier attitude. It seems like the whole industry is a wild west in need of regulation.`,
-    sender: SENDER_SENATOR,
+    sender: getRandomSenator(),
     options: {
       regulate: {
         message: `I guess a bit of regulation wouldn't hurt`,
@@ -295,7 +295,7 @@ export default {
   },
   congress_end: {
     message: `Thank you for your testimony. That will be all.`,
-    sender: SENDER_SENATOR,
+    sender: getRandomSenator(),
     options: {
       yes: {
         message: `Thank you, Senators`,
