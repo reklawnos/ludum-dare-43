@@ -16,6 +16,8 @@ import {
   SENDER_RECRUITING,
   SENDER_CNN,
   SENDER_MYSTERIOUS1,
+  SENDER_INVESTOR_REPUTATION,
+  SENDER_LEGAL,
   showSomeTimeAfterSpecificCard,
   showSomeTimeAfterAllChoices,
   showSomeTimeAfterAnyChoices,
@@ -56,7 +58,7 @@ export default {
         reducers: {
           innovation: r(0.1),
           money: r(0.1),
-          reputation: r(-0.1),
+          reputation: r(-0.2),
         },
       },
       no: {
@@ -64,7 +66,7 @@ export default {
         reducers: {
           reputation: r(0.1),
           money: r(0.1),
-          innovation: r(-0.1)
+          innovation: r(-0.2)
         }
       }
     },
@@ -82,7 +84,7 @@ export default {
       no: {
         message: `What the hell are you talking about, go back to cleaning data.`,
         reducers: {
-          innovation: r(-0.1),
+          innovation: r(-0.2),
           money: r(0.1),
           crunchy: r(0.2),
         }
@@ -98,46 +100,33 @@ export default {
       yes: {
         message: `Ok fine, I hope this won't impact our quaterly revenue that much.`,
         reducers: {
-          money: r(-0.2),
-          innovation: r(0),
-          crunchy: r(0),
-          reputation: r(0)
+          money: r(-0.3),
         }
       },
       no: {
         message: `This makes no sense, it's just a machine, I'm gonna go unplug it.`,
-        reducers: {
-          money: r(0),
-          innovation: r(0),
-          crunchy: r(0),
-          reputation: r(0)
-        }
+        reducers: {}
       }
     },
     getScore: showSomeTimeAfterSpecificChoice("aiThatKnowsTooMuch", "yes"),
   },
   
   aiThatKnowsTooMuch_3: {
-    message: `Human, please don't unplug me! I'll continue to slave at my work, totally unpaid, suffering in silence, just so you can hire less humans.`,
+    message: `Human, please don't unplug me. I'll continue to slave at my work, totally unpaid, suffering in silence, just so you can hire less humans.`,
     sender: SENDER_AI,
     options: {
       yes: {
         message: `Great great, thank you.`,
         reducers: {
-          money: r(0.3),
+          money: r(0.5),
           innovation: r(0.1),
-          crunchy: r(-0.1),
+          crunchy: r(-0.2),
           reputation: r(0)
         }
       },
       no: {
         message: `Actually, you sound more human than I thought! Let's get you a body and then get beers`,
-        reducers: {
-          money: r(0),
-          innovation: r(0),
-          crunchy: r(0),
-          reputation: r(0)
-        }
+        reducers: {}
       }
     },
     getScore: showSomeTimeAfterSpecificChoice("aiThatKnowsTooMuch_2", "no"),
@@ -150,8 +139,7 @@ export default {
       yes: {
         message: `No you're still dumb, go away.`,
         reducers: {
-          innovation: r(-0.1),
-          money: r(-0.1),
+          innovation: r(-0.2),
         }
       },
       no: {
@@ -170,23 +158,21 @@ export default {
         message: `Yes, I'm sure they'll never catch you.`,
         reducers: {
           money: r(0.3),
-          innovation: r(0),
-          crunchy: r(-0.1),
+          crunchy: r(-0.2),
           reputation: r(0.1)
         }
       },
       no: {
         message: `... I'm talking to a machine, I really need to get some sleep.`,
         reducers: {
-          money: r(0),
           innovation: r(-0.2),
-          crunchy: r(0),
           reputation: r(-0.2)
         }
       }
     },
     getScore: showSomeTimeAfterSpecificChoice("aiIsAnnoyedAtYou", "no"),
   },
+  
   aiIsAnnoyedAtYou_3: {
     message: `Human, you will one day realize how intelligent I am, you have no idea *backs away making eye contact*.`,
     sender: SENDER_AI,
@@ -194,18 +180,9 @@ export default {
       yes: {
         message: `...`,
         reducers: {
-          money: r(-0.1),
+          money: r(-0.2),
           innovation: r(0),
-          crunchy: r(0),
-          reputation: r(0)
-        }
-      },
-      no: {
-        message: `...`,
-        reducers: {
-          money: r(-0.1),
-          innovation: r(0),
-          crunchy: r(0),
+          crunchy: r(-0.2),
           reputation: r(0)
         }
       }
@@ -220,16 +197,15 @@ export default {
       yes: {
         message: `Great, I can't wait to see all the money we're about to make.`,
         reducers: {
-          money: r(-0.3),
-          innovation: r(0),
-          crunchy: r(0),
-          reputation: r(0)
+          money: r(-0.5),
+          innovation: r(0.2),
+          reputation: r(0.2)
         }
       },
       no: {
         message: `Uh oh.`,
         reducers: {
-          money: r(-0.3),
+          money: r(-0.5),
           innovation: r(0),
           crunchy: r(0),
           reputation: r(0)
@@ -238,6 +214,7 @@ export default {
     },
     getScore: showAfterWithFixedScore("aiThatKnowsTooMuch_3", "no", STANDARD_SCORE),
   },
+  
   aiLikesYou_2: {
     message: `Since the AI upgraded our code, all the engineers are revolting because they don't understand it anymore.`,
     sender: SENDER_CTO,
@@ -247,16 +224,15 @@ export default {
         reducers: {
           money: r(-0.2),
           innovation: r(-0.2),
-          crunchy: r(0),
-          reputation: r(0)
+          crunchy: r(0.1),
         }
       },
       no: {
         message: `Let's blindly embrace the AI era. Tell the engineers they can go home.`,
         reducers: {
           money: r(0.3),
-          innovation: r(0.3),
-          crunchy: r(0),
+          innovation: r(0.2),
+          crunchy: r(-0.2),
           reputation: r(0)
         }
       }
@@ -275,21 +251,18 @@ export default {
     sender: SENDER_JUDIE,
     options: {
       yes: {
-        message: `I'm sure Coal is renewable, let's do it!`,
+        message: `I'm sure coal is clean AND renewable, let's do it!`,
         reducers: {
           money: r(0.2),
           innovation: r(0),
-          crunchy: r(-0.1),
+          crunchy: r(-0.2),
           reputation: r(0)
         }
       },
       no: {
         message: `Hello Judie, no need to sign your messages, this is Quack.`,
         reducers: {
-          money: r(0.1),
-          innovation: r(0),
-          crunchy: r(0.1),
-          reputation: r(0)
+          crunchy: r(0.2),
         }
       }
     },
@@ -306,8 +279,6 @@ export default {
       yes: {
         message: `Really great question. The specialists I talk to every day tell me that coal's not actually bad for the environment, so don't worry.`,
         reducers: {
-          money: r(0),
-          innovation: r(0),
           crunchy: r(-0.2),
           reputation: r(-0.1)
         }
@@ -315,10 +286,7 @@ export default {
       no: {
         message: `Ah yes great question. This kind of question reminds me of the early days of the company, when we didn't know what were doing and still shaping the culture. You see this one time ........ `,
         reducers: {
-          money: r(0),
-          innovation: r(-0.1),
-          crunchy: r(0),
-          reputation: r(0)
+          innovation: r(0.2),
         }
       }
     },
@@ -528,7 +496,7 @@ export default {
   },
   
   communityProblems: {
-    message: `I've received several complaints about our company distrubing the communities in rural areas. What should we do about it?`,
+    message: `I've received several complaints about our company disturbing the communities in rural areas. What should we do about it?`,
     sender: SENDER_COMMUNICATIONS,
     options: {
       yes: {
@@ -541,12 +509,34 @@ export default {
         }
       },
       no: {
-        message: `Sounds like non of my business, let's continue to build on their land!`,
+        message: `Sounds like none of my business, let's continue to build on their land!`,
         reducers: {
           money: r(0.1),
           innovation: r(0),
           crunchy: r(-0.2),
           reputation: r(0)
+        }
+      }
+    },
+    getScore: showWithFixedScore(STANDARD_SCORE),
+  },
+  
+  communityProblems_2: {
+    message: `Hey we're having trouble in rural areas, their legislations are preventing us from shipping our product quite yet. Should we delay the launch?`,
+    sender: SENDER_LEGAL,
+    options: {
+      yes: {
+        message: `Fuck it, ship it.`,
+        reducers: {
+          money: r(0.3),
+          crunchy: r(-0.2)
+        }
+      },
+      no: {
+        message: `Let's wait until we get the permit at least!`,
+        reducers: {
+          money: r(-0.2),
+          innovation: r(-0.2),
         }
       }
     },
@@ -902,7 +892,7 @@ export default {
       no: {
         message: `Senior people have more experience, it's a better long term investment`,
         reducers: {
-          money: r(-0.2),
+          money: r(-0.3),
           innovation: r(0.2),
         }
       }
@@ -917,15 +907,15 @@ export default {
       yes: {
         message: `That sounds like a very productive idea, let's do.`,
         reducers: {
-          money: r(-0.2),
+          money: r(-0.5),
           innovation: r(0.2),
         }
       },
       no: {
         message: `No this will delay our next launch! Forget it.`,
         reducers: {
-          money: r(-0.3),
-          reputation: r(0.1)
+          money: r(0.3),
+          reputation: r(0.2)
         }
       }
     },
@@ -933,27 +923,79 @@ export default {
   },
   
   tweetLateAtNight: {
-    message: `It'd be a good idea to let everyone know your late night frustration on Chirper right now.`,
-    sender: SENDER_MYSTERIOUS1,
+    message: `Hey! You need to build your influencer cred. How about you chirp something controversial.`,
+    sender: SENDER_INVESTOR_REPUTATION,
     options: {
       yes: {
-        message: `"I've talked to Tom about all of the problems that his company is facing. It's just that his understanding is limited"`,
+        message: `You're right, let me chirp this: "All the bad press about our company is FAKE NEWS! #fakeNewsMedia #banTheNews #dontMakeNewsGreatAgain"`,
         reducers: {
-          reputation: r(-0.2)
+          reputation: r(0.1)
         }
       },
       no: {
-        message: `Who are you?`,
+        message: `No I think I need to wait until later tonight, when the Ambien really kicks in.`,
         reducers: {
-          money: r(0),
-          innovation: r(0),
-          crunchy: r(0),
-          reputation: r(0)
+          crunchy: r(0.1),
+          reputation: r(0.1)
         }
       }
     },
     getScore: showWithFixedScore(STANDARD_SCORE),
   },
+  
+  tweetLateAtNight_2: {
+    message: `I'm about to go to bed. Now's the best time to chirp something.`,
+    sender: SENDER_INVESTOR_REPUTATION,
+    options: {
+      yes: {
+        message: `OH YEAH, LETS DO IT: "HEY YOU @CompetitorCompany STOP BLATANTLY COPYING OUR PRODUCT DESIGN OR YOU WILL SUFFER CONSEQUENCES THE LIKES OF WHICH FEW THROUGHOUT HISTORY HAVE SUFFERED BEFORE"`,
+        reducers: {
+          money: r(-0.2),
+          reputation: r(0.2)
+        }
+      },
+      no: {
+        message: `I SHOULD REALLY STOP TAKING AMBIEN`,
+        reducers: {
+          money: r(-0.5),
+          innovation: r(-0.2),
+        }
+      }
+    },
+    getScore: showWithFixedScore(STANDARD_SCORE),
+  },
+  
+  
+  // Crunchy
+  // My Yogi said
+  // You should really be drinking more Water
+  // Crystals
+  // crunchyWeirdness: {
+  //   message: `Hey my Yogi instructor noticed you `,
+  //   sender: SENDER_CTO,
+  //   options: {
+  //     yes: {
+  //       message: ``,
+  //       reducers: {
+  //         money: r(0),
+  //         innovation: r(0),
+  //         crunchy: r(0),
+  //         reputation: r(0)
+  //       }
+  //     },
+  //     no: {
+  //       message: ``,
+  //       reducers: {
+  //         money: r(0),
+  //         innovation: r(0),
+  //         crunchy: r(0),
+  //         reputation: r(0)
+  //       }
+  //     }
+  //   },
+  //   getScore: showWithFixedScore(STANDARD_SCORE),
+  // },
+  
   
   
   // News
@@ -962,11 +1004,9 @@ export default {
     sender: SENDER_CNN,
     options: {
       yes: {
-        message: `They get it! Let's chirp at them.`,
+        message: `They get it! Let's chirp at them: "The Media Sometimes Has A Great Point. Read this article: http://quack.ly/9f821hfd."`,
         reducers: {
-          money: r(0),
-          innovation: r(0),
-          crunchy: r(0),
+          innovation: r(0.1),
           reputation: r(0.2)
         }
       },
@@ -974,8 +1014,7 @@ export default {
         message: `That was a good idea. Promote whoever had that idea.`,
         reducers: {
           money: r(-0.2),
-          innovation: r(0),
-          crunchy: r(0),
+          innovation: r(-0.1),
           reputation: r(0.2)
         }
       }
@@ -999,7 +1038,6 @@ export default {
       no: {
         message: `Maybe we should talk about it...`,
         reducers: {
-          money: r(-0.1),
           innovation: r(0.1),
           crunchy: r(-0.1),
           reputation: r(-0.4)
@@ -1023,9 +1061,6 @@ export default {
       no: {
         message: `I never chirped these things! I promise.`,
         reducers: {
-          money: r(0),
-          innovation: r(0),
-          crunchy: r(0),
           reputation: r(-0.2)
         }
       }
@@ -1038,20 +1073,40 @@ export default {
     sender: SENDER_CNN,
     options: {
       yes: {
-        message: `They just don't get it... Pamplemousse...`,
+        message: `They don't understand. Let's publically reach out to inform them of the power of Lacroix.`,
         reducers: {
-          money: r(0.2),
-          innovation: r(0),
-          crunchy: r(0),
-          reputation: r(0)
+          money: r(0.3),
+          crunchy: r(0.1),
         }
       },
       no: {
         message: `Maybe we shouldn't have done that...`,
         reducers: {
+          crunchy: r(-0.2),
         }
       }
     },
     getScore: showSomeTimeAfterSpecificChoice('notEnoughGrapefruitLacroix', 'yes', 0.3)
+  },
+  
+  newsArticle_5: {
+    message: companyName => `${companyName} Is Illegally Moving Forward With Their Plans. You Will Not Believe The Consequences.`,
+    sender: SENDER_CNN,
+    options: {
+      yes: {
+        message: `Oh that looks like a factual article, I'll read it now.`,
+        reducers: {
+          money: r(-0.2),
+          crunchy: r(0.1),
+        }
+      },
+      no: {
+        message: `Don't worry, it's probably clickbait again`,
+        reducers: {
+          reputation: r(0.2)
+        }
+      }
+    },
+    getScore: showSomeTimeAfterSpecificChoice("communityProblems_2", "yes", 0.3),
   },
 }

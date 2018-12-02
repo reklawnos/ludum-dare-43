@@ -3,6 +3,7 @@ import {
   showAfterSpecificChoice,
   showSomeTimeAfterSpecificChoice,
   showWithFixedScore,
+  showAfterAnyChoices,
   r,
   getRandomTechBuzzword,
   SENDER_ENTREPRENEUR,
@@ -14,6 +15,7 @@ import {
   SENDER_EMAIL,
   SENDER_TRANSLATOR,
   SENDER_DESIGNER,
+  SENDER_TWITTER,
 } from "./shared";
 import Walker from './walker';
 import Ben from './ben';
@@ -48,7 +50,7 @@ export default {
       yes: {
         message: `Shots, baby!`,
         reducers: {
-          money: val => val + 0.1,
+          money: val => val + 0.2,
         },
       },
       no: {
@@ -72,7 +74,7 @@ export default {
       sueThem: {
         message: `Sue them to hell!`,
         reducers: {
-          reputation: val => val - 0.1,
+          reputation: val => val - 0.2,
           money: val => val + 0.1,
         },
       },
@@ -119,7 +121,7 @@ export default {
         message: `I mean, we're not a real startup if we don't have our own font.`,
         reducers: {
           crunchy: val => val + 0.1,
-          money: val => val - 0.2,
+          money: val => val - 0.3,
         },
       },
       no: {
@@ -142,15 +144,15 @@ export default {
       yes: {
         message: `That's a totally reasonable point you're making, let's do it!`,
         reducers: {
-          reputation: val => val + 0.3,
+          reputation: val => val + 0.2,
           crunchy: val => val + 0.1,
-          money: val => val - 0.3,
+          money: val => val - 0.4,
         },
       },
       no: {
         message: `The current design works. If it ain't broke don't fix it.`,
         reducers: {
-          innovation: val => val - 0.3,
+          crunchy: val => val - 0.3,
         },
       },
     },
@@ -164,14 +166,14 @@ export default {
       yes: {
         message: `This will not stand, FIRE THE VP OF SECURITY!`,
         reducers: {
-          innovation: val => val - 0.1,
-          reputation: val => val + 0.1,
+          innovation: r(- 0.2),
+          reputation: r(0.1),
         },
       },
       no: {
         message: `Let's put out a press release apology`,
         reducers: {
-          reputation: val => val - 0.2,
+          reputation: r(- 0.2),
         },
       },
     },
@@ -189,7 +191,7 @@ export default {
       no: {
         message: `Nah, I don't have time for this`,
         reducers: {
-          innovation: r(-0.1)
+          innovation: r(-0.2)
         }
       }
     },
@@ -214,7 +216,28 @@ export default {
         }
       }
     },
-    getScore: showAfterSpecificChoice('thoughtLeaderProgrammer_1', 'yes'),
+    getScore: showAfterAnyChoices(['thoughtLeaderProgrammer_1', 'thoughtLeaderProgrammer_5'], ['yes', 'yes']),
+  },
+  
+  thoughtLeaderProgrammer_5: {
+    message: companyName => `@${companyName} Is completely messing up their future. They. Will. Not. Be. Relevant. In. 5. Years. I will bet all my bitcoin on it. Please listen to meeeeee.`,
+    sender: SENDER_TWITTER,
+    options: {
+      yes: {
+        message: `Ok bring him in.`,
+        reducers: {
+          innovation: r(0.1),
+        }
+      },
+      no: {
+        message: `Contact Chirper, we need to prevent this Thought Leader from spreading the bad word.`,
+        reducers: {
+          money: r(-0.2),
+          reputation: r(0.1)
+        }
+      }
+    },
+    getScore: showSomeTimeAfterSpecificChoice("thoughtLeaderProgrammer_1", "no", 0.2)
   },
   
   thoughtLeaderProgrammer_3: {
@@ -224,8 +247,8 @@ export default {
       yes: {
         message: `Ah yes yes, I understand.`,
         reducers: {
-          money: r(0.3),
-          innovation: r(0.3)
+          money: r(0.2),
+          innovation: r(0.2)
         }
       },
       no: {
@@ -243,18 +266,16 @@ export default {
       yes: {
         message: `Ok I'm going to switch all of our activities to focus on that.`,
         reducers: {
-          money: r(-0.3),
+          money: r(-0.5),
           innovation: r(0.2),
           crunchy: r(-0.1),
-          reputation: r(0)
         }
       },
       no: {
         message: `Let's be extremely risk averse here, since we literally found the guy on Chirper.`,
         reducers: {
-          money: r(0),
           innovation: r(-0.2),
-          crunchy: r(0.2),
+          crunchy: r(0.1),
           reputation: r(0.1)
         }
       }
@@ -263,7 +284,7 @@ export default {
   },
   
   linkedInPhishing: {
-    message: `LinkedIn: You have a new connecion from Blarb Shurl`,
+    message: `LinkedIn: You have a new connection from Blarb Shurl`,
     sender: SENDER_EMAIL,
     options: {
       yes: {
