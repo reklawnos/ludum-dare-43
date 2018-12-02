@@ -212,7 +212,8 @@ export default {
         reducers: {}
       },
       no: {
-        message: `Refuse connection`
+        message: `Refuse connection`,
+        reducers: {}
       }
     },
     getScore: (state) => {
