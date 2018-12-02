@@ -178,6 +178,7 @@ class App extends Component {
                 value={stateSlices.money}
                 postfix="M"
                 sizeOfEffect={sliceDiffs['money']}
+                minForFlashing={0.5}
               />
             </div>
           </div>

@@ -5,9 +5,12 @@ export default function MetricMeter({
   value,
   postfix,
   sizeOfEffect,
+  minForFlashing,
 }) {
   return (
-    <div>
+    <div
+      className={value < minForFlashing ? 'pulsing-animation' : null }
+    >
       {prefix}{value.toFixed(2)}{postfix}
       <div
         style={{
