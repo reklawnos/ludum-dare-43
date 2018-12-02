@@ -41,6 +41,7 @@ export default {
     message: `
       Oh we just need to know their deepest fears... and whether they're pooping or not.
       If that's not possible, we can get away with knowing their sexual preferences though.`,
+    sender: SENDER_CTO,
     options: {
       yes: {
         message: `Oh yeah that's totally reasonable, what can go wrong, let's do it.`,

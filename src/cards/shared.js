@@ -192,6 +192,10 @@ export const SENDER_TWITTER = {
   face: getRandomFace(),
 };
 
+export const SENDER_TRANSLATOR = {
+  name: "Translator"
+};
+
 
 
 export const r = (quantity) => (val) => val + quantity;

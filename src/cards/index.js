@@ -12,10 +12,12 @@ import {
   SENDER_COMMUNICATIONS,
   SENDER_THOUGHT_LEADER,
   SENDER_EMAIL,
+  SENDER_TRANSLATOR,
 } from "./shared";
 import Walker from './walker';
 import Ben from './ben';
 import nathan from './nathan';
+import Steven from './steven';
 
 export default {
   drinksWithAnEntrepreneur_1: {
@@ -190,19 +192,48 @@ export default {
   },
   
   thoughtLeaderProgrammer_3: {
-    message: `blablabla ... blablablablablabla ...`,
+    message: `oxu nvd tx qvart zbxut vxicv zssistztt which mvzts qvzrtitg zbxut phiqxsxphx, histxrx, sxcizq stuff. xou chouqd qictvt to Wrizt Zovmmvqv rzmbqv zgout uhic. gzciczqo voicv zI ic uhv fuuurv zud oou chouqd gvu ou uhzu chiu.`,
     sender: SENDER_THOUGHT_LEADER,
     options: {
       yes: {
         message: `Ah yes yes, I understand.`,
-        reducers: {}
+        reducers: {
+          money: r(0.3),
+          innovation: r(0.3)
+        }
       },
       no: {
-        message: `Mmmh`,
+        message: `I don't understand any of this, I need a translator.`,
         reducers: {}
       }
     },
     getScore: showAfterSpecificChoice('thoughtLeaderProgrammer_2', 'yes'),
+  },
+  
+  thoughtLeaderProgrammer_4: {
+    message: `I can translate. Here's what he said in plain english: you should invest in ${getRandomTechBuzzword()}.`,
+    sender: SENDER_TRANSLATOR,
+    options: {
+      yes: {
+        message: `Ok I'm going to switch all of our activities to focus on that.`,
+        reducers: {
+          money: r(-0.3),
+          innovation: r(0.2),
+          crunchy: r(-0.1),
+          reputation: r(0)
+        }
+      },
+      no: {
+        message: `Let's be extremely risk averse here, since we literally found the guy on twitter.`,
+        reducers: {
+          money: r(0),
+          innovation: r(-0.2),
+          crunchy: r(0.2),
+          reputation: r(0.1)
+        }
+      }
+    },
+    getScore: showWithFixedScore(STANDARD_SCORE),
   },
   
   linkedInPhishing: {
@@ -256,4 +287,5 @@ export default {
   ...Walker,
   ...Ben,
   ...nathan,
+  ...Steven,
 };
