@@ -1,4 +1,4 @@
-import { getRandomFace } from "../avatars/templates";
+import { getRandomFace, getRandomFormalFace } from "../avatars/templates";
 import InvestorBro from "../avatars/templates/investors/investor_bro";
 import InvestorFuturist from "../avatars/templates/investors/investor_futurist";
 import InvestorHippie from "../avatars/templates/investors/investor_hippie";
@@ -161,6 +161,7 @@ export const SENDER_INVESTOR_INNOVATION = {
   name: 'TODO: "innovation" investor',
   face: {
     Component: InvestorFuturist,
+    bgcolor: "linear-gradient(#2c89a0 0%, #afdde9 100%)",
     props: {},
   },
 };
@@ -169,6 +170,7 @@ export const SENDER_INVESTOR_REPUTATION = {
   name: 'TODO: "reputation" investor',
   face: {
     Component: InvestorBro,
+    bgcolor: "linear-gradient(#784421 0%, #e9c6af 100%)",
     props: {},
   },
 };
@@ -177,6 +179,7 @@ export const SENDER_INVESTOR_CRUNCHY = {
   name: 'TODO: "crunchy" investor',
   face: {
     Component: InvestorHippie,
+    bgcolor: "linear-gradient(#5aa02c 0%, #c6e9af 100%)",
     props: {},
   },
 };
@@ -221,9 +224,24 @@ export const SENDER_TRANSLATOR = {
   face: getRandomFace(),
 };
 
-export const SENDER_SENATOR = {
-  name: getSenatorName(),
-  face: getRandomFace(),
+export const SENDER_SENATOR1 = {
+  name: "Senator McBob",
+  face: getRandomFormalFace(),
+};
+
+export const SENDER_SENATOR2 = {
+  name: "Senator Jenkins",
+  face: getRandomFormalFace(),
+};
+
+export const SENDER_SENATOR3 = {
+  name: "Senator Mike",
+  face: getRandomFormalFace(),
+};
+
+export const SENDER_SENATOR4 = {
+  name: "Senator O'Henry",
+  face: getRandomFormalFace(),
 };
 
 export const SENDER_RESEARCH_DEPARTMENT_PERSON = {
@@ -285,15 +303,10 @@ export function getEmployeeName() {
   return possibleNames[Math.floor(r * possibleNames.length)];
 }
 
-export function getSenatorName() {
+export function getRandomSenator() {
   const r = Math.random();
-  const possibleNames = [
-    "Senator McBob",
-    "Senator Mike",
-    "Senator O'Henry",
-    "Senator Fido"
-  ];
-  return possibleNames[Math.floor(r * possibleNames.length)];
+  const possibleSenators = [SENDER_SENATOR1, SENDER_SENATOR2, SENDER_SENATOR3, SENDER_SENATOR4];
+  return possibleSenators[Math.floor(r * possibleSenators.length)];
 }
 
 export function getRandomTechBuzzword() {

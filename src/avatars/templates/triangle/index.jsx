@@ -33,7 +33,6 @@ const ITEM_ORDER = [
 
 const TOP_OPTIONS = [
   [TriangleBaseballCap],
-  [TriangleBaseballCap, TriangleSpikyHair],
   [TriangleBaseballCap, TriangleLongHairBottom, TriangleLongHairTop],
   [TriangleBaseballCap, TriangleCrewCut],
   [TriangleCrewCut],
@@ -47,11 +46,15 @@ const TOP_OPTIONS = [
   [TriangleLongHairBottom, TriangleLongHairTop],
 ];
 
+const TOP_OPTIONS_FORMAL = [3, 4, 5, 7, 8, 9, 10, 11];
+
 const BOTTOM_OPTIONS = [
   [TriangleSuitJacket, TriangleSuitShirtTie],
   [TriangleSuitJacket, TriangleTshirt],
   [TriangleTshirt],
 ];
+
+const BOTTOM_OPTIONS_FORMAL = [0];
 
 const FACE_OPTIONS = [
   [TriangleHandlebarMustache],
@@ -88,9 +91,9 @@ const ITEM_COLORS = new Map([
     { baseColor: '#4d4d4d', collarColor: '#1a1a1a' },
   ]],
   [TriangleFace, [
-    { skinTone: '#deaa87' },
-    { skinTone: '#d38d5f' },
-    { skinTone: '#916f6f' },
+    { skinTone: '#deaa87', skinToneDark: '#c79979' },
+    { skinTone: '#d38d5f', skinToneDark: '#ca7741' },
+    { skinTone: '#916f6f', skinToneDark: '#6c5353' },
   ]],
 ]);
 
@@ -123,6 +126,13 @@ export function getRandomTriangleFace() {
     hairColorIndex: getRandomIndex(HAIR_COLORS),
     itemColorsMap: randomItemColors(),
   };
+}
+
+export function getRandomFormalTriangleFace() {
+  var randomFace = getRandomTriangleFace();
+  randomFace.topIndex = TOP_OPTIONS_FORMAL[getRandomIndex(TOP_OPTIONS_FORMAL)];
+  randomFace.bottomIndex = BOTTOM_OPTIONS_FORMAL[getRandomIndex(BOTTOM_OPTIONS_FORMAL)];
+  return randomFace;
 }
 
 export default function TriangleAvatar({

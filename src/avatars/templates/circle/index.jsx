@@ -47,11 +47,15 @@ const TOP_OPTIONS = [
   [CircleLongHairBottom, CircleLongHairTop],
 ];
 
+const TOP_OPTIONS_FORMAL = [4, 5, 6, 8, 9, 10, 11, 12];
+
 const BOTTOM_OPTIONS = [
   [CircleSuitJacket, CircleSuitShirtTie],
   [CircleSuitJacket, CircleTshirt],
   [CircleTshirt],
 ];
+
+const BOTTOM_OPTIONS_FORMAL = [0];
 
 const FACE_OPTIONS = [
   [CircleHandlebarMustache],
@@ -123,6 +127,13 @@ export function getRandomCircleFace() {
     hairColorIndex: getRandomIndex(HAIR_COLORS),
     itemColorsMap: randomItemColors(),
   };
+}
+
+export function getRandomFormalCircleFace() {
+  var randomFace = getRandomCircleFace();
+  randomFace.topIndex = TOP_OPTIONS_FORMAL[getRandomIndex(TOP_OPTIONS_FORMAL)];
+  randomFace.bottomIndex = BOTTOM_OPTIONS_FORMAL[getRandomIndex(BOTTOM_OPTIONS_FORMAL)];
+  return randomFace;
 }
 
 export default function CircleAvatar({
