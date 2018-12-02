@@ -12,6 +12,10 @@ export function showAfterSpecificChoice(cardId, optionId) {
   return state => hasMadeChoice(state, cardId, optionId) ? MUST_SHOW_SCORE : DO_NOT_SHOW_SCORE;
 }
 
+export function showWithFixedScoreIfChoiceHasNotBeenMade(cardId, optionId, score) {
+  return state => hasMadeChoice(state, cardId, optionId) ? DO_NOT_SHOW_SCORE : score;
+}
+
 export function showAfterSpecificCard(cardId) {
   return state => state.pastChoices.some(choice => choice.cardId === cardId) ? MUST_SHOW_SCORE : DO_NOT_SHOW_SCORE;
 }
@@ -65,21 +69,21 @@ export function showSomeTimeAfterAllChoices(cardIds, optionIds, increasePerTurn)
 
 export function showSomeTimeAfterAnyChoices(cardIds, optionIds, increasePerTurn) {
   return state => {
-    let lastChoiceYouMade = cardIds.reduce((acc, cardId, index) => {
+    let firstChoiceYouMade = cardIds.reduce((acc, cardId, index) => {
       let optionId = optionIds[index];
       const idx = indexOfChoice(state, cardId, optionId);
-      
-      if (idx > acc) {
+
+      if (idx > -1 && idx < acc) {
         return idx;
       }
       
       return acc;
     }, -1);
     
-    if (lastChoiceYouMade < 0) {
+    if (firstChoiceYouMade < 0) {
       return DO_NOT_SHOW_SCORE;
     }
-    return (state.pastChoices.length - lastChoiceYouMade) * increasePerTurn;
+    return (state.pastChoices.length - firstChoiceYouMade) * increasePerTurn;
   };
 }
 
