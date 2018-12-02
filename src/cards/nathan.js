@@ -311,27 +311,7 @@ export default {
     },
     getScore: showWithFixedScore(STANDARD_SCORE),
   },
-  newGradOrNot: {
-    message: `Should we hire new grad or senior people?`,
-    sender: SENDER_CTO,
-    options: {
-      yes: {
-        message: `New grad`,
-        reducers: {
-          reputation: val => val + 0.1,
-          innovation: val => val - 0.2,
-        }
-      },
-      no: {
-        message: `Senior`,
-        reducers: {
-          reputation: val => val - 0.1,
-          innovation: val => val + 0.2,
-        }
-      },
-    },
-    getScore: showWithFixedScore(STANDARD_SCORE),
-  },
+  
   patentQs: {
     message: `Should we patent this thing that one of the engineers made?`,
     sender: SENDER_CTO,

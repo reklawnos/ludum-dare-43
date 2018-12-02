@@ -24,7 +24,7 @@ export default {
         message: `We need to save the planet, let's do Meatless Mondays!`,
         reducers: {
           money: val => val - 0.2,
-          crunchy: val => val + 0.3,
+          crunchy: val => val + 0.2,
           reputation: val => val - 0.1,
         },
       },
@@ -48,7 +48,7 @@ export default {
       cancelMeatlessMonday: {
         message: `Cancel Meatless Monday, of course!`,
         reducers: {
-          crunchy: val => val + 0.3,
+          crunchy: val => val + 0.2,
           reputation: val => val - 0.1,
         },
       },
@@ -73,7 +73,7 @@ export default {
       moreMonitors: {
         message: `You know what, let's give all of 'em FOUR monitors!`,
         reducers: {
-          money: val => val - 0.3,
+          money: val => val - 0.5,
           innovation: val => val + 0.3,
         },
       },
@@ -122,14 +122,14 @@ export default {
         message: `Like you say, it's the wave of the future!`,
         reducers: {
           money: val => val - 0.5,
-          innovation: val => val + 0.4,
+          innovation: val => val + 0.3,
           crunchy: val => val - 0.1,
         },
       },
       no: {
         message: `AR schmay-arr.`,
         reducers: {
-          innovation: val => val - 0.3,
+          innovation: val => val - 0.1,
         },
       },
     },
@@ -148,7 +148,7 @@ export default {
         message: `I mean of course, crypto is the future!`,
         reducers: {
           money: val => val - 0.5,
-          innovation: val => val + 0.4,
+          innovation: val => val + 0.3,
           crunchy: val => val - 0.1,
         },
       },
@@ -172,7 +172,7 @@ export default {
       yes: {
         message: `Sounds like that wouldn't be too difficult!`,
         reducers: {
-          money: val => val - 0.3,
+          money: val => val - 0.5,
           innovation: val => val + 0.3,
         },
       },
@@ -198,7 +198,7 @@ export default {
         message: `Geez, I better get on it then!`,
         reducers: {
           money: val => val - 0.5,
-          innovation: val => val + 0.4,
+          innovation: val => val + 0.3,
         },
       },
       no: {
@@ -247,7 +247,7 @@ export default {
       yes: {
         message: `Good idea, let me go buy one of those boring machines...`,
         reducers: {
-          money: val => val - 0.2,
+          money: val => val - 0.4,
           innovation: val => val + 0.2,
           crunchy: val => val - 0.2,
         },
@@ -285,7 +285,7 @@ export default {
           Wait, I thought millennials were lazy?
         `,
         reducers: {
-          reputation: val => val - 0.1,
+          reputation: val => val - 0.2,
         },
       },
     },
@@ -383,7 +383,7 @@ export default {
       yes: {
         message: `Seems dangerous, but when have I ever avoided danger?`,
         reducers: {
-          money: val => val - 0.3,
+          money: val => val - 0.4,
           reputation: val => val + 0.4,
           crunchy: val => val + 0.1,
           innovation: val => val - 0.2,
@@ -437,7 +437,7 @@ export default {
       giveIt: {
         message: `Yeah, it's right here!`,
         reducers: {
-          reputation: val => val + 0.5,
+          reputation: val => val + 0.3,
         },
       },
     },

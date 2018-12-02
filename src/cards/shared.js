@@ -83,6 +83,26 @@ export function showSomeTimeAfterAnyChoices(cardIds, optionIds, increasePerTurn)
   };
 }
 
+export function showAfterAnyChoices(cardIds, optionIds) {
+  return state => {
+    let lastChoiceYouMade = cardIds.reduce((acc, cardId, index) => {
+      let optionId = optionIds[index];
+      const idx = indexOfChoice(state, cardId, optionId);
+      
+      if (idx > acc) {
+        return idx;
+      }
+      
+      return acc;
+    }, -1);
+    
+    if (lastChoiceYouMade < 0) {
+      return DO_NOT_SHOW_SCORE;
+    }
+    return MUST_SHOW_SCORE;
+  };
+}
+
 export function showWithFixedScore(score) {
   return () => score;
 }
@@ -216,7 +236,7 @@ export const SENDER_CHINESE_MANUFACTURER = {
 };
 
 export const SENDER_TWITTER = {
-  name: "Chirper",
+  name: "Chirper Bot",
   face: {
     Component: ChirperIcon,
     bgcolor: "#2ad4ff",
@@ -266,7 +286,7 @@ export const SENDER_HR = {
 };
 
 export const SENDER_CELEBRITY1 = {
-  name: "Bumblebee Crumplehorn",
+  name: "Bumblebee Crumplehorn, Hollywood Celebrity.",
   face: getRandomFace(),
 };
 
@@ -281,7 +301,7 @@ export const SENDER_RECRUITING = {
 };
 
 export const SENDER_CNN = {
-  name: "CNN",
+  name: "Worldly World News Bot",
   face: getRandomFace(), // TODO
 };
 
