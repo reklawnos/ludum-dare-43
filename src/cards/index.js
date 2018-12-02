@@ -179,7 +179,7 @@ export default {
   },
   
   thoughtLeaderProgrammer_1: {
-    message: `Hey, this "Thought Leader" on twitter wants to talk to you.`,
+    message: `Hey, this "Thought Leader" on Chirper wants to talk to you.`,
     sender: SENDER_COMMUNICATIONS,
     options: {
       yes: {
@@ -250,7 +250,7 @@ export default {
         }
       },
       no: {
-        message: `Let's be extremely risk averse here, since we literally found the guy on twitter.`,
+        message: `Let's be extremely risk averse here, since we literally found the guy on Chirper.`,
         reducers: {
           money: r(0),
           innovation: r(-0.2),
