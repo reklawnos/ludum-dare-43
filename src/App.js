@@ -162,9 +162,24 @@ class App extends Component {
           </div>
         </div>
         <SenderMessage card={currentCard} companyName={companyName} productName={productName} />
-        <div>
+        <div
+          style={{
+            margin: 5,
+            borderRadius: 5,
+            border: '2px solid #717274',
+            padding: 2,
+          }}
+        >
           {Object.keys(currentCard.options).map(optionId => (
             <button
+              style={{
+                margin: 5,
+                padding: 8,
+                borderRadius: 3,
+                border: '1px solid rgb(215, 218, 224)',
+                background:
+                  'linear-gradient(rgba(253, 253, 253, 1) 0%, rgb(245, 245, 245) 85%, rgb(224, 226, 230) 100%)',
+              }}
               key={optionId}
               onClick={() => this.chooseItem(optionId)}
               onMouseEnter={() => this.enterHoverOverOption(optionId)}
