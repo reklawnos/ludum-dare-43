@@ -3,6 +3,7 @@ import cards from './cards';
 import MetricMeter from './MetricMeter';
 import SquareAvatar from './avatars/templates/square';
 import { TemplateFace } from './avatars/templates';
+import SenderMessage from './SenderMessage';
 
 console.log(Object.keys(cards).length);
 
@@ -144,24 +145,7 @@ class App extends Component {
           sizeOfEffect={sliceDiffs['innovation']}
         />
         <hr />
-        <div style={{
-          backgroundColor: 'rgba(0, 0, 0, 0.1)',
-          width: 80,
-          height: 80,
-          paddingTop: 20,
-          paddingLeft: 10,
-          paddingRight: 10,
-          borderRadius: 50,
-          overflow: 'hidden',
-        }}>
-          <TemplateFace {...currentCard.sender.face} />
-        </div>
-        <div>
-          From {currentCard.sender.name}
-        </div>
-        <div>
-          {typeof currentCard.message === "function" ? currentCard.message(companyName) : currentCard.message}
-        </div>
+        <SenderMessage card={currentCard} companyName={companyName} />
         <div>
           {Object.keys(currentCard.options).map(optionId => (
             <button
