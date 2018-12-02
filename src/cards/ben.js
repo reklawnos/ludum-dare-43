@@ -471,7 +471,7 @@ export default {
   tweet_3: {
     message: `@someoneRandom97 said: "We're having a lot of trouble with the current situation, I wish the CEO of a big tech company would come and help. 
       #help #techAlwaysHelp"`,
-    sender: SENDER_CTO,
+    sender: SENDER_TWITTER,
     options: {
       yes: {
         message: `Oh I know, we should reuse some of our technology in a contrived way and go help these people!`,
@@ -494,4 +494,6 @@ export default {
     },
     getScore: showWithFixedScore(STANDARD_SCORE),
   },
+  
+  
 }
