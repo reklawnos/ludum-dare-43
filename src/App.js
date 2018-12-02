@@ -233,10 +233,10 @@ class App extends Component {
                   background:
                     'linear-gradient(rgba(253, 253, 253, 1) 0%, rgb(245, 245, 245) 85%, rgb(224, 226, 230) 100%)',
                 }}
-                key={optionId}
+                key={optionId + currentCardId}
                 onClick={() => this.chooseItem(optionId)}
-                onMouseEnter={() => this.enterHoverOverOption(optionId)}
-                onMouseLeave={() => this.leaveHoverOverOption()}
+                onMouseOver={() => this.enterHoverOverOption(optionId)}
+                onMouseOut={() => this.leaveHoverOverOption()}
               >
                 {typeof currentCard.options[optionId].message === "function" ? currentCard.options[optionId].message(companyName, productName) : currentCard.options[optionId].message}
               </button>
