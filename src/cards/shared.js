@@ -1,4 +1,4 @@
-import { getRandomFace } from "../avatars/templates";
+import { getRandomFace, getRandomFormalFace } from "../avatars/templates";
 import InvestorBro from "../avatars/templates/investors/investor_bro";
 import InvestorFuturist from "../avatars/templates/investors/investor_futurist";
 import InvestorHippie from "../avatars/templates/investors/investor_hippie";
@@ -223,7 +223,7 @@ export const SENDER_TRANSLATOR = {
 
 export const SENDER_SENATOR = {
   name: getSenatorName(),
-  face: getRandomFace(),
+  face: getRandomFormalFace(),
 };
 
 export const SENDER_RESEARCH_DEPARTMENT_PERSON = {

@@ -47,11 +47,15 @@ const TOP_OPTIONS = [
   [SquareLongHairBottom, SquareLongHairTop],
 ];
 
+const TOP_OPTIONS_FORMAL = [4, 5, 6, 8, 9, 10, 11, 12];
+
 const BOTTOM_OPTIONS = [
   [SquareSuitJacket, SquareSuitShirtTie],
   [SquareSuitJacket, SquareTshirt],
   [SquareTshirt],
 ];
+
+const BOTTOM_OPTIONS_FORMAL = [0];
 
 const FACE_OPTIONS = [
   [SquareHandlebarMustache],
@@ -123,6 +127,13 @@ export function getRandomSquareFace() {
     hairColorIndex: getRandomIndex(HAIR_COLORS),
     itemColorsMap: randomItemColors(),
   };
+}
+
+export function getRandomFormalSquareFace() {
+  var randomFace = getRandomSquareFace();
+  randomFace.topIndex = TOP_OPTIONS_FORMAL[getRandomIndex(TOP_OPTIONS_FORMAL)];
+  randomFace.bottomIndex = BOTTOM_OPTIONS_FORMAL[getRandomIndex(BOTTOM_OPTIONS_FORMAL)];
+  return randomFace;
 }
 
 export default function SquareAvatar({
