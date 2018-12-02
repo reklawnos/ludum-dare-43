@@ -13,6 +13,7 @@ import {
   SENDER_THOUGHT_LEADER,
   SENDER_EMAIL,
   SENDER_TRANSLATOR,
+  SENDER_DESIGNER,
 } from "./shared";
 import Walker from './walker';
 import Ben from './ben';
@@ -93,14 +94,14 @@ export default {
         message: `Kill away!`,
         reducers: {
           crunchy: val => val - 0.1,
-          money: val => val + 0.1,
+          money: val => val + 0.5,
         },
       },
       no: {
         message: `We can't, some people DEPEND on those products!`,
         reducers: {
-          crunchy: val => val + 0.1,
-          money: val => val - 0.1,
+          crunchy: val => val + 0.3,
+          money: val => val - 0.3,
         },
       },
     },
@@ -112,7 +113,7 @@ export default {
       Yo, we decided that Helvetica just doesn't cut it.
       Whaddya say we hire a company to build a custom font for us?
     `,
-    sender: SENDER_LEGAL,
+    sender: SENDER_DESIGNER,
     options: {
       yes: {
         message: `I mean, we're not a real startup if we don't have our own font.`,
@@ -125,6 +126,31 @@ export default {
         message: `Psh, let's just use Times New Roman instead.`,
         reducers: {
           reputation: val => val + 0.1,
+        },
+      },
+    },
+    getScore: showWithFixedScore(STANDARD_SCORE),
+  },
+  
+  designerWannaRedesign: {
+    message: `
+      Yo, we decided the current design is bad.
+      How would you feel about us re-designing the whole thing?
+    `,
+    sender: SENDER_DESIGNER,
+    options: {
+      yes: {
+        message: `That's a totally reasonable point you're making, let's do it!`,
+        reducers: {
+          reputation: val => val + 0.3,
+          crunchy: val => val + 0.1,
+          money: val => val - 0.3,
+        },
+      },
+      no: {
+        message: `The current design works. If it ain't broke don't fix it.`,
+        reducers: {
+          innovation: val => val - 0.3,
         },
       },
     },
@@ -233,7 +259,7 @@ export default {
         }
       }
     },
-    getScore: showWithFixedScore(STANDARD_SCORE),
+    getScore: showAfterSpecificChoice("thoughtLeaderProgrammer_3", "no"),
   },
   
   linkedInPhishing: {
@@ -268,7 +294,7 @@ export default {
       yes: {
         message: `Ooh that's what that was about`,
         reducers: {
-          money: r(-0.2),
+          money: r(-0.4),
           innovation: r(-0.2),
           crunchy: r(-0.2),
         }

@@ -3,7 +3,7 @@ import {
   SENDER_CTO,
   SENDER_INVESTOR_REPUTATION,
   SENDER_INVESTOR_INNOVATION,
-  SENDER_DESIGNER,
+  SENDER_HR,
   STANDARD_SCORE,
   showWithFixedScore,
 } from "./shared";
@@ -28,7 +28,7 @@ export default {
       no: {
         message: `No thank you.`,
         reducers: {
-          crunchy: val => val + 0.1,
+          crunchy: val => val + 0.3,
         },
       },
     },
@@ -151,7 +151,7 @@ export default {
         message: `Yay, chainblocks!`,
         reducers: {
           money: val => val + 0.3,
-          innovation: val => val + 0.4,
+          innovation: val => val + 0.3,
           reputation: val => val + 0.1,
           crunchy: val => val - 0.3,
         }
@@ -175,15 +175,15 @@ export default {
       yes: {
         message: `Word`,
         reducers: {
-          money: val => val + 0.3,
-          innovation: val => val - 0.2,
-          reputation: val => val + 0.5,
+          money: val => val + 0.2,
+          innovation: val => val - 0.1,
+          reputation: val => val + 0.3,
         }
       },
       no: {
         message: `No`,
         reducers: {
-          reputation: val => val - 0.2,
+          reputation: val => val - 0.3,
         }
       },
     },
@@ -208,7 +208,7 @@ export default {
       no: {
         message: `Idk if that's our market `,
         reducers: {
-          reputation: val => val - 0.1,
+          reputation: val => val - 0.3,
         }
       },
     },
@@ -267,10 +267,10 @@ export default {
   },
   designersVsEngineers: {
     message: `
-      Designers and engineers come up to you, they want you to choose who
+      Designers and engineers are fighting, they want you to choose who
       you prefer.
     `,
-    sender: SENDER_DESIGNER,
+    sender: SENDER_HR,
     options: {
       yes: {
         message: `Designers of course`,
@@ -363,7 +363,7 @@ export default {
         reducers: {
           money: val => val - 0.4,
           reputation: val => val - 0.1,
-          innovation: val => val + 0.5,
+          innovation: val => val + 0.3,
         }
       },
       no: {

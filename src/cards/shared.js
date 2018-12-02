@@ -58,6 +58,26 @@ export function showSomeTimeAfterAllChoices(cardIds, optionIds, increasePerTurn)
   };
 }
 
+export function showSomeTimeAfterAnyChoices(cardIds, optionIds, increasePerTurn) {
+  return state => {
+    let lastChoiceYouMade = cardIds.reduce((acc, cardId, index) => {
+      let optionId = optionIds[index];
+      const idx = indexOfChoice(state, cardId, optionId);
+      
+      if (idx > acc) {
+        return idx;
+      }
+      
+      return acc;
+    }, -1);
+    
+    if (lastChoiceYouMade < 0) {
+      return DO_NOT_SHOW_SCORE;
+    }
+    return (state.pastChoices.length - lastChoiceYouMade) * increasePerTurn;
+  };
+}
+
 export function showWithFixedScore(score) {
   return () => score;
 }
@@ -197,6 +217,51 @@ export const SENDER_TRANSLATOR = {
   face: getRandomFace(),
 };
 
+export const SENDER_SENATOR = {
+  name: getSenatorName(),
+  face: getRandomFace(),
+};
+
+export const SENDER_RESEARCH_DEPARTMENT_PERSON = {
+  name: "R&D",
+  face: getRandomFace(),
+};
+
+// export const SENDER_HEAD_OF_DESIGN = {
+//   name: "Head of Design"
+// };
+
+export const SENDER_HR = {
+  name: "HR",
+  face: getRandomFace(),
+};
+
+export const SENDER_CELEBRITY1 = {
+  name: "Bumblebee Crumplehorn",
+  face: getRandomFace(),
+};
+
+export const SENDER_ENGINEER = {
+  name: "Some engineer",
+  face: getRandomFace(),
+};
+
+export const SENDER_RECRUITING = {
+  name: "Head of recruiting",
+  face: getRandomFace(),
+};
+
+export const SENDER_CNN = {
+  name: "CNN",
+  face: getRandomFace(), // TODO
+};
+
+export const SENDER_MYSTERIOUS1 = {
+  name: "Mysterious person",
+  face: getRandomFace(),
+};
+
+
 export const r = (quantity) => (val) => val + quantity;
 
 export function getEmployeeName() {
@@ -212,6 +277,17 @@ export function getEmployeeName() {
     "Sam",
     "Imram",
     "Arjun",
+  ];
+  return possibleNames[Math.floor(r * possibleNames.length)];
+}
+
+export function getSenatorName() {
+  const r = Math.random();
+  const possibleNames = [
+    "Senator McBob",
+    "Senator Mike",
+    "Senator O'Henry",
+    "Senator Fido"
   ];
   return possibleNames[Math.floor(r * possibleNames.length)];
 }
@@ -234,7 +310,7 @@ export function getRandomTechBuzzword() {
     return "Machine Learning";
   }
   else if (r < 0.6) {
-    return "Solar Panels";
+    return "Cloud";
   }
   else if (r < 0.7) {
     return "Tunnels";
