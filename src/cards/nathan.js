@@ -4,6 +4,7 @@ import {
   SENDER_INVESTOR_REPUTATION,
   SENDER_INVESTOR_INNOVATION,
   SENDER_DESIGNER,
+  STANDARD_SCORE,
   showWithFixedScore,
 } from "./shared";
 
@@ -41,7 +42,7 @@ export default {
     sender: SENDER_CFO,
     options: {
       yes: {
-        messaging: `Yes Mom...`,
+        message: `Yes Mom...`,
         reducers: {
           money: val => val + 0.3,
           crunchy: val => val + 0.3,
@@ -71,7 +72,7 @@ export default {
     sender: SENDER_INVESTOR_REPUTATION,
     options: {
       yes: {
-        messaging: `You bet!`,
+        message: `You bet!`,
         reducers: {
           money: val => val + 0.6,
           innovation: val => val - 6.0,
@@ -100,7 +101,7 @@ export default {
     sender: SENDER_CFO,
     options: {
       yes: {
-        messaging: `Yes!`,
+        message: `Yes!`,
         reducers: {
           money: val => val + 0.6,
           crunchy: val => val - 0.6,
@@ -128,7 +129,7 @@ export default {
     sender: SENDER_CFO,
     options: {
       yes: {
-        messaging: `Looks warm`,
+        message: `Looks warm`,
         reducers: {
           money: val => val + 0.6,
           crunchy: val => val - 0.6,
@@ -155,7 +156,7 @@ export default {
     sender: SENDER_CTO,
     options: {
       yes: {
-        messaging: `Do it!`,
+        message: `Do it!`,
         reducers: {
           money: val => val + 0.3,
           crunchy: val => val + 0.6,
@@ -184,7 +185,7 @@ export default {
     sender: SENDER_INVESTOR_INNOVATION,
     options: {
       yes: {
-        messaging: `Yay, chainblocks!`,
+        message: `Yay, chainblocks!`,
         reducers: {
           money: val => val + 0.6,
           innovation: val => val + 0.6,
@@ -210,7 +211,7 @@ export default {
     sender: SENDER_INVESTOR_REPUTATION,
     options: {
       yes: {
-        messaging: `Word`,
+        message: `Word`,
         reducers: {
           money: val => val + 0.3,
           crunchy: val => val + 0.3,
@@ -238,7 +239,7 @@ export default {
     sender: SENDER_INVESTOR_REPUTATION,
     options: {
       yes: {
-        messaging: `W00t`,
+        message: `W00t`,
         reducers: {
           money: val => val + 0.2,
           innovation: val => val - 0.2,
@@ -263,7 +264,7 @@ export default {
     sender: SENDER_INVESTOR_INNOVATION,
     options: {
       yes: {
-        messaging: `Far-out`,
+        message: `Far-out`,
         reducers: {
           money: val => val - 0.6,
           crunchy: val => val + 0.1,
@@ -291,7 +292,7 @@ export default {
     sender: SENDER_INVESTOR_INNOVATION,
     options: {
       yes: {
-        messaging: `Surfs up`,
+        message: `Surfs up`,
         reducers: {
           money: val => val - 0.3,
           crunchy: val => val - 0.4,
@@ -321,7 +322,7 @@ export default {
     sender: SENDER_DESIGNER,
     options: {
       yes: {
-        messaging: `Designers of course`,
+        message: `Designers of course`,
         reducers: {
           reputation: val => val + 0.2,
           innovation: val => val - 0.2,
@@ -342,7 +343,7 @@ export default {
     sender: SENDER_CTO,
     options: {
       yes: {
-        messaging: `Smart`,
+        message: `Smart`,
         reducers: {
           reputation: val => val + 0.2,
           innovation: val => val - 0.2,
@@ -363,7 +364,7 @@ export default {
     sender: SENDER_CTO,
     options: {
       yes: {
-        messaging: `New grad`,
+        message: `New grad`,
         reducers: {
           reputation: val => val + 0.1,
           innovation: val => val - 0.2,
@@ -384,7 +385,7 @@ export default {
     sender: SENDER_CTO,
     options: {
       yes: {
-        messaging: `Yes`,
+        message: `Yes`,
         reducers: {
           money: val => val - 0.3,
           reputation: val => val + 0.2,
@@ -406,7 +407,7 @@ export default {
     sender: SENDER_CTO,
     options: {
       yes: {
-        messaging: `Agreed`,
+        message: `Agreed`,
         reducers: {
           money: val => val - 0.5,
           reputation: val => val + 0.2,
@@ -428,7 +429,7 @@ export default {
     sender: SENDER_INVESTOR_REPUTATION,
     options: {
       yes: {
-        messaging: `Upvote`,
+        message: `Upvote`,
         reducers: {
           money: val => val - 0.5,
           reputation: val => val + 0.2,
@@ -450,7 +451,7 @@ export default {
     sender: SENDER_INVESTOR_INNOVATION,
     options: {
       yes: {
-        messaging: `Let's double`,
+        message: `Let's double`,
         reducers: {
           money: val => val - 0.7,
           innovation: val => val + 0.7,
