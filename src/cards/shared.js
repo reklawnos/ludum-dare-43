@@ -142,6 +142,18 @@ export const SENDER_EMPLOYEE = {
   name: getEmployeeName(),
 };
 
+export const SENDER_JUDIE = {
+  name: "Judie"
+};
+
+export const SENDER_CHINESE_MANUFACTURER = {
+  name: "Chinese Manufacturer"
+};
+
+export const SENDER_TWITTER = {
+  name: "Chirper"
+};
+
 
 
 export const r = (quantity) => (val) => val + quantity;
@@ -195,4 +207,8 @@ export function getRandomTechBuzzword() {
   else if (r < 1.0) {
     return "Rockets";
   }
+}
+
+export function getTwitterHandleFromCompanyName(companyName) {
+  return companyName.split(" ").join("_").replace(/'"\.,;/g, '')
 }

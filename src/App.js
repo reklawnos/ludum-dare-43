@@ -68,6 +68,7 @@ class App extends Component {
       innovation: 0.5,
     };
     this.state = {
+      companyName: "Tableify",
       pastChoices: [],
       stateSlices,
       currentCardId: getNextCard({ pastChoices: [], stateSlices }),
@@ -99,7 +100,7 @@ class App extends Component {
 
   render() {
     console.log(this.state);
-    const { currentCardId, stateSlices, hoverOptionId } = this.state;
+    const { currentCardId, stateSlices, hoverOptionId, companyName } = this.state;
     const currentCard = cards[currentCardId];
 
     console.log(currentCard, currentCardId);
@@ -143,7 +144,7 @@ class App extends Component {
           From {currentCard.sender.name}
         </div>
         <div>
-          {currentCard.message}
+          {typeof currentCard.message === "function" ? currentCard.message(companyName) : currentCard.message}
         </div>
         <div>
           {Object.keys(currentCard.options).map(optionId => (
