@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import cards from './cards';
 import MetricMeter from './MetricMeter';
 
+console.log(Object.keys(cards).length);
+
 function getNextCard(state) {
   const { pastChoices } = state;
   const alreadySeenCardIds = new Set(pastChoices.map(({ cardId }) => cardId));

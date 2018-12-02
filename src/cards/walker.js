@@ -8,8 +8,9 @@ import {
   SENDER_CFO,
   SENDER_INVESTOR_REPUTATION,
   SENDER_HEAD_OF_OFFICE_SECURITY,
-  SENDER_FRIEND,
   SENDER_INVESTOR_CRUNCHY,
+  SENDER_HEAD_OF_FACILITIES,
+  showAfterSpecificChoice,
 } from "./shared";
 
 export default {
@@ -320,6 +321,56 @@ export default {
     getScore: showSomeTimeAfterSpecificChoice('outsourceEngineering_1', 'yes', 0.2),
   },
 
+  toiletPaper_1: {
+    message: `
+      I used one of the non-executive toilets today and discovered that we're
+      providing OBSCENELY luxurious 2-ply to our employees. Let's cut back to 1-ply!
+    `,
+    sender: SENDER_CFO,
+    options: {
+      yes: {
+        message: `You're right! I pay them to type, not to wipe!`,
+        reducers: {
+          money: val => val + 0.3,
+          crunchy: val => val - 0.3,
+        },
+      },
+      no: {
+        message: `Let's keep the nice toilet tissue. Gotta save my employee's butts!`,
+        reducers: {
+          crunchy: val => val + 0.1,
+        },
+      },
+    },
+    getScore: showWithFixedScore(STANDARD_SCORE),
+  },
+
+  toiletPaper_2_standingDesks: {
+    message: `
+      A bunch of employess complained in our latest monthly survey that
+      it's uncomfortable to sit all day. Should we provide them standing desks?
+    `,
+    sender: SENDER_HEAD_OF_FACILITIES,
+    options: {
+      yes: {
+        message: `Ugh, fine. Maybe they'll finally get off their asses.`,
+        reducers: {
+          money: val => val - 0.3,
+          innovation: val => val + 0.2,
+          crunchy: val => val + 0.2,
+        },
+      },
+      no: {
+        message: `Pay for those? I couldn't STAND to do that.`,
+        reducers: {
+          innovation: val => val - 0.1,
+          crunchy: val => val - 0.2,
+        },
+      },
+    },
+    getScore: showSomeTimeAfterSpecificChoice('toiletPaper_1', 'yes', 1),
+  },
+
   // reputation investor
   reputation_holidayParty1: {
     message: `
@@ -466,9 +517,9 @@ export default {
     getScore: showWithFixedScore(STANDARD_SCORE),
   },
 
-  reputation_stripClub: {
+  reputation_exoticDancers: {
     message: `
-      Ok so I got us a sweeeeet con-nect with some "exotic dancers"
+      Ok so I got us a sweeeeet con-ect with some "exotic dancers"
       who can "perform" at our "launch event" next week, what's the number on your corporate card?
     `,
     sender: SENDER_INVESTOR_REPUTATION,
@@ -492,29 +543,109 @@ export default {
     getScore: showWithFixedScore(STANDARD_SCORE),
   },
 
-  reputation_: {
+  reputation_vodkaTap_1: {
     message: `
-      Ok so I got us a sweeeeet con-nect with some "exotic dancers"
-      who can "perform" at our "launch event" next week, what's the number on your corporate card?
+      Hey hey hey what up so I was at the Goober office the other day and
+      they have vodka ON TAP. YO. I didn't even know a vodka tap WAS A
+      THING. LET'S GET ONNNEEEEEEEE
     `,
     sender: SENDER_INVESTOR_REPUTATION,
     options: {
       yes: {
-        message: `Not sure what all those quotes are about but seems reasonable!`,
+        message: `Cool! Burnetts?`,
         reducers: {
-          money: val => val - 0.2,
-          reputation: val => val + 0.3,
-          innovation: val => val - 0.1,
-          crunchy: val => val - 0.3,
+          money: val => val - 0.3,
+          reputation: val => val + 0.2,
         },
       },
       no: {
-        message: `Mm, I'll pass.`,
+        message: `Let's just stick to an excessive amount of local craft beer.`,
         reducers: {
-          reputation: val => val - 0.2,
+          reputation: val => val - 0.3,
         },
       },
     },
     getScore: showWithFixedScore(STANDARD_SCORE),
+  },
+
+  reputation_vodkaTap_2: {
+    message: `
+      Hey, just wanted to give you a heads-up: since installing the vodka
+      tap in the cafeteria a lot of employees have been returning to work after
+      lunch completely blasted... What should we do about it?
+    `,
+    sender: SENDER_HEAD_OF_OFFICE_SECURITY,
+    options: {
+      keepIt: {
+        message: `Hey... hey, HEY! DON'T fuck up the culture.`,
+        reducers: {
+          reputation: val => val + 0.2,
+          crunchy: val => val + 0.1,
+        },
+      },
+      leaveIt: {
+        message: `Eesh, let's keep those taps off until after 4 PM.`,
+        reducers: {
+          money: val => val + 0.1,
+          crunchy: val => val + 0.1,
+        },
+      },
+    },
+    getScore: showSomeTimeAfterSpecificChoice('reputation_vodkaTap_1', 'yes', 1),
+  },
+
+  reputation_vodkaTap_3: {
+    message: `
+      Yo whatgives? doaa;nt theink your pelnmployees are xmajture enoughhh to handle soome likquor at 11 am.....
+    `,
+    sender: SENDER_INVESTOR_REPUTATION,
+    options: {
+      keepIt: {
+        message: `Ok, on second thought, maybe we should get rid of the vodka tap entirely`,
+        reducers: {
+          money: val => val + 0.1,
+          reputation: val => val - 0.2,
+        },
+      },
+      leaveIt: {
+        message: `You're right! VODKA ALL DAY, EVERY DAY!`,
+        reducers: {
+          money: val => val - 0.1,
+          reputation: val => val + 0.6,
+        },
+      },
+    },
+    getScore: showAfterSpecificChoice('reputation_vodkaTap_2', 'leaveIt'),
+  },
+
+  reputation_vodkaTap_4: {
+    message: `
+      Hey, I really... I really hate to be the one to tell you, but our dear
+      CTO died in the cafeteria today after being served seventeen shots of
+      vodka by (TODO: name of reputation guy). We're holding a memorial service this weekend.
+    `,
+    sender: SENDER_CFO,
+    options: {
+      basic: {
+        message: `Oh geez, that's awful. I'll send my condolences. TTYL`,
+        reducers: {
+          crunchy: val => val - 0.6,
+          innovation: val => val - 0.6,
+        },
+      },
+      wholeHog: {
+        message: `
+          What a tragedy... Such a talented soul, gone so early.
+          You know what, the entire company will attend the funeral. Let me start making arrangements.
+        `,
+        reducers: {
+          reputation: val => val - 0.4,
+          crunchy: val => val - 0.2,
+          innovation: val => val - 0.2,
+          money: val => val - 0.4,
+        },
+      },
+    },
+    getScore: showSomeTimeAfterSpecificChoice('reputation_vodkaTap_3', 'yes', 1),
   },
 };
