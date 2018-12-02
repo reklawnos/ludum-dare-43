@@ -1,4 +1,11 @@
-import { STANDARD_SCORE, showSomeTimeAfterSpecificChoice, showWithFixedScore, SENDER_CTO, SENDER_CHEF, SENDER_INVESTOR_INNOVATION } from "./shared";
+import {
+  STANDARD_SCORE,
+  SENDER_CTO,
+  SENDER_CHEF,
+  SENDER_INVESTOR_INNOVATION,
+  showSomeTimeAfterSpecificChoice,
+  showWithFixedScore,
+} from "./shared";
 
 export default {
   employeeMeatProblems_1: {
@@ -149,6 +156,7 @@ export default {
     getScore: showWithFixedScore(STANDARD_SCORE),
   },
 
+  /*
   innovationInvestorFlavorOfTheMonth_blockchain: {
     message: `
       I was at this "future of BDSM" conference and needless to say I came
@@ -174,4 +182,5 @@ export default {
     },
     getScore: showWithFixedScore(STANDARD_SCORE),
   },
+  */
 };
