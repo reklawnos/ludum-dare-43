@@ -162,6 +162,10 @@ export const SENDER_TRANSLATOR = {
   name: "Translator"
 };
 
+export const SENDER_SENATOR = {
+  name: getSenatorName(),
+};
+
 
 
 export const r = (quantity) => (val) => val + quantity;
@@ -179,6 +183,17 @@ export function getEmployeeName() {
     "Sam",
     "Imram",
     "Arjun",
+  ];
+  return possibleNames[Math.floor(r * possibleNames.length)];
+}
+
+export function getSenatorName() {
+  const r = Math.random();
+  const possibleNames = [
+    "Senator McBob",
+    "Senator Mike",
+    "Senator O'Henry",
+    "Senator Fido"
   ];
   return possibleNames[Math.floor(r * possibleNames.length)];
 }
