@@ -314,6 +314,12 @@ export const SENDER_MYSTERIOUS1 = {
   face: getRandomFace(),
 };
 
+export const SENDER_UNIONS = {
+  name: "Unions",
+  face: getRandomFace(),
+};
+
+
 
 export const r = (quantity) => (val) => val + quantity;
 

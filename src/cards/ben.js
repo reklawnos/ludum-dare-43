@@ -18,6 +18,9 @@ import {
   SENDER_MYSTERIOUS1,
   SENDER_INVESTOR_REPUTATION,
   SENDER_LEGAL,
+  SENDER_INVESTOR_CRUNCHY,
+  SENDER_UNIONS,
+  showWithFixedScoreIfChoiceHasNotBeenMade,
   showSomeTimeAfterSpecificCard,
   showSomeTimeAfterAllChoices,
   showSomeTimeAfterAnyChoices,
@@ -367,20 +370,20 @@ export default {
   },
   
   chineseFactory_1: {
-    message: `Our employees went on strike, we have to pay them more!`,
+    message: `We were recently informed that our employees are people too! We HAVE to pay them more.`,
     sender: SENDER_CHINESE_MANUFACTURER,
     options: {
       yes: {
-        message: `Ok, as long as it's still less than US employees.`,
+        message: `Darn, well I don't know how I'm going to justify this to my board of investors.`,
         reducers: {
           money: r(-0.3),
-          innovation: r(0),
+          innovation: r(-0.2),
           crunchy: r(0.3),
           reputation: r(0)
         }
       },
       no: {
-        message: `Nonsense! It's not a couple riots that'll stop innovation from our company.`,
+        message: `Nonsense! It's not a couple riots that'll stop us from innovating.`,
         reducers: {
           money: r(-0.2),
           innovation: r(0.2),
@@ -393,9 +396,10 @@ export default {
   },
   
   tweet_1: {
-    message: (companyName) => `@thoughtleader97 said: "#blockchain #block #chain #hype #2015 #future #smart #ai #tokensForever #makeBankingGreatAgain
-    
-    @${getTwitterHandleFromCompanyName(companyName)} call me. "`,
+    message: (companyName) => `@ThoughtLeader97 said: "
+    I've figured out how you can turn blockchain into a Trillion dollar company. TRILLION.
+    The leaders at @${getTwitterHandleFromCompanyName(companyName)} should call me.
+    #block #chain #blockchain"`,
     sender: SENDER_TWITTER,
     options: {
       yes: {
@@ -421,7 +425,7 @@ export default {
   },
   
   tweet_2: {
-    message: (companyName) => `@neverWrongOnTheInternet said: "Oh. My. God. ${companyName}'s products are all worse than terrible. These people should be put in jail for this. They should win the Stupidest Products award. Honestly I could build this in a weekend. #fireTheCEO`,
+    message: (companyName) => `@NeverWrongOnTheInternet said: "Oh. My. God. ${companyName}'s products are all worse than terrible. These people should be put in jail for this. They should win the Stupidest Products award. Honestly I could build this in a weekend. #FireTheCEO`,
     sender: SENDER_TWITTER,
     options: {
       yes: {
@@ -447,8 +451,8 @@ export default {
   },
   
   tweet_3: {
-    message: `@someoneRandom97 said: "We're having a lot of trouble with the current situation, I wish the CEO of a big tech company would come and help. 
-      #help #techAlwaysHelp"`,
+    message: `@SomeoneRandom97 said: "We're having a lot of trouble with our current situation, I wish the CEO of a big tech company would come and help. 
+      #help #TechCanSolveAllProblems"`,
     sender: SENDER_TWITTER,
     options: {
       yes: {
@@ -522,7 +526,7 @@ export default {
   },
   
   communityProblems_2: {
-    message: `Hey we're having trouble in rural areas, their legislations are preventing us from shipping our product quite yet. Should we delay the launch?`,
+    message: `Hey we're having trouble in rural areas, their legislations are preventing us from shipping our product this quarter. Should we delay the launch?`,
     sender: SENDER_LEGAL,
     options: {
       yes: {
@@ -544,21 +548,25 @@ export default {
   },
   
   researchDevelopment_1: {
-    message: `Thanks for creating our department, we won't disappoint you with our innovations!`,
+    message: `We ran out of money, can you give us a bit more runway, we think we're onto something.`,
     sender: SENDER_RESEARCH_DEPARTMENT_PERSON,
     options: {
       yes: {
-        message: `Sure sure, leave me alone now.`,
+        message: `What, already? Sure whatever.`,
         reducers: {
+          money: r(-0.3)
         }
       },
       no: {
-        message: `How did you get access to my private Quack channel.`,
+        message: `We're out of money. You'll have to go innovate somewhere else.`,
         reducers: {
+          money: r(0.1),
+          crunchy: r(-0.2),
+          innovation: r(-0.2),
         }
       }
     },
-    getScore: showAfterSpecificChoice("researchDevelopment", "yes"),
+    getScore: showSomeTimeAfterSpecificChoice("researchDevelopment", "yes", 0.7),
   },
   
   researchDevelopment_2: {
@@ -578,7 +586,7 @@ export default {
         }
       }
     },
-    getScore: showSomeTimeAfterSpecificChoice("researchDevelopment", "yes", 0.1),
+    getScore: showSomeTimeAfterSpecificChoice("researchDevelopment_1", "yes", 0.2),
   },
   
   researchDevelopment_3: {
@@ -927,7 +935,7 @@ export default {
     sender: SENDER_INVESTOR_REPUTATION,
     options: {
       yes: {
-        message: `You're right, let me chirp this: "All the bad press about our company is FAKE NEWS! #fakeNewsMedia #banTheNews #dontMakeNewsGreatAgain"`,
+        message: `You're right, let me chirp this: "All the bad press about our company is FAKE NEWS! #FakeNewsMedia #BanTheNews #DontMakeNewsGreatAgain"`,
         reducers: {
           reputation: r(0.1)
         }
@@ -948,14 +956,14 @@ export default {
     sender: SENDER_INVESTOR_REPUTATION,
     options: {
       yes: {
-        message: `OH YEAH, LETS DO IT: "HEY YOU @CompetitorCompany STOP BLATANTLY COPYING OUR PRODUCT DESIGN OR YOU WILL SUFFER CONSEQUENCES THE LIKES OF WHICH FEW THROUGHOUT HISTORY HAVE SUFFERED BEFORE"`,
+        message: `Oh yeah ok ok ok let's do it: "HEY YOU @CompetitorCompany STOP BLATANTLY COPYING OUR PRODUCT DESIGN OR YOU WILL SUFFER CONSEQUENCES THE LIKES OF WHICH FEW THROUGHOUT HISTORY HAVE SUFFERED BEFORE"`,
         reducers: {
           money: r(-0.2),
           reputation: r(0.2)
         }
       },
       no: {
-        message: `I SHOULD REALLY STOP TAKING AMBIEN`,
+        message: `i should really stop taking ambien`,
         reducers: {
           money: r(-0.5),
           innovation: r(-0.2),
@@ -967,12 +975,173 @@ export default {
   
   
   // Crunchy
-  // My Yogi said
-  // You should really be drinking more Water
-  // Crystals
-  // crunchyWeirdness: {
-  //   message: `Hey my Yogi instructor noticed you `,
-  //   sender: SENDER_CTO,
+  crunchyWeirdness: {
+    message: `Heyyyyy my Yogi instructor just noticed you weren't drinking nearly enough water. I'd suggest getting the app for that.`,
+    sender: SENDER_INVESTOR_CRUNCHY,
+    options: {
+      yes: {
+        message: `Ok I just installed the app and it's telling me to drink 10 gallons a day, is that normal?`,
+        reducers: {
+          money: r(-0.1),
+          innovation: r(0),
+          crunchy: r(0.1),
+          reputation: r(0)
+        }
+      },
+      no: {
+        message: `What. How does your Yogi instructor know this. Also I only like Pamplemousse Lacroix`,
+        reducers: {
+          crunchy: r(-0.2),
+        }
+      }
+    },
+    getScore: showWithFixedScoreIfChoiceHasNotBeenMade("notEnoughGrapefruitLacroix", "yes", STANDARD_SCORE),
+  },
+  
+  crunchyWeirdness_2: {
+    message: `Heyyyyy my Yogi instructor says I'm too stressed and I should take the ENTIRE quarter off. Does that sound good?`,
+    sender: SENDER_INVESTOR_CRUNCHY,
+    options: {
+      yes: {
+        message: `Oh yeah sure, I'm sure we'll survive another quarter anyway.`,
+        reducers: {
+          money: r(-0.2),
+          innovation: r(0.1),
+          crunchy: r(0.2),
+        }
+      },
+      no: {
+        message: `Not possible, we're under tight deadlines. I actually need you to come on weekedns, thanksgiving and christmas.`,
+        reducers: {
+          money: r(0),
+          innovation: r(0),
+          crunchy: r(-0.2),
+          reputation: r(0.1)
+        }
+      }
+    },
+    getScore: showWithFixedScore(STANDARD_SCORE),
+  },
+  
+  crunchyWeirdness_3: {
+    message: `Heyo, just wanted to make sure you received my Crystal of Positivity. Hope you like it.`,
+    sender: SENDER_INVESTOR_CRUNCHY,
+    options: {
+      yes: {
+        message: `Thank you. I actually really like it, I'm going to mandate that everyone needs to have a crytal on their desks`,
+        reducers: {
+          money: r(-0.3),
+          crunchy: r(0.2),
+          reputation: r(-0.2)
+        }
+      },
+      no: {
+        message: `Oh that's what that was. Yeah I love it. It holds my door open really well.`,
+        reducers: {
+          crunchy: r(-0.1),
+        }
+      }
+    },
+    getScore: showWithFixedScore(STANDARD_SCORE),
+  },
+  
+  crunchyWeirdness_createUnions: {
+    message: `Heyyyyy, so what's your take on unions?`,
+    sender: SENDER_INVESTOR_CRUNCHY,
+    options: {
+      yes: {
+        message: `Well I love my employees and want them to able to go on more vacation, so let's make one!`,
+        reducers: {
+          crunchy: r(0.1),
+          innovation: r(-0.2)
+        }
+      },
+      no: {
+        message: `I think they prevent us from firing people that's what I think. I want our churn to be as high as possible.`,
+        reducers: {
+          innovation: r(0.1),
+          crunchy: r(-0.2),
+        }
+      }
+    },
+    getScore: showWithFixedScore(STANDARD_SCORE),
+  },
+  
+  crunchyWeirdness_createUnions_2: {
+    message: `We formally demand that, from now on, all Microkitchens have unlimited Flaming Hot Cheetos.`,
+    sender: SENDER_UNIONS,
+    options: {
+      yes: {
+        message: `Don't want to piss off the unions! I'll personally make sure that this happens.`,
+        reducers: {
+          money: r(-0.3),
+          crunchy: r(0.1),
+        }
+      },
+      no: {
+        message: `You know what, I've had ENOUGH of your demands. We're removing all the free chips.`,
+        reducers: {
+          money: r(0.1),
+          innovation: r(-0.1),
+          crunchy: r(-0.1),
+          reputation: r(-0.1)
+        }
+      }
+    },
+    getScore: showSomeTimeAfterSpecificChoice("crunchyWeirdness_createUnions", "yes", 0.2),
+  },
+  
+  crunchyWeirdness_createUnions_3: {
+    message: `We're going on strike for the whole quarter since you're mistreating us like this.`,
+    sender: SENDER_UNIONS,
+    options: {
+      yes: {
+        message: `Fuck`,
+        reducers: {
+          money: r(0),
+          innovation: r(0),
+          crunchy: r(0),
+          reputation: r(0)
+        }
+      },
+      no: {
+        message: `No no no ok wait, we can find a compromise. Let's say every Friday we have Flaming Hot Cheetos instead of Craft Beer.`,
+        reducers: {
+          crunchy: r(0.1),
+          reputation: r(-0.2)
+        }
+      }
+    },
+    getScore: showAfterSpecificChoice("crunchyWeirdness_createUnions_2", "no"),
+  },
+  
+  
+  crunchyWeirdness_createUnions_4: {
+    message: `We woud like free-er food. It currently costs us a lot of time to choose between the 17 different options we are given. We would like to build an AI that can choose for us.`,
+    sender: SENDER_UNIONS,
+    options: {
+      yes: {
+        message: `What... Ok I'll make that our #1 priority.`,
+        reducers: {
+          money: r(-0.4),
+          innovation: r(-0.2),
+          crunchy: r(0.1),
+        }
+      },
+      no: {
+        message: `Sorry too long, didn't read. Too busy firing people.`,
+        reducers: {
+          money: r(0.3),
+          crunchy: r(-0.2),
+        }
+      }
+    },
+    getScore: showSomeTimeAfterSpecificChoice("crunchyWeirdness_createUnions", "yes", 0.2),
+  },
+
+  // crunchyWeirdness_createUnions_5: {
+  //   message: ``,
+  //   sender: SENDER_UNIONS,
   //   options: {
   //     yes: {
   //       message: ``,
@@ -986,19 +1155,19 @@ export default {
   //     no: {
   //       message: ``,
   //       reducers: {
-  //         money: r(0),
-  //         innovation: r(0),
-  //         crunchy: r(0),
-  //         reputation: r(0)
+  //         crunchy: r(0.1),
+  //         reputation: r(-0.2)
   //       }
   //     }
   //   },
-  //   getScore: showWithFixedScore(STANDARD_SCORE),
+  //   getScore: showAfterSpecificChoice("crunchyWeirdness_createUnions_4", "no"),
   // },
   
   
   
-  // News
+  
+  
+  // ---------------- News -----------------
   newsArticle_1: {
     message: companyName => `${companyName}'s Redesign Is Excellent.`,
     sender: SENDER_CNN,

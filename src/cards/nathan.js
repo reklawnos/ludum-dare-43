@@ -339,7 +339,7 @@ export default {
     sender: SENDER_CTO,
     options: {
       yes: {
-        message: `Agreed`,
+        message: `I'm sure the innovations coming out of this will blow my socks off.`,
         reducers: {
           money: val => val - 0.4,
           reputation: val => val - 0.1,
@@ -347,7 +347,7 @@ export default {
         }
       },
       no: {
-        message: `Negative`,
+        message: `Don't ever waste my time again with this kind of innovative thinking.`,
         reducers: {
           innovation: val => val - 0.3,
         }
