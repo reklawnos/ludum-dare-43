@@ -1,5 +1,8 @@
 import {
   SENDER_CFO,
+  SENDER_CTO,
+  SENDER_INVESTOR_REPUTATION,
+  SENDER_INVESTOR_INNOVATION,
   showWithFixedScore,
 } from "./shared";
 
@@ -16,7 +19,7 @@ export default {
                 `,
                 reducers: {
                     money: val => val + 0.6,
-                    crunch: val => val - 0.3,
+                    crunchy: val => val - 0.3,
                     innovation: val => val + 0.6,
                     reputation: val => val - 0.3,
                 }
@@ -43,7 +46,7 @@ export default {
                 `,
                 reducers: {
                     money: val => val + 0.3,
-                    crunch: val => val + 0.3,
+                    crunchy: val => val + 0.3,
                     innovation: val => val - 0.3,
                     reputation: val => val - 0.6,
                 }
@@ -64,7 +67,7 @@ export default {
             read that "Nobody Ever Got Fired for Picking Java".  The whole 
             time a basketball was spinning on his finger.
         `,
-        sender: SENDER_CFO,
+        sender: SENDER_INVESTOR_REPUTATION,
         options: {
             yes: {
                 messaging:  `
@@ -72,7 +75,7 @@ export default {
                 `,
                 reducers: {
                     money: val => val + 0.6,
-                    crunch: val => val + 0.0,
+                    crunchy: val => val + 0.0,
                     innovation: val => val - 6.0,
                     reputation: val=> val + 0.6,
                 }
@@ -100,7 +103,7 @@ export default {
                 `,
                 reducers: {
                     money: val => val + 0.6,
-                    crunch: val => val - 0.6,
+                    crunchy: val => val - 0.6,
                     innovation: val => + 0.3,
                     reputation: val => val + 0.0,
                 }
@@ -127,7 +130,7 @@ export default {
                 `,
                 reducers: {
                     money: val => val + 0.6,
-                    crunch: val => val - 0.6,
+                    crunchy: val => val - 0.6,
                     innovation: val => val   0.0,
                     reputation: val => val + 0.0,
                 }
@@ -143,13 +146,13 @@ export default {
         getScore: showWithFixedScore(STANDARD_SCORE),
     name: {
         message: `
-            The world's top accelerator decides they will invest but only if
-            you pair up another company in their portfolio to help raise
-            awareness for clean water.  Your engineering team will have to stop
+            The world's top accelerator decided that they will invest but only
+            if you pair up a non-proft company in their portfolio to raise
+            awareness.  Your engineering team will have to stop
             working on your product and instead make a website for this
             initiative.
         `,
-        sender: SENDER_CFO,
+        sender: SENDER_CTO,
         options: {
             yes: {
                 messaging: `
@@ -157,7 +160,7 @@ export default {
                 `,
                 reducers: {
                     money: val => val + 0.3,
-                    crunch: val => val + 0.6,
+                    crunchy: val => val + 0.6,
                     innovation: val => val - 0.6,
                     reputation: val => val + 0.6,
                 }
@@ -175,9 +178,9 @@ export default {
         message: `
             Angel Investors Duo / twin-sisters love your idea and see big $$$
             in your future.  They'll invest, but they want to replace your
-            Postgres database with the blockchain.
+            database with the blockchain.
         `,
-        sender: SENDER_CFO,
+        sender: SENDER_INVESTOR_INNOVATION,
         options: {
             yes: {
                 messaging: `
@@ -185,7 +188,7 @@ export default {
                 `,
                 reducers: {
                     money: val => val + 0.6,
-                    crunch: val => val + 0.0,
+                    crunchy: val => val + 0.0,
                     innovation: val => val + 0.6,
                     reputation: val => val - 0.6,
                 }
@@ -204,7 +207,7 @@ export default {
             Houston-based rapper and successful startup investor wants to 
             invest.  But you also have to have an API integration with his app.
         `,
-        sender: SENDER_CFO,
+        sender: SENDER_INVESTOR_REPUTATION,
         options: {
             yes: {
                 messaging: `
@@ -212,7 +215,7 @@ export default {
                 `,
                 reducers: {
                     money: val => val + 0.3,
-                    crunch: val => val + 0.3,
+                    crunchy: val => val + 0.3,
                     innovation: val => val - 0.6,
                     reputation: val => val + 0.6,
                 }
