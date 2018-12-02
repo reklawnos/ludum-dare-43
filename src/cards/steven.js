@@ -16,7 +16,9 @@ import {
   showAfterSpecificChoice,
   showAfterSpecificCard,
   showAfterAnyCard,
-  r
+  r,
+  showSomeTimeAfterAnyChoices,
+  showAfterAnyChoices
 } from "./shared";
 
 export default {
@@ -235,7 +237,7 @@ export default {
     getScore: showSomeTimeAfterSpecificChoice("congress_tweet_weasel", "fifth", 0.6),
   },
   congress_tweet_brony: {
-    message: `From a fellow My Little Zebra fan, who is your favorite zebra?`,
+    message: `From a fellow "My Little Zebra" fan, who is your favorite zebra?`,
     sender: SENDER_EMPLOYEE,
     options: {
       none: {
@@ -317,7 +319,7 @@ export default {
     getScore: showAfterAnyCard(["congress_tweet_start", "congress_admitted", "congress_tweet_weasel"]),
   },
   patentInfringement_1: {
-    message: `One of the engineers thinks that we might be using a patented process without a license.`,
+    message: `We got an anonymous call on the whistleblower hotline that said we might be using a patented process without paying for it.`,
     sender: SENDER_LEGAL,
     options: {
       yes: {
@@ -328,7 +330,7 @@ export default {
         },
       },
       no: {
-        message: `Ignore it`,
+        message: `It's anonymous, so we can just ignore it, right?`,
         reducers: {
           money: r(0.1),
           innovation: r(-0.1)
@@ -358,7 +360,7 @@ export default {
     getScore: showSomeTimeAfterSpecificChoice("patentInfringement_1", "no", 0.6),
   },
   plasticStraws: {
-    message: `Plastic straws are harmful to the environment. We should be a leader and replace them with paper straws in the cafeteria.`,
+    message: `On the news, it said that five million dolphins die each year from plastic straws. We should be a leader and replace them with paper straws in the cafeteria.`,
     sender: SENDER_INVESTOR_CRUNCHY,
     options: {
       paper: {
@@ -398,11 +400,11 @@ export default {
     getScore: showSomeTimeAfterSpecificChoice("plasticStraws", "paper", 0.6),
   },
   greenProduction: {
-    message: (companyName, productName) => `Have you heard of the new, greener production process for ${productName}?`,
+    message: (companyName, productName) => `My shaman was telling me about this greener production process for ${productName}? It uses essence of myrrh and powdered wolfsbane.`,
     sender: SENDER_INVESTOR_CRUNCHY,
     options: {
       switch: {
-        message: `Yes, we should switch to it`,
+        message: `Sounds good, we should switch to it`,
         reducers: {
           money: r(-0.2),
           crunchy: r(0.1),
@@ -416,5 +418,107 @@ export default {
       },
     },
     getScore: showWithFixedScore(STANDARD_SCORE),
+  },
+  meditation: {
+    message: `I want to increase my investment in your company. But I need you to provide Transcendental Meditation training to all your employees first. I can connect you with a yogi.`,
+    sender: SENDER_INVESTOR_CRUNCHY,
+    options: {
+      accept: {
+        message: `I'm grateful for your continued investment, please connect me to this yogi`,
+        reducers: {
+          money: r(0.5),
+          crunchy: r(0.2),
+        },
+      },
+      reject: {
+        message: `Thanks, but no thanks`,
+        reducers: {
+          money: r(-0.2),
+          crunchy: r(-0.2),
+        },
+      },
+    },
+    getScore: showWithFixedScore(STANDARD_SCORE,)
+  },
+  meditation_cult_1: {
+    message: `Hey, do you think that yogi friend of Sandra's is a bit... cult-leader-y?`,
+    sender: SENDER_EMPLOYEE,
+    options: {
+      yes: {
+        message: `I had a funny feeling about him, what's he up to?`,
+        reducers: {},
+      },
+      no: {
+        message: `No, let's drop the subject`,
+        reducers: {},
+      },
+    },
+    getScore: showSomeTimeAfterSpecificChoice("meditation", "accept", 0.6),
+  },
+  meditation_cult_2: {
+    message: `He's telling us that we need to praise Cthulhu in order to achieve eternal salvation.`,
+    sender: SENDER_EMPLOYEE,
+    options: {
+      yikes: {
+        message: `Wat. That's it. He's fired.`,
+        reducers: {
+          crunchy: r(-0.4),
+          reputation: r(0.1),
+        },
+      },
+      ignore: {
+        message: `I think you might be taking that a bit too literally`,
+        reducers: {
+          money: r(-0.2),
+          reputation: r(-0.1),
+        },
+      },
+    },
+    getScore: showAfterSpecificChoice("meditation_cult_1", "yes"),
+  },
+  meditation_cult_3: {
+    message: `We have a bad situation here... some employees have just filed a class-action lawsuit alleging a hostile work environment. Have you heard anything about a yogi and this Cthulhu they're talking about?`,
+    sender: SENDER_LEGAL,
+    options: {
+      fire_yogi: {
+        message: `Fire the yogi before things get any worse`,
+        reducers: {
+          crunchy: r(-0.4),
+          reputation: r(0.1),
+        },
+      },
+      pay_off_yogi: {
+        message: `Let's pay the yogi off and hope he goes away quietly`,
+        reducers: {
+          money: r(-0.3),
+          reputation: r(-0.2),
+        },
+      },
+    },
+    getScore: showSomeTimeAfterAnyChoices(["meditation_cult_1", "meditation_cult_2"], ["no", "ignore"], 0.6),
+  },
+  meditation_cult_end: {
+    message: `I'm really offended that you've decided to end the Transecendatal Meditation training. Why shouldn't I pull my investment?`,
+    sender: SENDER_INVESTOR_CRUNCHY,
+    options: {
+      honest: {
+        message: `I have to be honest with you, the yogi was kind of a creep`,
+        reducers: {
+          money: r(-0.5),
+          crunchy: r(-0.2),
+          reputation: r(0.2),
+        },
+      },
+      diplomatic: {
+        message: `I don't think Transcendental Meditation was for me`,
+        reducers: {
+          money: r(-0.2),
+          crunchy: r(-0.1),
+        },
+      },
+    },
+    getScore: showAfterAnyChoices(
+      ["meditation_cult_3", "meditation_cult_3", "meditation_cult_2"],
+      ["fire_yogi", "pay_off_yogi", "yikes"]),
   },
 };
