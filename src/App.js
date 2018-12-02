@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import cards from './cards';
 import MetricMeter from './MetricMeter';
-import SquareAvatar from './avatars/templates/square';
-import { TemplateFace } from './avatars/templates';
+import { getRandomFace } from './avatars/templates';
 import SenderMessage from './SenderMessage';
+import BasicMessage from './BasicMessage';
 
 console.log(Object.keys(cards).length);
 
@@ -83,6 +83,7 @@ class App extends Component {
       stateSlices,
       currentCardId: getNextCard({ pastChoices: [], stateSlices }),
       hoverOptionId: null,
+      playerFace: getRandomFace(),
     };
   }
 
@@ -110,7 +111,7 @@ class App extends Component {
 
   render() {
     console.log(this.state);
-    const { currentCardId, stateSlices, hoverOptionId, companyName, productName } = this.state;
+    const { currentCardId, stateSlices, hoverOptionId, companyName, productName, pastChoices, playerFace } = this.state;
     const currentCard = cards[currentCardId];
 
     console.log(currentCard, currentCardId);
@@ -150,6 +151,16 @@ class App extends Component {
           sizeOfEffect={sliceDiffs['innovation']}
         />
         <hr />
+        <div style={{ height: 350, position: 'relative', overflow: 'hidden' }}>
+          <div style={{ position: 'absolute', bottom: 0 }}>
+            {pastChoices.slice(-3).map(({ cardId, optionId }) => (
+              <>
+                <SenderMessage card={cards[cardId]} companyName={companyName} productName={productName} />
+                <BasicMessage face={playerFace} name="Me" message={cards[cardId].options[optionId].message} isHighlighted />
+              </>
+            ))}
+          </div>
+        </div>
         <SenderMessage card={currentCard} companyName={companyName} productName={productName} />
         <div>
           {Object.keys(currentCard.options).map(optionId => (
