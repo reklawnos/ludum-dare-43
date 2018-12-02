@@ -70,6 +70,10 @@ const SENDER_COMMUNICATIONS = {
   name: 'Marketing Manager'
 };
 
+const SENDER_EMAIL = {
+  name: 'Mail'
+};
+
 const r = (quantity) => (val) => val + quantity;
 
 function getRandomTechBuzzword() {
@@ -235,7 +239,7 @@ export default {
     sender: SENDER_COMMUNICATIONS,
     options: {
       yes: {
-        message: `Sure, let's grab coffee.`
+        message: `Sure, let's grab coffee.`,
         reducers: {}
       },
       no: {
@@ -253,7 +257,7 @@ export default {
     sender: SENDER_THOUGHT_LEADER,
     options: {
       yes: {
-        message: `Oh yeah you totally sound like you know what you're talking about.`
+        message: `Oh yeah you totally sound like you know what you're talking about.`,
         reducers: {
           money: r(-0.2),
           innovation: r(0.2)
@@ -274,7 +278,7 @@ export default {
     sender: SENDER_THOUGHT_LEADER,
     options: {
       yes: {
-        message: `Ah yes yes, I understand.`
+        message: `Ah yes yes, I understand.`,
         reducers: {}
       },
       no: {
@@ -284,5 +288,55 @@ export default {
     },
     getScore: showAfterSpecificChoice('thoughtLeaderProgrammer_2', 'yes'),
   },
+  
+  linkedInPhishing: {
+    message: `LinkedIn: You have a new connecion from Blarb Shurl`,
+    sender: SENDER_EMAIL,
+    options: {
+      yes: {
+        message: `Accept connection`,
+        reducers: {}
+      },
+      no: {
+        message: `Refuse connection`
+      }
+    },
+    getScore: (state) => {
+      if (state.stateSlices.reputation > 0.75) {
+        return 1.5
+      } else {
+        return 0.5
+      }
+    }
+  },
+  
+  linkedInPhishing_2: {
+    message: `
+      We just got hacked! Our systems are down and we lost a bunch of data. 
+      Did anybody see any LinkedIn invites recently?
+    `,
+    sender: SENDER_CTO,
+    options: {
+      yes: {
+        message: `Ooh that's what that was about`,
+        reducers: {
+          money: r(-0.2),
+          innovation: r(-0.2),
+          crunchy: r(-0.2),
+        }
+      },
+      no: {
+        message: `I really have no idea what you're talking about.`,
+        reducers: {
+          money: r(-0.2),
+          innovation: r(-0.2),
+          crunchy: r(-0.2),
+        }
+      }
+    },
+    getScore: showSomeTimeAfterSpecificChoice('linkedInPhishing', 'yes', 0.2),
+  },
+  
+  
   
 };
