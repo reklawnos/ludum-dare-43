@@ -1,5 +1,6 @@
 import React from 'react';
 import CirclePortrait from './avatars/CirclePortrait';
+import ImpactMeter from './ImpactMeter';
 
 
 const CIRCLE_LENGTH = 276;
@@ -73,18 +74,7 @@ export default function InvestorMeter({
         {name}
       </div>
       <div style={{ flex: '0 0 16px', alignSelf: 'center' }}>
-        <div
-          style={{
-            display: 'inline-block',
-            verticalAlign: 'middle',
-            height: 20,
-            width: 20,
-            borderRadius: 10,
-            transformOrigin: 'center',
-            backgroundColor: 'rgba(255, 255, 255, 0.8)',
-            transform: `scale(${Math.min(1, Math.abs(sizeOfEffect || 0)) * 2})`
-          }}
-        />
+        <ImpactMeter sizeOfEffect={sizeOfEffect} />
       </div>
     </div>
   );

@@ -88,3 +88,16 @@ button:focus {
     background-color: rgba(255, 0, 0, 0);
   }
 }
+
+.fly-in-animation {
+  animation: fly-in 0.2s ease-out;
+}
+
+@keyframes fly-in {
+  0% {
+    transform: translate(300px, 0);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
