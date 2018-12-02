@@ -223,9 +223,9 @@ export default {
       yes: {
         message: `Far-out`,
         reducers: {
-          money: val => val - 0.4,
-          crunchy: val => val - 0.4,
-          innovation: val => val + 0.6,
+          money: val => val - 0.2,
+          crunchy: val => val - 0.2,
+          innovation: val => val + 0.2,
           reputation: val => val + 0.1,
         }
       },
@@ -248,10 +248,10 @@ export default {
       yes: {
         message: `Surfs up`,
         reducers: {
-          money: val => val - 0.6,
-          crunchy: val => val - 0.2,
-          innovation: val => val + 0.5,
-          reputation: val => val - 0.2,
+          money: val => val - 0.2,
+          crunchy: val => val - 0.1,
+          innovation: val => val + 0.2,
+          reputation: val => val - 0.1,
         },
       },
       no: {

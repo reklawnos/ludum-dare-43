@@ -158,6 +158,10 @@ export const SENDER_TWITTER = {
   name: "Chirper"
 };
 
+export const SENDER_TRANSLATOR = {
+  name: "Translator"
+};
+
 
 
 export const r = (quantity) => (val) => val + quantity;
