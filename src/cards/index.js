@@ -17,6 +17,7 @@ import {
 import Walker from './walker';
 import Ben from './ben';
 import nathan from './nathan';
+import Steven from './steven';
 
 export default {
   drinksWithAnEntrepreneur_1: {
@@ -286,4 +287,5 @@ export default {
   ...Walker,
   ...Ben,
   ...nathan,
+  ...Steven,
 };
