@@ -1,3 +1,5 @@
+import benCards from './benCards';
+
 const MUST_SHOW_SCORE = Infinity;
 const DO_NOT_SHOW_SCORE = 0;
 
@@ -102,6 +104,8 @@ function getRandomTechBuzzword() {
 }
 
 export default {
+  ...benCards,
+  
   drinksWithAnEntrepreneur_1: {
     message: `Hey, I saw your cool tech! Let's chat about it over drinks!`,
     sender: SENDER_ENTREPRENEUR,
