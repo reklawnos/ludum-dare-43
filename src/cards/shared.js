@@ -2,6 +2,7 @@ import { getRandomFace, getRandomFormalFace } from "../avatars/templates";
 import InvestorBro from "../avatars/templates/investors/investor_bro";
 import InvestorFuturist from "../avatars/templates/investors/investor_futurist";
 import InvestorHippie from "../avatars/templates/investors/investor_hippie";
+import ChirperIcon from "../avatars/ChirperIcon.jsx";
 
 export const MUST_SHOW_SCORE = Infinity;
 export const DO_NOT_SHOW_SCORE = 0;
@@ -216,7 +217,13 @@ export const SENDER_CHINESE_MANUFACTURER = {
 
 export const SENDER_TWITTER = {
   name: "Chirper",
-  face: getRandomFace(),
+  face: {
+    Component: ChirperIcon,
+    bgcolor: "#2ad4ff",
+    paddingTop: 0.12,
+    paddingBottom: 0.08,
+    props: {},
+  },
 };
 
 export const SENDER_TRANSLATOR = {
