@@ -98,8 +98,8 @@ export default {
       yes: {
         message: `Looks warm`,
         reducers: {
-          money: val => val + 0.5,
-          crunchy: val => val - 0.6,
+          money: val => val + 0.3,
+          crunchy: val => val - 0.2,
         }
       },
       no: {
@@ -333,11 +333,11 @@ export default {
     getScore: showWithFixedScore(STANDARD_SCORE),
   },
   patentQs: {
-    message: `Should patent this thing that one of the engineers made?`,
+    message: `Should we patent this thing that one of the engineers made?`,
     sender: SENDER_CTO,
     options: {
       yes: {
-        message: `Yes`,
+        message: `Yes I love protecting Intellectual Property.`,
         reducers: {
           money: val => val - 0.3,
           reputation: val => val + 0.2,
@@ -345,10 +345,10 @@ export default {
         }
       },
       no: {
-        message: `No`,
+        message: `That sounds like a stupid waste of time and money`,
         reducers: {
-          reputation: val => val - 0.2,
-          innovation: val => val - 0.3,
+          reputation: val => val - 0.1,
+          innovation: val => val - 0.2,
         }
       },
     },
