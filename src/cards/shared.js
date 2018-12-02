@@ -134,6 +134,10 @@ export const SENDER_HEAD_OF_OFFICE_SECURITY = {
   name: 'Head of Office Security',
 };
 
+export const SENDER_HEAD_OF_FACILITIES = {
+  name: 'Head of Facilities',
+};
+
 export const SENDER_AI = {
   name: 'AI',
 };
