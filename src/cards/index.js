@@ -1,111 +1,8 @@
-import benCards from './benCards';
-
-const MUST_SHOW_SCORE = Infinity;
-const DO_NOT_SHOW_SCORE = 0;
-
-const STANDARD_SCORE = 1;
-
-function showAfterSpecificChoice(cardId, optionId) {
-  return state => hasMadeChoice(state, cardId, optionId) ? MUST_SHOW_SCORE : DO_NOT_SHOW_SCORE;
-}
-
-function showSomeTimeAfterSpecificChoice(cardId, optionId, increasePerTurn) {
-  return state => {
-    const idx = indexOfChoice(state, cardId, optionId);
-    if (indexOfChoice < 0) {
-      return DO_NOT_SHOW_SCORE;
-    }
-    return (state.pastChoices.length - idx) * increasePerTurn;
-  };
-}
-
-function showWithFixedScore(score) {
-  return () => score;
-}
-
-function hasSeenCard(state, cardId) {
-  return state.pastChoices.some(choice => choice.cardId === cardId);
-}
-
-function hasMadeChoice(state, cardId, optionId) {
-  return state.pastChoices.some(choice => (
-    choice.cardId === cardId && choice.optionId === optionId
-  ));
-}
-
-function indexOfChoice(state, cardId, optionId) {
-  return state.pastChoices.findIndex(choice => (
-    choice.cardId === cardId && choice.optionId === optionId
-  ));
-}
-
-const SENDER_FRIEND = {
-  name: 'Friend',
-};
-
-const SENDER_ENTREPRENEUR = {
-  name: 'Entrepreneur',
-};
-
-const SENDER_LEGAL = {
-  name: 'Legal',
-};
-
-const SENDER_CFO = {
-  name: 'CFO',
-};
-
-const SENDER_DESIGNER = {
-  name: 'Lead designer',
-};
-
-
-const SENDER_CTO = {
-  name: 'CTO',
-};
-
-const SENDER_THOUGHT_LEADER = {
-  name: 'Thought Leader'
-};
-
-const SENDER_COMMUNICATIONS = {
-  name: 'Marketing Manager'
-};
-
-const SENDER_EMAIL = {
-  name: 'Mail'
-};
-
-const r = (quantity) => (val) => val + quantity;
-
-function getRandomTechBuzzword() {
-  let r = Math.random();
-  if (r < 0.1) {
-    return "Elecric cars";
-  } else if (r < 0.2) {
-    return "Augmented Reality";
-  } else if (r < 0.3) {
-    return "Blockchain";
-  } else if (r < 0.4) {
-    return "Voice AI";
-  } else if (r < 0.5) {
-    return "Machine Learning";
-  } else if (r < 0.6) {
-    return "Solar Panels";
-  } else if (r < 0.7) {
-    return "Tunnels";
-  } else if (r < 0.8) {
-    return "Virtual Reality";
-  } else if (r < 0.9) {
-    return "Chatbots";
-  } else if (r < 1.0) {
-    return "Rockets"
-  }
-}
+import { SENDER_ENTREPRENEUR, STANDARD_SCORE, showAfterSpecificChoice, SENDER_LEGAL, showSomeTimeAfterSpecificChoice, SENDER_CFO, showWithFixedScore, SENDER_CTO, SENDER_COMMUNICATIONS, r, getRandomTechBuzzword, SENDER_THOUGHT_LEADER, SENDER_EMAIL } from "./shared";
+import * as Walker from './walker';
+import * as Ben from './ben';
 
 export default {
-  ...benCards,
-  
   drinksWithAnEntrepreneur_1: {
     message: `Hey, I saw your cool tech! Let's chat about it over drinks!`,
     sender: SENDER_ENTREPRENEUR,
@@ -340,7 +237,6 @@ export default {
     },
     getScore: showSomeTimeAfterSpecificChoice('linkedInPhishing', 'yes', 0.2),
   },
-  
-  
-  
+  ...Walker,
+  ...Ben,
 };
