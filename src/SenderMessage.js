@@ -4,6 +4,7 @@ import CirclePortrait from './avatars/CirclePortrait';
 export default function SenderMessage({
   card,
   companyName,
+  productName,
 }) {
   return (
     <div style={{ display: 'flex' }}>
@@ -15,16 +16,7 @@ export default function SenderMessage({
           {card.sender.name}
         </div>
         <div>
-          {typeof card.message === "function" ? card.message(companyName) : card.message}
-          {typeof card.message === "function" ? card.message(companyName) : card.message}
-          {typeof card.message === "function" ? card.message(companyName) : card.message}
-          {typeof card.message === "function" ? card.message(companyName) : card.message}
-          {typeof card.message === "function" ? card.message(companyName) : card.message}
-          {typeof card.message === "function" ? card.message(companyName) : card.message}
-          {typeof card.message === "function" ? card.message(companyName) : card.message}
-          {typeof card.message === "function" ? card.message(companyName) : card.message}
-          {typeof card.message === "function" ? card.message(companyName) : card.message}
-          {typeof card.message === "function" ? card.message(companyName) : card.message}
+          {typeof card.message === "function" ? card.message(companyName, productName) : card.message}
         </div>
       </div>
     </div>

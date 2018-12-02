@@ -633,7 +633,7 @@ export default {
     getScore: showSomeTimeAfterSpecificCard("researchDevelopment_3", 0.1),
   },
   
-  researchDevelopment_4: {
+  researchDevelopment_5: {
     message: `Since you said you didn't want it, we scratched our rocket ship idea and instead made a new chat application which should be fairly nifty.`,
     sender: SENDER_RESEARCH_DEPARTMENT_PERSON,
     options: {
@@ -654,7 +654,7 @@ export default {
     getScore: showSomeTimeAfterSpecificChoice("researchDevelopment_2", "no", 0.1),
   },
   
-  researchDevelopment_5: {
+  researchDevelopment_6: {
     message: `The socks are selling like nothing we've seen before. People are buying them by the dozen. We should pivot our whole company to focus on socks.`,
     sender: SENDER_CFO,
     options: {
@@ -846,7 +846,7 @@ export default {
     getScore: showAfterSpecificChoice("stupidEngineerQuestion_3", "yes"),
   },
   
-  stupidEngineerQuestion_4: {
+  stupidEngineerQuestion_5: {
     message: `I don't understand how you don't know about yyasdfn, that's our core technology! The whole asfkn is koiue and ancavkl included. I mean that's just basic tech stuff.`,
     sender: SENDER_ENGINEER,
     options: {
@@ -863,10 +863,10 @@ export default {
         }
       }
     },
-    getScore: showAfterSpecificChoice("stupidEngineerQuestion_3", "yes"),
+    getScore: showAfterSpecificChoice("stupidEngineerQuestion_4", "yes"),
   },
   
-  stupidEngineerQuestion_5: {
+  stupidEngineerQuestion_6: {
     message: `Let's start at the beginning. When you pllpo a ffdkfs, it'll opoifep and goodfgsg together to form afdlape which is very useful.`,
     sender: SENDER_ENGINEER,
     options: {
@@ -883,7 +883,7 @@ export default {
         }
       }
     },
-    getScore: showAfterSpecificChoice("stupidEngineerQuestion_4", "yes"),
+    getScore: showAfterSpecificChoice("stupidEngineerQuestion_5", "yes"),
   },
   
   hireNewGradsOrSeniorPeople: {
