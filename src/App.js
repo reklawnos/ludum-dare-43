@@ -230,8 +230,10 @@ class App extends Component {
                   padding: 8,
                   borderRadius: 3,
                   border: '1px solid rgb(215, 218, 224)',
-                  background:
-                    'linear-gradient(rgba(253, 253, 253, 1) 0%, rgb(245, 245, 245) 85%, rgb(224, 226, 230) 100%)',
+                  boxShadow: hoverOptionId === optionId ? 
+                    '0 0 8px -4px #703960' : undefined,
+                  background: 'linear-gradient(rgba(253, 253, 253, 1) 0%, rgb(245, 245, 245) 85%, rgb(224, 226, 230) 100%)',
+                  color: 'black'
                 }}
                 key={optionId + currentCardId}
                 onClick={() => this.chooseItem(optionId)}
