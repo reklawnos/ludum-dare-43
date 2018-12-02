@@ -157,6 +157,6 @@ export default function SquareAvatar({
           <Component key={Component.name} {...props} />
         );
       })}
-    </svg>
+    </>
   );
 }
