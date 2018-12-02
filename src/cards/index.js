@@ -284,7 +284,7 @@ export default {
   },
   
   linkedInPhishing: {
-    message: `LinkedIn: You have a new connecion from Blarb Shurl`,
+    message: `LinkedIn: You have a new connection from Blarb Shurl`,
     sender: SENDER_EMAIL,
     options: {
       yes: {

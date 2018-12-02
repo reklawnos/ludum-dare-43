@@ -112,7 +112,7 @@ export default {
     getScore: showSomeTimeAfterSpecificChoice("congress_skipped", "ignore", 0.6),
   },
   congress_campaign_finance: {
-    message: `Hey, did you make some weird donations? We're being investigated for campaign finance law violations.`,
+    message: `Hey, did you make some weird donations to Senator McBob's campaign? We're being investigated for campaign finance law violations.`,
     sender: SENDER_LEGAL,
     options: {
       pay_fine: {
@@ -356,5 +356,65 @@ export default {
       },
     },
     getScore: showSomeTimeAfterSpecificChoice("patentInfringement_1", "no", 0.6),
+  },
+  plasticStraws: {
+    message: `Plastic straws are harmful to the environment. We should be a leader and replace them with paper straws in the cafeteria.`,
+    sender: SENDER_INVESTOR_CRUNCHY,
+    options: {
+      paper: {
+        message: `Switch to paper straws`,
+        reducers: {
+          money: r(-0.1),
+          crunchy: r(0.2),
+        }, 
+      },
+      plastic: {
+        message: `Keep plastic straws`,
+        reducers: {
+          crunchy: r(-0.2),
+        },
+      },
+    },
+    getScore: showWithFixedScore(STANDARD_SCORE),
+  },
+  paperStraws: {
+    message: `Hey, the paper straws in the cafeteria break down too quickly and make drinks taste like wood. Can we go back to the plastic straws?`,
+    sender: SENDER_EMPLOYEE,
+    options: {
+      paper: {
+        message: `Stick with paper straws`,
+        reducers: {
+          money: r(-0.1),
+        },
+      },
+      plastic: {
+        message: `Go back to plastic straws`,
+        reducers: {
+          money: r(0.1),
+          crunchy: r(-0.4),
+        },
+      },
+    },
+    getScore: showSomeTimeAfterSpecificChoice("plasticStraws", "paper", 0.6),
+  },
+  greenProduction: {
+    message: (companyName, productName) => `Have you heard of the new, greener production process for ${productName}?`,
+    sender: SENDER_INVESTOR_CRUNCHY,
+    options: {
+      switch: {
+        message: `Yes, we should switch to it`,
+        reducers: {
+          money: r(-0.2),
+          crunchy: r(0.1),
+        },
+      },
+      skip: {
+        message: `It's too expensive for us`,
+        reducers: {
+          crunchy: r(-0.1),
+        },
+      },
+    },
+    getScore: showWithFixedScore(STANDARD_SCORE),
   },
 };

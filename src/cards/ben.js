@@ -508,7 +508,7 @@ export default {
         }
       },
       no: {
-        message: `Sounds like non of my business, let's continue to build on their land!`,
+        message: `Sounds like none of my business, let's continue to build on their land!`,
         reducers: {
           money: r(0.1),
           innovation: r(0),
