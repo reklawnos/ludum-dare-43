@@ -203,9 +203,9 @@ class App extends Component {
             />
           </div>
         </div>
-        <div style={{filter: isPlayerDead ? "blur(4px)" : undefined, paddingRight: 10 }}>
+        <div style={{filter: isPlayerDead ? "blur(4px)" : undefined, flexGrow: 1.0 }}>
           <div style={{ height: 350, position: 'relative', overflow: 'hidden'}}>
-            <div style={{ position: 'absolute', bottom: 0 }}>
+            <div style={{ position: 'absolute', bottom: 0, width: "100%" }}>
               {pastChoices.slice(-3).map(({ cardId, optionId }) => (
                 <>
                   <SenderMessage card={cards[cardId]} companyName={companyName} productName={productName} />
