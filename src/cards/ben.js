@@ -1,7 +1,11 @@
 import {
   r,
   STANDARD_SCORE,
+  SENDER_AI,
+  showSomeTimeAfterAllChoices,
+  showSomeTimeAfterSpecificChoice,      
   showAfterSpecificChoice,
+  showAfterWithFixedScore,
   showWithFixedScore,
   SENDER_CTO,
   indexOfChoice,
