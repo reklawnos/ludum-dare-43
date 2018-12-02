@@ -92,9 +92,9 @@ const ITEM_COLORS = new Map([
     { baseColor: '#4d4d4d', collarColor: '#1a1a1a' },
   ]],
   [TriangleFace, [
-    { skinTone: '#deaa87' },
-    { skinTone: '#d38d5f' },
-    { skinTone: '#916f6f' },
+    { skinTone: '#deaa87', skinToneDark: '#c79979' },
+    { skinTone: '#d38d5f', skinToneDark: '#ca7741' },
+    { skinTone: '#916f6f', skinToneDark: '#6c5353' },
   ]],
 ]);
 
