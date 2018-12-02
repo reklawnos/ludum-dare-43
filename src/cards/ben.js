@@ -1,4 +1,12 @@
-import { r, STANDARD_SCORE, showSomeTimeAfterSpecificChoice, showAfterSpecificChoice, showWithFixedScore, SENDER_CTO, SENDER_CHEF, SENDER_INVESTOR_INNOVATION } from "./shared";
+import {
+  r,
+  STANDARD_SCORE,
+  showAfterSpecificChoice,
+  showWithFixedScore,
+  SENDER_CTO,
+  indexOfChoice,
+  DO_NOT_SHOW_SCORE,
+} from "./shared";
 
 function showSomeTimeAfterAllChoices(cardIds, optionIds, increasePerTurn) {
   return state => {

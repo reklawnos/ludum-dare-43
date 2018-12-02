@@ -6,6 +6,10 @@ import {
   showSomeTimeAfterSpecificChoice,
   showWithFixedScore,
   SENDER_CFO,
+  SENDER_INVESTOR_REPUTATION,
+  SENDER_HEAD_OF_OFFICE_SECURITY,
+  SENDER_FRIEND,
+  SENDER_INVESTOR_CRUNCHY,
 } from "./shared";
 
 export default {
@@ -290,7 +294,7 @@ export default {
   outsourceEngineering_2: {
     message: `
       You remember those millennials you outsourced the core of our app to?
-      Well our senior engineers can't understand their code because the
+      Well our senior engineers can't understand a lick of their code because the
       variable names are all in emoji. What do we do?
     `,
     sender: SENDER_CTO,
@@ -314,5 +318,203 @@ export default {
       },
     },
     getScore: showSomeTimeAfterSpecificChoice('outsourceEngineering_1', 'yes', 0.2),
+  },
+
+  // reputation investor
+  reputation_holidayParty1: {
+    message: `
+      Yooo when are you hosting that company holiday party? Gotta prop up
+      that company culture with some grain alcohol and fresh Colombian co-...
+      Coca-Cola! And dancing, and that other wholesome stuff you know?
+    `,
+    sender: SENDER_INVESTOR_REPUTATION,
+    options: {
+      yes: {
+        message: `Seems dangerous, but when have I ever avoided danger?`,
+        reducers: {
+          money: val => val - 0.3,
+          reputation: val => val + 0.4,
+          crunchy: val => val + 0.1,
+          innovation: val => val - 0.2,
+        },
+      },
+      no: {
+        message: `Naaah man, gotta cut costs...`,
+        reducers: {
+          reputation: val => val - 0.3,
+        },
+      },
+    },
+    getScore: showWithFixedScore(STANDARD_SCORE),
+  },
+
+  reputation_holidayParty2: {
+    message: `
+      Sorry to disturb you, but at the holiday party, we found this envelope full of white
+      powder and we believe it might be anthrax. What should we do?
+    `,
+    sender: SENDER_HEAD_OF_OFFICE_SECURITY,
+    options: {
+      letMeHaveIt: {
+        message: `Ohhh, that? Looks harmless, I should probably hang on to it... You know, for safe keeping.`,
+        reducers: {},
+      },
+      dealWithIt: {
+        message: `Eesh, anthrax you say? We should probably alert the proper authorities!`,
+        reducers: {
+          reputation: val => val - 0.3,
+        },
+      },
+    },
+    getScore: showSomeTimeAfterSpecificChoice('reputation_holidayParty1', 'yes', 0.5),
+  },
+
+  reputation_holidayParty3: {
+    message: `
+      Hey hey hey any chance an envelope got found at the... at the holiday party? I had a letter that I,
+      um, yeah! A letter for my grandma I wanted to send. Anyone found it? No reason.
+    `,
+    sender: SENDER_INVESTOR_REPUTATION,
+    options: {
+      hideIt: {
+        message: `Hmm, don't know anything about that... No envelopes, no sirree.`,
+        reducers: {
+          reputation: val => val - 0.3,
+          crunchy: val => val + 0.2,
+        },
+      },
+      giveIt: {
+        message: `Yeah, it's right here!`,
+        reducers: {
+          reputation: val => val + 0.5,
+        },
+      },
+    },
+    getScore: showSomeTimeAfterSpecificChoice('reputation_holidayParty2', 'yes', 0.5),
+  },
+
+  reputation_holidayParty4: {
+    message: `
+      Hey there, I've noticed you've been a little jittery lately. Just
+      wanted to let you know I'm here for you.
+    `,
+    sender: SENDER_INVESTOR_CRUNCHY,
+    options: {
+      hideIt: {
+        message: `Hey, no YOU'RE the one who's jittery! Get outta here!`,
+        reducers: {
+          reputation: val => val + 0.2,
+          crunchy: val => val - 0.3,
+        },
+      },
+      admit: {
+        message: `You're right... I should probably lay off the uh, soda pop...`,
+        reducers: {
+          crunchy: val => val + 0.2,
+          reputation: val => val - 0.3,
+        },
+      },
+    },
+    getScore: showSomeTimeAfterSpecificChoice('reputation_holidayParty3', 'hideIt', 0.5),
+  },
+
+  reputation_dadParty: {
+    message: `
+      Yoooo home-friend let's get blasted at my dad's house in the Hamptons this weekend,
+      lots of good con-ects you could set-it-ty-set up you know? Don't be a square!
+    `,
+    sender: SENDER_INVESTOR_REPUTATION,
+    options: {
+      yes: {
+        message: `Not sure what you're going for slang-wise, but sure!`,
+        reducers: {
+          reputation: val => val + 0.2,
+          crunchy: val => val - 0.2,
+          innovation: val => val - 0.1,
+        },
+      },
+      no: {
+        message: `Nah, I'm busy this weekend`,
+        reducers: {
+          reputation: val => val - 0.2,
+        },
+      },
+    },
+    getScore: showWithFixedScore(STANDARD_SCORE),
+  },
+
+  reputation_stripClub: {
+    message: `
+      Heyyy wanna pop into that strip club downtown for lunch? They've got a great buffet!
+    `,
+    sender: SENDER_INVESTOR_REPUTATION,
+    options: {
+      yes: {
+        message: `Sounds productive AND appropriate!`,
+        reducers: {
+          reputation: val => val + 0.2,
+          crunchy: val => val - 0.4,
+        },
+      },
+      no: {
+        message: `Mm, I'll pass.`,
+        reducers: {
+          reputation: val => val - 0.2,
+        },
+      },
+    },
+    getScore: showWithFixedScore(STANDARD_SCORE),
+  },
+
+  reputation_stripClub: {
+    message: `
+      Ok so I got us a sweeeeet con-nect with some "exotic dancers"
+      who can "perform" at our "launch event" next week, what's the number on your corporate card?
+    `,
+    sender: SENDER_INVESTOR_REPUTATION,
+    options: {
+      yes: {
+        message: `Not sure what all those quotes are about but seems reasonable!`,
+        reducers: {
+          money: val => val - 0.2,
+          reputation: val => val + 0.3,
+          innovation: val => val - 0.1,
+          crunchy: val => val - 0.3,
+        },
+      },
+      no: {
+        message: `Mm, I'll pass.`,
+        reducers: {
+          reputation: val => val - 0.2,
+        },
+      },
+    },
+    getScore: showWithFixedScore(STANDARD_SCORE),
+  },
+
+  reputation_: {
+    message: `
+      Ok so I got us a sweeeeet con-nect with some "exotic dancers"
+      who can "perform" at our "launch event" next week, what's the number on your corporate card?
+    `,
+    sender: SENDER_INVESTOR_REPUTATION,
+    options: {
+      yes: {
+        message: `Not sure what all those quotes are about but seems reasonable!`,
+        reducers: {
+          money: val => val - 0.2,
+          reputation: val => val + 0.3,
+          innovation: val => val - 0.1,
+          crunchy: val => val - 0.3,
+        },
+      },
+      no: {
+        message: `Mm, I'll pass.`,
+        reducers: {
+          reputation: val => val - 0.2,
+        },
+      },
+    },
+    getScore: showWithFixedScore(STANDARD_SCORE),
   },
 };

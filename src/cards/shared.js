@@ -73,7 +73,19 @@ export const SENDER_CHEF = {
 };
 
 export const SENDER_INVESTOR_INNOVATION = {
-  name: 'TODO: innovation investor',
+  name: 'TODO: "innovation" investor',
+};
+
+export const SENDER_INVESTOR_REPUTATION = {
+  name: 'TODO: "reputation" investor',
+};
+
+export const SENDER_INVESTOR_CRUNCHY = {
+  name: 'TODO: "crunchy" investor',
+};
+
+export const SENDER_HEAD_OF_OFFICE_SECURITY = {
+  name: 'Head of Office Security',
 };
 
 export const r = (quantity) => (val) => val + quantity;
