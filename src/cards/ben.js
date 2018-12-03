@@ -404,7 +404,7 @@ export default {
     sender: SENDER_TWITTER,
     options: {
       yes: {
-        message: `Dear god, this person's a genius. Somneone find them and bring them to me.`,
+        message: `Dear god, this person's a genius. Someone find them and bring them to me.`,
         reducers: {
           money: r(-0.1),
           innovation: r(0),
@@ -413,12 +413,11 @@ export default {
         }
       },
       no: {
-        message: `Can someone report this chirp?`,
+        message: `Can someone report this spammer to Chirper?`,
         reducers: {
           money: r(0),
-          innovation: r(0),
-          crunchy: r(0),
-          reputation: r(0.1)
+          innovation: r(0.1),
+          crunchy: r(-0.1),
         }
       }
     },
@@ -432,10 +431,7 @@ export default {
       yes: {
         message: `We should reply and figure out what their fleshed out perspective is!`,
         reducers: {
-          money: r(0),
-          innovation: r(0),
-          crunchy: r(0),
-          reputation: r(-0.2)
+          money: r(-0.1),
         }
       },
       no: {
@@ -449,6 +445,28 @@ export default {
       }
     },
     getScore: showWithFixedScore(STANDARD_SCORE),
+  },
+  
+  tweet_2_1: {
+    message: `@NeverWrongOnTheInternet says that their problem with our product was mostly an issue because they forgot to plug it in, they say they actually like it now.`,
+    sender: SENDER_COMMUNICATIONS,
+    options: {
+      yes: {
+        message: `We need to make our reputation better, let's make fun of them in a PR campaign`,
+        reducers: {
+          money: r(-0.2),
+          crunchy: r(-0.1),
+          reputation: r(0.2)
+        }
+      },
+      no: {
+        message: `Our products require being plugged in?!?`,
+        reducers: {
+          innovation: r(-0.2),
+        }
+      }
+    },
+    getScore: showAfterSpecificChoice("tweet_2", "yes"),
   },
   
   tweet_3: {
