@@ -8,6 +8,7 @@ export default function MetricMeter({
   sizeOfEffect,
   minForFlashing,
 }) {
+  let valueStr = (value * 1000000).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
   return (
     <div
       style={{ display: 'flex' }}
@@ -16,7 +17,7 @@ export default function MetricMeter({
       <div
        style={{ flexGrow: 1 }}
       >
-        {prefix}{value.toFixed(2)}{postfix}
+        {prefix}{valueStr}{postfix}
       </div>
       <div style={{ flex: '0 0 16px', alignSelf: 'center' }}>
         <ImpactMeter sizeOfEffect={sizeOfEffect} />

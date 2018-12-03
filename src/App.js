@@ -93,7 +93,7 @@ class App extends Component {
   
   getNewStartState = (firstTimePlaying, companyName, productName) => {
     const stateSlices = {
-      money: 2,
+      money: 1,
       reputation: 0.5,
       crunchy: 0.5,
       innovation: 0.5,
@@ -224,7 +224,7 @@ class App extends Component {
               <MetricMeter
                 prefix="$"
                 value={stateSlices.money}
-                postfix="M"
+                postfix=""
                 sizeOfEffect={sliceDiffs['money']}
                 minForFlashing={0.5}
               />
