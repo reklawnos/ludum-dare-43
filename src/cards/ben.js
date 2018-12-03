@@ -1027,7 +1027,7 @@ export default {
     sender: SENDER_INVESTOR_CRUNCHY,
     options: {
       yes: {
-        message: `Thank you. I actually really like it, I'm going to mandate that everyone needs to have a crytal on their desks`,
+        message: `Thank you. I actually really like it, I'm going to mandate that everyone needs to have a crystal on their desks`,
         reducers: {
           money: r(-0.3),
           crunchy: r(0.2),

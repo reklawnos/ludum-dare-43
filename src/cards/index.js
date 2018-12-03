@@ -67,8 +67,8 @@ export default {
 
   drinksWithAnEntrepreneur_3: {
     message: `
-      Hey you remember that entreprenur you had drinks yet?
-      Now their tech looks suspciciously like the stuff we patented...
+      Hey you remember that entrepreneur you had drinks yet?
+      Now their tech looks suspiciously like the stuff we patented...
     `,
     sender: SENDER_LEGAL,
     options: {

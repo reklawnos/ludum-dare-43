@@ -201,6 +201,8 @@ class App extends Component {
           transform: "translate(-50%, -50%)",
           width: "100%",
           backgroundColor: 'white',
+          borderRadius: "8px 5px 5px 8px",
+          boxShadow: "0px 0px 24px 1px rgba(38,19,30, 355)"
         }}>
         <div
           style={{
@@ -209,7 +211,8 @@ class App extends Component {
             fontSize: 16,
             flex: '0 0 250px',
             padding: 10,
-            filter: firstTimePlaying || shouldIPO ? "blur(4px)" : undefined
+            filter: firstTimePlaying || shouldIPO ? "blur(4px)" : undefined,
+            borderRadius: "5px 0px 0px 5px",
           }}
         >
           <div style={{ display: 'flex', alignItems: 'center' }}>
