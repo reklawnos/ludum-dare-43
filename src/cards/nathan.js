@@ -91,7 +91,7 @@ export default {
   wealthyPrinceOrb: {
     message: `
       Hey I got a message from a wealthy prince who wants to invest. But first
-      you'll have to put your hands on a glowy orb...
+      you'll have to put your hands on a glowy crystal orb...
     `,
     sender: SENDER_CFO,
     options: {
@@ -99,13 +99,13 @@ export default {
         message: `I don't see anything wrong with that!`,
         reducers: {
           money: r(+0.3),
-          crunchy: r(-0.2),
+          crunchy: r(0.1),
         }
       },
       no: {
-        message: `I'm generally anti-orb, actually...`,
+        message: `I actually hate any sort of crytal...`,
         reducers: {
-          crunchy: r(+0.1),
+          crunchy: r(-0.2),
         }
       },
     },

@@ -153,7 +153,8 @@ export default {
       no: {
         message: `The current design works. If it ain't broke don't fix it.`,
         reducers: {
-          reputation: r(0.2),
+          reputation: r(-0.2),
+          innovation: r(0.1)
         },
       },
     },

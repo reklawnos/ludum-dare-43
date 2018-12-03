@@ -51,7 +51,7 @@ export default {
       yes: {
         message: `Sure`,
         reducers: {
-          reputation: r(0.2),
+          reputation: r(-0.2),
           money: r(-0.2),
         },
       },
