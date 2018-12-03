@@ -3,19 +3,21 @@ import {
   SENDER_CTO,
   SENDER_INVESTOR_REPUTATION,
   SENDER_INVESTOR_INNOVATION,
-  SENDER_HR,
+  SENDER_ENGINEER,
+  SENDER_BEEPER_DEEL,
   STANDARD_SCORE,
   showWithFixedScore,
+  SENDER_ILYENKOVICH,
 } from "./shared";
 
 export default {
   billionaireExtremist: {
     message: `
-      Hey, quick question... That one guy who paid lots of money for
-      bots to spread misinformation during the election REALLY likes our product.
-      He wants to invest, what should we say?
+      Hey, just wanted to say I LOVE your product and want to invest! You
+      fit right into my portfolio of companies that help bend society
+      or enable me to consume the blood of virile teens. What do you say?
     `,
-    sender: SENDER_CFO,
+    sender: SENDER_BEEPER_DEEL,
     options: {
       yes: {
         message: `Hey, money is money!`,
@@ -26,7 +28,7 @@ export default {
         },
       },
       no: {
-        message: `No thank you.`,
+        message: `Hmm, I'm not about that vampire life.`,
         reducers: {
           crunchy: val => val + 0.3,
         },
@@ -36,27 +38,25 @@ export default {
   },
   basketballPlayer: {
     message: `
-      Famous baskeball player wants to invest in the company but he 
-      mandates that you have to write everything in Java because he 
-      read that "Nobody Ever Got Fired for Picking Java".  The whole 
-      time a basketball was spinning on his finger.
+      Hey yo hey so I was at this party hosted by the SF Basket Destroyer's
+      point guard and he wants to invest in the company but he's
+      SUUUPER into some programming thing called "type theory" and
+      "categories of endofunctors" or whatever. Can you build it?
     `,
     sender: SENDER_INVESTOR_REPUTATION,
     options: {
       yes: {
-        message: `You bet!`,
+        message: `I know some of those words!`,
         reducers: {
           money: val => val + 0.3,
-          crunchy: val => val - 0.1,
-          reputation: val => val + 0.3,
+          innovation: val => val + 0.2,
+          reputation: val => val + 0.2,
         },
       },
       no: {
-        message: `
-            I'm not into sports
-        `,
+        message: `Endo-what? No.`,
         reducers: {
-          innovation: val => val + 0.1,
+          innovation: val => val - 0.1,
           reputation: val => val - 0.2,
         },
       },
@@ -65,14 +65,13 @@ export default {
   },
   oligarchMotherland: {
     message: `
-      An oligarch from great Motherland says:
-      "I have good investment... if, how you say, I scratch back, you also
-      scratch back. I hope we have a good business."
+      I am oligarch from great Motherland. I have good investment... if, how you say,
+      I scratch back, you also scratch back. I hope we have a good business.
     `,
-    sender: SENDER_CFO,
+    sender: SENDER_ILYENKOVICH,
     options: {
       yes: {
-        message: `Yes!`,
+        message: `How you say: Da, comrade!`,
         reducers: {
           money: val => val + 0.4,
           reputation: val => val + 0.2,
@@ -80,7 +79,7 @@ export default {
         }
       },
       no: {
-        message: `Nyet`,
+        message: `Mm that's a hard nyet from me.`,
         reducers: {
           crunchy: val => val + 0.1,
         }
@@ -90,20 +89,20 @@ export default {
   },
   wealthyPrinceOrb: {
     message: `
-      A wealthy prince wants to invest. But first you'll have to put your
-      hands on a glowy orb.
+      Hey I got a message from a wealthy prince who wants to invest. But first
+      you'll have to put your hands on a glowy orb...
     `,
     sender: SENDER_CFO,
     options: {
       yes: {
-        message: `Looks warm`,
+        message: `I don't see anything wrong with that!`,
         reducers: {
           money: val => val + 0.3,
           crunchy: val => val - 0.2,
         }
       },
       no: {
-        message: `What is that`,
+        message: `I'm generally anti-orb, actually...`,
         reducers: {
           crunchy: val => val + 0.1,
         }
@@ -113,25 +112,21 @@ export default {
   },
   topAccelerator: {
     message: `
-      The world's top accelerator decided that they will invest but only
-      if you pair up a non-proft company in their portfolio to raise
-      awareness.  Your engineering team will have to stop
-      working on your product and instead make a website for this
-      initiative.
+      Hey, I need you to stop working on the product right now so you can build a
+      website for the nonprofit I founded yesterday. Thanks!
     `,
     sender: SENDER_CTO,
     options: {
       yes: {
-        message: `Do it!`,
+        message: `Uh, I guess I can!`,
         reducers: {
-          money: val => val + 0.3,
-          crunchy: val => val + 0.4,
+          money: val => val - 0.3,
+          crunchy: val => val + 0.3,
           innovation: val => val - 0.3,
-          reputation: val => val - 0.3,
         },
       },
       no: {
-        message: `Can't right now`,
+        message: `Umm, sorry... We're trying to get things ready for the launch.`,
         reducers: {
           crunchy: val => val - 0.3,
         },
@@ -141,49 +136,24 @@ export default {
   },
   twinSisters: {
     message: `
-      Angel Investors Duo / twin-sisters love your idea and see big $$$
-      in your future.  They'll invest, but they want to replace your
-      database with the blockchain.
+      Hey I heard from a friend that the Brinkledoss sisters love our product
+      but only invest in blockchain companies these days. Now's as good a time
+      as any to pivot!
     `,
-    sender: SENDER_INVESTOR_INNOVATION,
+    sender: SENDER_CFO,
     options: {
       yes: {
-        message: `Yay, chainblocks!`,
+        message: `Great! Maybe we can steal their ideas while we're at it.`,
         reducers: {
           money: val => val + 0.3,
           innovation: val => val + 0.3,
-          reputation: val => val + 0.1,
-          crunchy: val => val - 0.3,
+          reputation: val => val + 0.2,
         }
       },
       no: {
-        message: `That's not our expertise`,
+        message: `Eeh, blockchain's not really our thing.`,
         reducers: {
           innovation: val => val - 0.3,
-        }
-      },
-    },
-    getScore: showWithFixedScore(STANDARD_SCORE),
-  },
-  rapperAPI: {
-    message: `
-      Houston-based rapper and successful startup investor wants to 
-      invest.  But you also have to have an API integration with his app.
-    `,
-    sender: SENDER_INVESTOR_REPUTATION,
-    options: {
-      yes: {
-        message: `Word`,
-        reducers: {
-          money: val => val + 0.2,
-          innovation: val => val - 0.1,
-          reputation: val => val + 0.3,
-        }
-      },
-      no: {
-        message: `No`,
-        reducers: {
-          reputation: val => val - 0.3,
         }
       },
     },
@@ -191,22 +161,23 @@ export default {
   },
   videoGameCoolKids: {
     message: `
-      Integrate with this multiplayer-online-battle-royale-horror-sequel-
-      cross-platform video game, and it will make us the coolest kids in town
+      Yo yo yo have you heard about this
+      multiplayer-online-battle-royale-horror-sequel-cross-platform
+      video game? It just came out for the GuyPhone XSIV (not available for the general public ;)) and I've
+      been playing it all day. Let's do some kinda advertising thing with them.
     `,
     sender: SENDER_INVESTOR_REPUTATION,
     options: {
       yes: {
-        message: `W00t`,
+        message: `Winner winner, chicken dinner!`,
         reducers: {
           money: val => val + 0.2,
-          innovation: val => val - 0.2,
           crunchy: val => val - 0.2,
           reputation: val => val + 0.3,
         }
       },
       no: {
-        message: `Idk if that's our market `,
+        message: `Wait, how's that relevant to our product?`,
         reducers: {
           reputation: val => val - 0.3,
         }
@@ -214,120 +185,27 @@ export default {
     },
     getScore: showWithFixedScore(STANDARD_SCORE),
   },
-  sameAppButVR: {
-    message: `
-      Ok so let's redo our product, but this time, in VR
+  designersVsEngineers: {
+    message: (companyName) => `
+      Ugh, Morgan from design is SO ANNOYING and keeps saying that designers
+      are better than engineers. End this once and for all: who is more important
+      to ${companyName}, smart and skilled engineers or stupid designers?
     `,
-    sender: SENDER_INVESTOR_INNOVATION,
+    sender: SENDER_ENGINEER,
     options: {
       yes: {
-        message: `Far-out`,
+        message: `Engineers of course!`,
         reducers: {
-          money: val => val - 0.2,
-          crunchy: val => val - 0.2,
-          innovation: val => val + 0.2,
-          reputation: val => val + 0.1,
-        }
-      },
-      no: {
-        message: `I only think in 2D`,
-        reducers: {
-          innovation: val => val - 0.2,
-        }
-      },
-    },
-    getScore: showWithFixedScore(STANDARD_SCORE),
-  },
-  brainToComputer: {
-    message: `
-      Brain to computer communication is the future.  We need to ride that
-      wave.  Don't we want our app to be wavy?
-    `,
-    sender: SENDER_INVESTOR_INNOVATION,
-    options: {
-      yes: {
-        message: `Surfs up`,
-        reducers: {
-          money: val => val - 0.2,
+          reputation: val => val - 0.1,
           crunchy: val => val - 0.1,
           innovation: val => val + 0.2,
-          reputation: val => val - 0.1,
-        },
-      },
-      no: {
-        message: `
-          Maybe in a couple of decades
-        `,
-        reducers: {
-          innovation: val => val - 0.2,
-        }
-      },
-    },
-    getScore: showWithFixedScore(STANDARD_SCORE),
-  },
-  designersVsEngineers: {
-    message: `
-      Designers and engineers are fighting, they want you to choose who
-      you prefer.
-    `,
-    sender: SENDER_HR,
-    options: {
-      yes: {
-        message: `Designers of course`,
-        reducers: {
-          reputation: val => val + 0.2,
-          innovation: val => val - 0.2,
         }
       },
       no: {
-        message: `Engineers of course`,
+        message: `Actually, I kinda like designers better...`,
         reducers: {
-          reputation: val => val - 0.2,
-          innovation: val => val + 0.2,
-        }
-      },
-    },
-    getScore: showWithFixedScore(STANDARD_SCORE),
-  },
-  refactorFun: {
-    message: `Engineers want to refactor the code`,
-    sender: SENDER_CTO,
-    options: {
-      yes: {
-        message: `Smart`,
-        reducers: {
-          money: val => val - 0.1,
-          reputation: val => val + 0.2,
-          innovation: val => val - 0.2,
-        }
-      },
-      no: {
-        message: `Not now`,
-        reducers: {
-          reputation: val => val - 0.2,
-          innovation: val => val + 0.2,
-        }
-      },
-    },
-    getScore: showWithFixedScore(STANDARD_SCORE),
-  },
-  
-  patentQs: {
-    message: `Should we patent this thing that one of the engineers made?`,
-    sender: SENDER_CTO,
-    options: {
-      yes: {
-        message: `Yes I love protecting Intellectual Property.`,
-        reducers: {
-          money: val => val - 0.3,
-          reputation: val => val + 0.2,
-          innovation: val => val + 0.3,
-        }
-      },
-      no: {
-        message: `That sounds like a stupid waste of time and money`,
-        reducers: {
-          reputation: val => val - 0.1,
+          reputation: val => val + 0.1,
+          crunchy: val => val + 0.1,
           innovation: val => val - 0.2,
         }
       },
@@ -335,39 +213,42 @@ export default {
     getScore: showWithFixedScore(STANDARD_SCORE),
   },
   researchDevelopment: {
-    message: `We should create a Research & Development Team`,
+    message: `
+      Hey, let's get an experimental projects division started! We need more ways to
+      spend money on products we'll never actually launch.
+    `,
     sender: SENDER_CTO,
     options: {
       yes: {
-        message: `I'm sure the innovations coming out of this will blow my socks off.`,
+        message: `Sounds great, which letter sounds best? X? Z? R?`,
         reducers: {
-          money: val => val - 0.4,
-          reputation: val => val - 0.1,
+          money: val => val - 0.3,
           innovation: val => val + 0.3,
         }
       },
       no: {
-        message: `Don't ever waste my time again with this kind of innovative thinking.`,
-        reducers: {
-          innovation: val => val - 0.3,
-        }
+        message: `Mm, we should probably hold off for now.`,
+        reducers: {},
       },
     },
     getScore: showWithFixedScore(STANDARD_SCORE),
   },
   betterPRFirm: {
-    message: `We really need a better PR firm than a young intern.`,
+    message: `
+      Yo so my nephew wants to work for your company. You're not
+      social-media savvy like this kid is. Let him be your social guy!
+    `,
     sender: SENDER_INVESTOR_REPUTATION,
     options: {
       yes: {
-        message: `Upvote`,
+        message: `Let me give that a like and subscribe!`,
         reducers: {
           money: val => val - 0.1,
           reputation: val => val + 0.2,
         }
       },
       no: {
-        message: `Downvote`,
+        message: `Mmm, I'm gonna have to downvote that.`,
         reducers: {
           reputation: val => val - 0.1,
         }
@@ -376,20 +257,23 @@ export default {
     getScore: showWithFixedScore(STANDARD_SCORE),
   },
   twoXBuddy: {
-    message: `We're moving too slowly, we need to hire 2x more engineers`,
+    message: (companyName) => `
+      You are moving too slowly. The only solution is to double your number
+      of engineers. Do this now or ${companyName} will perish.
+    `,
     sender: SENDER_INVESTOR_INNOVATION,
     options: {
       yes: {
-        message: `Let's double`,
+        message: `You're right, let's do it!`,
         reducers: {
           money: val => val - 0.7,
           innovation: val => val + 0.4,
         }
       },
       no: {
-        message: `Slow down, cowboy`,
+        message: `Woah, let's slow down a few clock cycles, buddy.`,
         reducers: {
-          innovation: val => val - 0.1,
+          innovation: val => val - 0.2,
         }
       },
     },

@@ -270,6 +270,66 @@ export default {
     getScore: showWithFixedScore(STANDARD_SCORE),
   },
 
+  /// TODO: fix investor one
+
+
+
+  ///
+
+  sameAppButVR: {
+    message: `
+      Ok so let's redo our product, but this time, in VR
+    `,
+    sender: SENDER_INVESTOR_INNOVATION,
+    options: {
+      yes: {
+        message: `Far-out`,
+        reducers: {
+          money: val => val - 0.2,
+          crunchy: val => val - 0.2,
+          innovation: val => val + 0.2,
+          reputation: val => val + 0.1,
+        }
+      },
+      no: {
+        message: `I only think in 2D`,
+        reducers: {
+          innovation: val => val - 0.2,
+        }
+      },
+    },
+    getScore: showWithFixedScore(STANDARD_SCORE),
+  },
+  brainToComputer: {
+    message: `
+      Brain to computer communication is the future.  We need to ride that
+      wave.  Don't we want our app to be wavy?
+    `,
+    sender: SENDER_INVESTOR_INNOVATION,
+    options: {
+      yes: {
+        message: `Surfs up`,
+        reducers: {
+          money: val => val - 0.2,
+          crunchy: val => val - 0.1,
+          innovation: val => val + 0.2,
+          reputation: val => val - 0.1,
+        },
+      },
+      no: {
+        message: `
+          Maybe in a couple of decades
+        `,
+        reducers: {
+          innovation: val => val - 0.2,
+        }
+      },
+    },
+    getScore: showWithFixedScore(STANDARD_SCORE),
+  },
+
+  /// END FIX
+
   outsourceEngineering_1: {
     message: `
       Hey, so I googled around a bit and found this millennial-only outsourcing firm

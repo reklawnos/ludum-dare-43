@@ -321,7 +321,15 @@ export const SENDER_UNIONS = {
   face: getRandomFace(),
 };
 
+export const SENDER_BEEPER_DEEL = {
+  name: 'Beeper Deel',
+  face: getRandomFace(),
+};
 
+export const SENDER_ILYENKOVICH = {
+  name: 'Piyotr Ilyenkovich',
+  face: getRandomFace(),
+};
 
 export function r(quantity) {
   if (quantity >= 0.5) {
