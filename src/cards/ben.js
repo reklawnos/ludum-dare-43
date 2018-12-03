@@ -1308,5 +1308,30 @@ export default {
     getScore: showSomeTimeAfterSpecificChoice("fireAllOfHR", "yes", 0.6),
   },
   
+  unlimitedVacation: {
+    message: `Heyyyyy I think everyone's been a bit stressed out the past couple of weeks, we should institute an unlimited vacation policy!`,
+    sender: SENDER_INVESTOR_CRUNCHY,
+    options: {
+      yes: {
+        message: `Oh great idea. Since we do that, I'll be expecting 80h weeks.`,
+        reducers: {
+          money: r(0.3),
+          innovation: r(0.1),
+          crunchy: r(-0.2),
+          reputation: r(0)
+        }
+      },
+      no: {
+        message: `No, I'm not budging on the 4 vacation days everyone gets at this company.`,
+        reducers: {
+          money: r(0),
+          innovation: r(0.2),
+          crunchy: r(-0.2),
+          reputation: r(0)
+        }
+      }
+    },
+    getScore: showWithFixedScore(STANDARD_SCORE),
+  },
   
 }
