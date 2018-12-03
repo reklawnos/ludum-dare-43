@@ -758,4 +758,67 @@ export default {
     },
     getScore: showAfterSpecificCard('introCards_crunchy'),
   },
+
+  // Death
+  reputationInvestorDeath: {
+    message: (companyName) => `
+      Yo. At first I thought you were some dumb nerd. And I was right. You are some dumb nerd.
+      You're gonna run ${companyName} into the GROUND and I won't get that
+      SWEET CRED that I crave. We had some good times but it's time I say, "fuck it, ditch it."
+    `,
+    sender: SENDER_INVESTOR_REPUTATION,
+    options: {
+      yes: {
+        message: `What do you mean?`,
+        reducers: {}
+      }
+    },
+    getScore: showWithFixedScore(DO_NOT_SHOW_SCORE),
+  },
+
+  crunchyInvestorDeath: {
+    message: (companyName) => `
+      I made a mistake trusting you. Why fund ${companyName} if you're just going to destroy Mother Earth
+      and its beautiful, delicate inhabitants? I've meditated on this and decided that it's time for you
+      to go. Namaste, you will leave.
+    `,
+    sender: SENDER_INVESTOR_CRUNCHY,
+    options: {
+      yes: {
+        message: `What do you mean?`,
+        reducers: {}
+      }
+    },
+    getScore: showWithFixedScore(DO_NOT_SHOW_SCORE),
+  },
+  
+  innovationInvestorDeath: {
+    message: (companyName) => `
+      Given your recent performance, my machine learning model has determined that ${companyName} will
+      fail if you remain as its leader. May our future robot overlord have mercy on your pitiful mind.
+    `,
+    sender: SENDER_INVESTOR_INNOVATION,
+    options: {
+      yes: {
+        message: `What do you mean?`,
+        reducers: {}
+      }
+    },
+    getScore: showWithFixedScore(DO_NOT_SHOW_SCORE),
+  },
+  
+  moneyDeath: {
+    message: `
+      That's it... We're out of money. The bank's breaking down our doors. Papers are flying everywhere.
+      What do we do!? Where'd the money go??? WHERE'S THE MONEY?!?!?!?!
+    `,
+    sender: SENDER_CFO,
+    options: {
+      yes: {
+        message: `What do you mean?`,
+        reducers: {}
+      }
+    },
+    getScore: showWithFixedScore(DO_NOT_SHOW_SCORE),
+  },
 };
