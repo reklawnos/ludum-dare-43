@@ -16,7 +16,7 @@ import Modal from './Modal';
 function formatQuarters(quarters) {
   let numberOfYears = Math.floor(quarters / 4);
   
-  return "Year " + (numberOfYears + 1) + ", Q " + (quarters % 4 + 1);
+  return "Year " + (numberOfYears + 1) + ", Q" + (quarters % 4 + 1);
 }
 
 function getDeathCardID(stateSlices) {

@@ -142,10 +142,9 @@ export default {
   },
 
   innovationInvestorFlavorOfTheMonth_blockchain: {
-    message: `
-      I was at this "future of BDSM" conference and needless to say I came
-      away very impressed by the potential of both blocks and chains. Speaking of,
-      I feel like your company could mix in a bit more of that blockchainy goodness. What do you say?
+    message: (companyName) => `
+      I attended a "future of BDSM" conference I came away impressed by the potential of both blocks and chains.
+      ${companyName} should invest more in blockchain technology.
     `,
     sender: SENDER_INVESTOR_INNOVATION,
     options: {
@@ -170,7 +169,7 @@ export default {
   innovationInvestorFlavorOfTheMonth_voice: {
     message: `
       I was yelling at my PA earlier today and I realized, why can't I do the same to your product?
-      Build out some voice features now!
+      Build out voice features NOW.
     `,
     sender: SENDER_INVESTOR_INNOVATION,
     options: {
@@ -193,9 +192,9 @@ export default {
 
   innovationInvestorFlavorOfTheMonth_ai: {
     message: `
-      I was at a soirée in Marin with some of my investor friends and I've decided you're
-      not doing enough with AI. It's only a matter of weeks before the singularity and
-      I want my investments to be ready for when it happens.
+      I was at a soirée in Virtual Marin with MX-8 and TQ-34 and after speaking with them
+      I decided you're not doing enough with AI. It is only a matter of weeks before the
+      singularity and I want my investments to be ready for when it happens.
     `,
     sender: SENDER_INVESTOR_INNOVATION,
     options: {
@@ -218,9 +217,8 @@ export default {
 
   innovationInvestorFlavorOfTheMonth_ml: {
     message: `
-      I didn't want to mention it at the time, but the last time I was at your office
-      I saw an actual software engineer writing code. Why aren't you cutting
-      costs using machine learning?
+      The last time I was at your office I saw an actual human software engineer
+      writing code. You must cut costs by replacing them with machine learning.
     `,
     sender: SENDER_INVESTOR_INNOVATION,
     options: {
@@ -244,8 +242,8 @@ export default {
   
   innovationInvestorFlavorOfTheMonth_tunnels: {
     message: `
-      Ugh! I heard about this guy... What's his name, Breelon Dusk? Who's getting into
-      this whole tunnel business. We should be digging tunnels too! Get on it now!
+      My competitor Breelon Dusk is entering the tunnel business. We must dig
+      now to uncover his plans and beat him to underground salvation.
     `,
     sender: SENDER_INVESTOR_INNOVATION,
     options: {
@@ -270,31 +268,27 @@ export default {
     getScore: showWithFixedScore(STANDARD_SCORE),
   },
 
-  /// TODO: fix investor one
-
-
-
-  ///
-
   sameAppButVR: {
     message: `
-      Ok so let's redo our product, but this time, in VR
+      Virtual reality is the future and will replace our current reality as soon as
+      consumer headsets are high quality, readily available, and socially acceptable.
+      Implement our VR app now.
     `,
     sender: SENDER_INVESTOR_INNOVATION,
     options: {
       yes: {
-        message: `Far-out`,
+        message: `We'll get started now!`,
         reducers: {
-          money: val => val - 0.2,
-          crunchy: val => val - 0.2,
-          innovation: val => val + 0.2,
-          reputation: val => val + 0.1,
+          money: r(-0.3),
+          crunchy: r(-0.2),
+          innovation: r(+0.2),
+          reputation: r(+0.1),
         }
       },
       no: {
-        message: `I only think in 2D`,
+        message: `That's literally never going to happen.`,
         reducers: {
-          innovation: val => val - 0.2,
+          innovation: r(-0.2),
         }
       },
     },
@@ -302,46 +296,42 @@ export default {
   },
   brainToComputer: {
     message: `
-      Brain to computer communication is the future.  We need to ride that
-      wave.  Don't we want our app to be wavy?
+      Our feeble human brains will not be able to compete with AI. We must integrate our
+      app with our own brainstems to stay relevant in the future.
     `,
     sender: SENDER_INVESTOR_INNOVATION,
     options: {
       yes: {
         message: `Surfs up`,
         reducers: {
-          money: val => val - 0.2,
-          crunchy: val => val - 0.1,
-          innovation: val => val + 0.2,
-          reputation: val => val - 0.1,
+          money: r(-0.4),
+          crunchy: r(-0.1),
+          innovation: r(+0.3),
+          reputation: r(-0.1),
         },
       },
       no: {
-        message: `
-          Maybe in a couple of decades
-        `,
+        message: `That sounds expensive...`,
         reducers: {
-          innovation: val => val - 0.2,
+          innovation: r(-0.2),
         }
       },
     },
     getScore: showWithFixedScore(STANDARD_SCORE),
   },
 
-  /// END FIX
-
   outsourceEngineering_1: {
     message: `
       Hey, so I googled around a bit and found this millennial-only outsourcing firm
       that looks totally lit🔥🔥🔥🔥🔥🔥 How about we shift some engineering work to them to cut costs?
     `,
-    sender: SENDER_CFO,
+    sender: SENDER_INVESTOR_REPUTATION,
     options: {
       yes: {
         message: `Sure! That'll help us yeet on the competition.`,
         reducers: {
           money: r(0.2),
-          reputation: r(0.1),
+          reputation: r(0.4),
           crunchy: r(-0.2),
         },
       },
