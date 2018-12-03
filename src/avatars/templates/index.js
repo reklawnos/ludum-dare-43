@@ -47,7 +47,6 @@ export function getRandomFormalFace() {
 
 export function TemplateFace(config) {
   const { Component, props } = config;
-  console.log(props);
   return (
     <Component {...props} />
   );

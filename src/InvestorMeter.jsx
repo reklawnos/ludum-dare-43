@@ -11,7 +11,6 @@ export default function InvestorMeter({
   value,
   sizeOfEffect,
 }) {
-  console.log(sizeOfEffect);
   const normValue = Math.max(Math.min(value, 1), 0);
   const dashOffset = (1 - normValue) * CIRCLE_LENGTH;
 

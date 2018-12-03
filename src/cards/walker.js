@@ -12,6 +12,9 @@ import {
   SENDER_INVESTOR_CRUNCHY,
   SENDER_HEAD_OF_FACILITIES,
   showAfterSpecificChoice,
+  MUST_SHOW_SCORE,
+  DO_NOT_SHOW_SCORE,
+  showAfterSpecificCard,
 } from "./shared";
 
 export default {
@@ -648,5 +651,60 @@ export default {
       },
     },
     getScore: showSomeTimeAfterSpecificChoice('reputation_vodkaTap_3', 'yes', 1),
+  },
+
+  introCards_reputation: {
+    message: (companyName) =>`
+      Hey hey hey what's up I'm your best investor bud Brad! I really think ${companyName} is going to take off, and
+      that'll get me into all kinds of great parties and stuff. Oh I guess
+      there's "changing the world" and maybe some money or whatever but I'm already rich! 💸💸💸💸
+    `,
+    sender: SENDER_INVESTOR_REPUTATION,
+    options: {
+      basic: {
+        message: `Uh, hey... nice to meet you.`,
+        reducers: {},
+      },
+    },
+    getScore: ({ isFirstTimePlaying }) => {
+      if (isFirstTimePlaying) {
+        return MUST_SHOW_SCORE;
+      }
+      return DO_NOT_SHOW_SCORE;
+    },
+  },
+
+
+  introCards_crunchy: {
+    message: (companyName, productName) =>`
+      Hi there, I'm Sandra! I'm a long-time techie but I got out of that whole rat race to
+      invest in wholesome companies that'll help both the planet and our souls. I truly believe that ${productName}
+      is the best way to save humanity, and ${companyName} is the one to do it! Anyway, gotta
+      get back to my free-range kombucha farm. Namaste!
+    `,
+    sender: SENDER_INVESTOR_CRUNCHY,
+    options: {
+      basic: {
+        message: `Looking forward to working with you!`,
+        reducers: {},
+      },
+    },
+    getScore: showAfterSpecificCard('introCards_reputation'),
+  },
+
+  introCards_innovation: {
+    message: (companyName, productName) =>`
+      Hello. I am XT-9. My birthname was "Jason" but in the future we will be referred to by our identiers,
+      and mine shall be XT-9. My machine learning model has determined that the creation of
+      ${productName} will result in the highest probability of humanity's survival. I expect great things.
+    `,
+    sender: SENDER_INVESTOR_INNOVATION,
+    options: {
+      basic: {
+        message: `Sure thing, XT-9!`,
+        reducers: {},
+      },
+    },
+    getScore: showAfterSpecificCard('introCards_crunchy'),
   },
 };
