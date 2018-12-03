@@ -35,7 +35,7 @@ export default {
       no: {
         message: `I'll pass.`,
         reducers: {
-          reputation: val => val - 0.1,
+          reputation: r(-0.1),
         },
       },
     },
@@ -51,14 +51,14 @@ export default {
       yes: {
         message: `Shots, baby!`,
         reducers: {
-          money: val => val + 0.2,
+          money: r(0.2),
         },
       },
       no: {
         message: `Nah, I'm on a no-alchohol cleanse`,
         reducers: {
-          reputation: val => val - 0.1,
-          crunchy: val => val + 0.1,
+          reputation: r(-0.1),
+          crunchy: r(0.1),
         },
       },
     },
@@ -75,14 +75,14 @@ export default {
       sueThem: {
         message: `Sue them to hell!`,
         reducers: {
-          reputation: val => val - 0.2,
-          money: val => val + 0.1,
+          reputation: r(-0.2),
+          money: r(0.1),
         },
       },
       doNothing: {
         message: `Ugh, it's ok...`,
         reducers: {
-          money: val => val - 0.2,
+          money: r(-0.2),
         },
       },
     },
@@ -96,15 +96,15 @@ export default {
       yes: {
         message: `Kill away!`,
         reducers: {
-          crunchy: val => val - 0.1,
-          money: val => val + 0.5,
+          crunchy: r(-0.1),
+          money: r(0.5),
         },
       },
       no: {
         message: `We can't, some people DEPEND on those products!`,
         reducers: {
-          crunchy: val => val + 0.3,
-          money: val => val - 0.3,
+          crunchy: r(0.3),
+          money: r(-0.3),
         },
       },
     },
@@ -121,14 +121,14 @@ export default {
       yes: {
         message: `I mean, we're not a real startup if we don't have our own font.`,
         reducers: {
-          crunchy: val => val + 0.1,
-          money: val => val - 0.3,
+          crunchy: r(0.1),
+          money: r(-0.3),
         },
       },
       no: {
         message: `Psh, let's just use Times New Roman instead.`,
         reducers: {
-          reputation: val => val + 0.1,
+          reputation: r(0.1),
         },
       },
     },
@@ -145,15 +145,15 @@ export default {
       yes: {
         message: `That's a totally reasonable point you're making, let's do it!`,
         reducers: {
-          reputation: val => val + 0.2,
-          crunchy: val => val + 0.1,
-          money: val => val - 0.4,
+          reputation: r(0.2),
+          crunchy: r(0.1),
+          money: r(-0.4),
         },
       },
       no: {
         message: `The current design works. If it ain't broke don't fix it.`,
         reducers: {
-          crunchy: val => val - 0.3,
+          crunchy: r(-0.3),
         },
       },
     },
