@@ -18,7 +18,9 @@ import {
   showAfterAnyCard,
   r,
   showSomeTimeAfterAnyChoices,
-  showAfterAnyChoices
+  showAfterAnyChoices,
+  SENDER_TWITTER,
+  getTwitterHandleFromCompanyName,
 } from "./shared";
 
 export default {
@@ -521,4 +523,26 @@ export default {
       ["meditation_cult_3", "meditation_cult_3", "meditation_cult_2"],
       ["fire_yogi", "pay_off_yogi", "yikes"]),
   },
+  celebrity_endorsement: {
+    message: (companyName, productName) => `DM from @katie_jellor: Hey @${getTwitterHandleFromCompanyName(companyName)}! I'd love to give you my celebrity endorsement. Let's work out a deal, and I'll chirp about your ${productName} to my 25 million followers!`,
+    sender: SENDER_TWITTER,
+    options: {
+      yes: {
+        message: `Let me get my checkbook out`,
+        reducers: {
+          money: r(-0.4),
+          crunchy: r(0.3),
+          reputation: r(0.3),
+        },
+      },
+      no: {
+        message: `You're not a big enough influencer`,
+        reducers: {
+          crunchy: r(-0.3),
+          reputation: r(-0.3),
+        },
+      },
+    },
+    getScore: showWithFixedScore(STANDARD_SCORE),
+  }
 };
