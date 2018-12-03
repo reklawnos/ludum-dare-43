@@ -745,7 +745,7 @@ export default {
 
   introCards_innovation: {
     message: (companyName, productName) =>`
-      Hello. I am XT-9. My birthname was "Jason" but in the future we will be referred to by our identiers,
+      Hello. I am XT-9. My birthname was "Jason" but in the future we will be referred to by our identifiers,
       and mine shall be XT-9. My machine learning model has determined that the creation of
       ${productName} will result in the highest probability of humanity's survival. I expect great things.
     `,
