@@ -15,6 +15,7 @@ import {
   MUST_SHOW_SCORE,
   DO_NOT_SHOW_SCORE,
   showAfterSpecificCard,
+  r
 } from "./shared";
 
 export default {
@@ -27,15 +28,15 @@ export default {
       meatlessMonday: {
         message: `We need to save the planet, let's do Meatless Mondays!`,
         reducers: {
-          money: val => val - 0.2,
-          crunchy: val => val + 0.2,
-          reputation: val => val - 0.1,
+          money: r(-0.2),
+          crunchy: r(0.2),
+          reputation: r(-0.1),
         },
       },
       no: {
         message: `Psh, let them eat meat.`,
         reducers: {
-          crunchy: val => val - 0.2,
+          crunchy: r(-0.2),
         },
       },
     },
@@ -52,15 +53,15 @@ export default {
       cancelMeatlessMonday: {
         message: `Cancel Meatless Monday, of course!`,
         reducers: {
-          crunchy: val => val + 0.2,
-          reputation: val => val - 0.1,
+          crunchy: r(0.2),
+          reputation: r(-0.1),
         },
       },
       keepMeatlessMonday: {
         message: `Hmm, I was feeling particularly carnivorous today...`,
         reducers: {
-          reputation: val => val + 0.1,
-          crunchy: val => val - 0.4,
+          reputation: r(0.1),
+          crunchy: r(-0.4),
         },
       },
     },
@@ -77,14 +78,14 @@ export default {
       moreMonitors: {
         message: `You know what, let's give all of 'em FOUR monitors!`,
         reducers: {
-          money: val => val - 0.5,
-          innovation: val => val + 0.3,
+          money: r(-0.5),
+          innovation: r(0.3),
         },
       },
       no: {
         message: `They can make due.`,
         reducers: {
-          innovation: val => val - 0.2,
+          innovation: r(-0.2),
         },
       },
     },
@@ -100,15 +101,15 @@ export default {
       yes: {
         message: `Yeah, electric cars really DO fit into our roadmap!`,
         reducers: {
-          money: val => val - 0.3,
-          innovation: val => val + 0.3,
-          reputation: val => val - 0.1,
+          money: r(-0.3),
+          innovation: r(0.3),
+          reputation: r(-0.1),
         },
       },
       no: {
         message: `Hmm this might not be the best time`,
         reducers: {
-          innovation: val => val - 0.3,
+          innovation: r(-0.3),
         },
       },
     },
@@ -125,15 +126,15 @@ export default {
       yes: {
         message: `Like you say, it's the wave of the future!`,
         reducers: {
-          money: val => val - 0.5,
-          innovation: val => val + 0.3,
-          crunchy: val => val - 0.1,
+          money: r(-0.5),
+          innovation: r(0.3),
+          crunchy: r(-0.1),
         },
       },
       no: {
         message: `AR schmay-arr.`,
         reducers: {
-          innovation: val => val - 0.1,
+          innovation: r(-0.1),
         },
       },
     },
@@ -151,15 +152,15 @@ export default {
       yes: {
         message: `I mean of course, crypto is the future!`,
         reducers: {
-          money: val => val - 0.5,
-          innovation: val => val + 0.3,
-          crunchy: val => val - 0.1,
+          money: r(-0.5),
+          innovation: r(0.3),
+          crunchy: r(-0.1),
         },
       },
       no: {
         message: `Hmm I like my data storage centralized and fast, thank-you-very-much.`,
         reducers: {
-          innovation: val => val - 0.3,
+          innovation: r(-0.3),
         },
       },
     },
@@ -176,14 +177,14 @@ export default {
       yes: {
         message: `Sounds like that wouldn't be too difficult!`,
         reducers: {
-          money: val => val - 0.5,
-          innovation: val => val + 0.3,
+          money: r(-0.5),
+          innovation: r(0.3),
         },
       },
       no: {
         message: `What's wrong with a mouse and keyboard, or even a stylus?`,
         reducers: {
-          innovation: val => val - 0.2,
+          innovation: r(-0.2),
         },
       },
     },
@@ -201,14 +202,14 @@ export default {
       yes: {
         message: `Geez, I better get on it then!`,
         reducers: {
-          money: val => val - 0.5,
-          innovation: val => val + 0.3,
+          money: r(-0.5),
+          innovation: r(0.3),
         },
       },
       no: {
         message: `Mmmm it doesn't seem like that big of a deal rn...?`,
         reducers: {
-          innovation: val => val - 0.3,
+          innovation: r(-0.3),
         },
       },
     },
@@ -226,15 +227,15 @@ export default {
       yes: {
         message: `Er, good point. I should probably fire some people.`,
         reducers: {
-          money: val => val - 0.3,
-          innovation: val => val + 0.2,
-          crunchy: val => val - 0.2,
+          money: r(-0.3),
+          innovation: r(0.2),
+          crunchy: r(-0.2),
         },
       },
       no: {
         message: `I value my employees greatly!`,
         reducers: {
-          innovation: val => val - 0.3,
+          innovation: r(-0.3),
         },
       },
     },
@@ -251,9 +252,9 @@ export default {
       yes: {
         message: `Good idea, let me go buy one of those boring machines...`,
         reducers: {
-          money: val => val - 0.4,
-          innovation: val => val + 0.2,
-          crunchy: val => val - 0.2,
+          money: r(-0.4),
+          innovation: r(0.2),
+          crunchy: r(-0.2),
         },
       },
       no: {
@@ -262,7 +263,7 @@ export default {
           sell random plastic garbage with our logo on it for additional funding.
         `,
         reducers: {
-          innovation: val => val - 0.3,
+          innovation: r(-0.3),
         },
       },
     },
@@ -279,9 +280,9 @@ export default {
       yes: {
         message: `Sure! That'll help us yeet on the competition.`,
         reducers: {
-          money: val => val + 0.2,
-          reputation: val => val + 0.1,
-          crunchy: val => val - 0.2,
+          money: r(0.2),
+          reputation: r(0.1),
+          crunchy: r(-0.2),
         },
       },
       no: {
@@ -289,7 +290,7 @@ export default {
           Wait, I thought millennials were lazy?
         `,
         reducers: {
-          reputation: val => val - 0.2,
+          reputation: r(-0.2),
         },
       },
     },
@@ -307,9 +308,9 @@ export default {
       hireMillennials: {
         message: `Hmm, maybe acqui-hiring the consultancy would be the best way to dab them into our organization? *flosses*`,
         reducers: {
-          money: val => val - 0.3,
-          reputation: val => val - 0.1,
-          crunchy: val => val + 0.2,
+          money: r(-0.3),
+          reputation: r(-0.1),
+          crunchy: r(0.2),
         },
       },
       punishMillennials: {
@@ -317,8 +318,8 @@ export default {
           Good-for-nothing millennials! We'll sue them into the ground!
         `,
         reducers: {
-          money: val => val + 0.2,
-          crunchy: val => val - 0.3,
+          money: r(0.2),
+          crunchy: r(-0.3),
         },
       },
     },
@@ -335,14 +336,14 @@ export default {
       yes: {
         message: `You're right! I pay them to type, not to wipe!`,
         reducers: {
-          money: val => val + 0.3,
-          crunchy: val => val - 0.3,
+          money: r(0.3),
+          crunchy: r(-0.3),
         },
       },
       no: {
         message: `Let's keep the nice toilet tissue. Gotta save my employee's butts!`,
         reducers: {
-          crunchy: val => val + 0.1,
+          crunchy: r(0.1),
         },
       },
     },
@@ -359,16 +360,16 @@ export default {
       yes: {
         message: `Ugh, fine. Maybe they'll finally get off their asses.`,
         reducers: {
-          money: val => val - 0.3,
-          innovation: val => val + 0.2,
-          crunchy: val => val + 0.2,
+          money: r(-0.3),
+          innovation: r(0.2),
+          crunchy: r(0.2),
         },
       },
       no: {
         message: `Pay for those? I couldn't STAND to do that.`,
         reducers: {
-          innovation: val => val - 0.1,
-          crunchy: val => val - 0.2,
+          innovation: r(-0.1),
+          crunchy: r(-0.2),
         },
       },
     },
@@ -387,16 +388,16 @@ export default {
       yes: {
         message: `Seems dangerous, but when have I ever avoided danger?`,
         reducers: {
-          money: val => val - 0.4,
-          reputation: val => val + 0.4,
-          crunchy: val => val + 0.1,
-          innovation: val => val - 0.2,
+          money: r(-0.4),
+          reputation: r(0.4),
+          crunchy: r(0.1),
+          innovation: r(-0.2),
         },
       },
       no: {
         message: `Naaah man, gotta cut costs...`,
         reducers: {
-          reputation: val => val - 0.3,
+          reputation: r(-0.3),
         },
       },
     },
@@ -417,7 +418,7 @@ export default {
       dealWithIt: {
         message: `Eesh, anthrax you say? We should probably alert the proper authorities!`,
         reducers: {
-          reputation: val => val - 0.3,
+          reputation: r(-0.3),
         },
       },
     },
@@ -434,14 +435,14 @@ export default {
       hideIt: {
         message: `Hmm, don't know anything about that... No envelopes, no sirree.`,
         reducers: {
-          reputation: val => val - 0.3,
-          crunchy: val => val + 0.2,
+          reputation: r(-0.3),
+          crunchy: r(0.2),
         },
       },
       giveIt: {
         message: `Yeah, it's right here!`,
         reducers: {
-          reputation: val => val + 0.3,
+          reputation: r(0.3),
         },
       },
     },
@@ -458,15 +459,15 @@ export default {
       hideIt: {
         message: `Hey, no YOU'RE the one who's jittery! Get outta here!`,
         reducers: {
-          reputation: val => val + 0.2,
-          crunchy: val => val - 0.3,
+          reputation: r(0.2),
+          crunchy: r(-0.3),
         },
       },
       admit: {
         message: `You're right... I should probably lay off the uh, soda pop...`,
         reducers: {
-          crunchy: val => val + 0.2,
-          reputation: val => val - 0.3,
+          crunchy: r(0.2),
+          reputation: r(-0.3),
         },
       },
     },
@@ -483,15 +484,15 @@ export default {
       yes: {
         message: `Not sure what you're going for slang-wise, but sure!`,
         reducers: {
-          reputation: val => val + 0.2,
-          crunchy: val => val - 0.2,
-          innovation: val => val - 0.1,
+          reputation: r(0.2),
+          crunchy: r(-0.2),
+          innovation: r(-0.1),
         },
       },
       no: {
         message: `Nah, I'm busy this weekend`,
         reducers: {
-          reputation: val => val - 0.2,
+          reputation: r(-0.2),
         },
       },
     },
@@ -507,14 +508,14 @@ export default {
       yes: {
         message: `Sounds productive AND appropriate!`,
         reducers: {
-          reputation: val => val + 0.2,
-          crunchy: val => val - 0.4,
+          reputation: r(0.2),
+          crunchy: r(-0.4),
         },
       },
       no: {
         message: `Mm, I'll pass.`,
         reducers: {
-          reputation: val => val - 0.2,
+          reputation: r(-0.2),
         },
       },
     },
@@ -531,16 +532,16 @@ export default {
       yes: {
         message: `Not sure what all those quotes are about but seems reasonable!`,
         reducers: {
-          money: val => val - 0.2,
-          reputation: val => val + 0.3,
-          innovation: val => val - 0.1,
-          crunchy: val => val - 0.3,
+          money: r(-0.2),
+          reputation: r(0.3),
+          innovation: r(-0.1),
+          crunchy: r(-0.3),
         },
       },
       no: {
         message: `Mm, I'll pass.`,
         reducers: {
-          reputation: val => val - 0.2,
+          reputation: r(-0.2),
         },
       },
     },
@@ -558,14 +559,14 @@ export default {
       yes: {
         message: `Cool! Burnetts?`,
         reducers: {
-          money: val => val - 0.3,
-          reputation: val => val + 0.2,
+          money: r(-0.3),
+          reputation: r(0.2),
         },
       },
       no: {
         message: `Let's just stick to an excessive amount of local craft beer.`,
         reducers: {
-          reputation: val => val - 0.3,
+          reputation: r(-0.3),
         },
       },
     },
@@ -583,15 +584,15 @@ export default {
       keepIt: {
         message: `Hey... hey, HEY! DON'T fuck up the culture.`,
         reducers: {
-          reputation: val => val + 0.2,
-          crunchy: val => val + 0.1,
+          reputation: r(0.2),
+          crunchy: r(0.1),
         },
       },
       leaveIt: {
         message: `Eesh, let's keep those taps off until after 4 PM.`,
         reducers: {
-          money: val => val + 0.1,
-          crunchy: val => val + 0.1,
+          money: r(0.1),
+          crunchy: r(0.1),
         },
       },
     },
@@ -607,15 +608,15 @@ export default {
       keepIt: {
         message: `Ok, on second thought, maybe we should get rid of the vodka tap entirely`,
         reducers: {
-          money: val => val + 0.1,
-          reputation: val => val - 0.2,
+          money: r(0.1),
+          reputation: r(-0.2),
         },
       },
       leaveIt: {
         message: `You're right! VODKA ALL DAY, EVERY DAY!`,
         reducers: {
-          money: val => val - 0.1,
-          reputation: val => val + 0.6,
+          money: r(-0.1),
+          reputation: r(0.6),
         },
       },
     },
@@ -633,8 +634,8 @@ export default {
       basic: {
         message: `Oh geez, that's awful. I'll send my condolences. TTYL`,
         reducers: {
-          crunchy: val => val - 0.6,
-          innovation: val => val - 0.6,
+          crunchy: r(-0.6),
+          innovation: r(-0.6),
         },
       },
       wholeHog: {
@@ -643,10 +644,10 @@ export default {
           You know what, the entire company will attend the funeral. Let me start making arrangements.
         `,
         reducers: {
-          reputation: val => val - 0.4,
-          crunchy: val => val - 0.2,
-          innovation: val => val - 0.2,
-          money: val => val - 0.4,
+          reputation: r(-0.4),
+          crunchy: r(-0.2),
+          innovation: r(-0.2),
+          money: r(-0.4),
         },
       },
     },
