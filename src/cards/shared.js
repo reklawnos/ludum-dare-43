@@ -8,6 +8,8 @@ export const MUST_SHOW_SCORE = Infinity;
 export const DO_NOT_SHOW_SCORE = 0;
 export const STANDARD_SCORE = 1;
 
+export const LONGER_STORY_SCORE = 1.5;
+
 export function showAfterSpecificChoice(cardId, optionId) {
   return state => hasMadeChoice(state, cardId, optionId) ? MUST_SHOW_SCORE : DO_NOT_SHOW_SCORE;
 }

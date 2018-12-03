@@ -1,5 +1,6 @@
 import {
   STANDARD_SCORE,
+  LONGER_STORY_SCORE,
   showAfterSpecificChoice,
   showSomeTimeAfterSpecificChoice,
   showWithFixedScore,
@@ -131,7 +132,7 @@ export default {
         },
       },
     },
-    getScore: showWithFixedScore(STANDARD_SCORE),
+    getScore: showWithFixedScore(LONGER_STORY_SCORE),
   },
   
   designerWannaRedesign: {
@@ -156,7 +157,7 @@ export default {
         },
       },
     },
-    getScore: showWithFixedScore(STANDARD_SCORE),
+    getScore: showWithFixedScore(LONGER_STORY_SCORE),
   },
 
   basicSecurityLeak: {
@@ -195,7 +196,7 @@ export default {
         }
       }
     },
-    getScore: showWithFixedScore(STANDARD_SCORE),
+    getScore: showWithFixedScore(LONGER_STORY_SCORE),
   },
   
   thoughtLeaderProgrammer_2: {

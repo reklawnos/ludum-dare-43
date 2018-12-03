@@ -1,6 +1,7 @@
 import {
   r,
   STANDARD_SCORE,
+  LONGER_STORY_SCORE,
   SENDER_AI,
   SENDER_CTO,
   SENDER_CFO,
@@ -49,7 +50,7 @@ export default {
         reducers: {}
       }
     },
-    getScore: showWithFixedScore(STANDARD_SCORE),
+    getScore: showWithFixedScore(LONGER_STORY_SCORE),
   },
   
   moreDataOnBackend_2: {
@@ -271,7 +272,7 @@ export default {
         }
       }
     },
-    getScore: showWithFixedScore(STANDARD_SCORE),
+    getScore: showWithFixedScore(LONGER_STORY_SCORE),
   },
 
   embarassingQuestionDuringAllHands: {
@@ -368,7 +369,7 @@ export default {
         }
       }
     },
-    getScore: showWithFixedScore(0.5),
+    getScore: showWithFixedScore(STANDARD_SCORE),
   },
   
   chineseFactory_1: {
@@ -445,7 +446,7 @@ export default {
         }
       }
     },
-    getScore: showWithFixedScore(STANDARD_SCORE),
+    getScore: showWithFixedScore(LONGER_STORY_SCORE),
   },
   
   tweet_2_1: {
@@ -564,7 +565,7 @@ export default {
         }
       }
     },
-    getScore: showWithFixedScore(STANDARD_SCORE),
+    getScore: showWithFixedScore(LONGER_STORY_SCORE),
   },
   
   researchDevelopment_1: {
@@ -736,34 +737,8 @@ export default {
         }
       }
     },
-    getScore: showWithFixedScore(STANDARD_SCORE),
+    getScore: showWithFixedScore(LONGER_STORY_SCORE),
   },
-
-  // designersVsEngineers_2: {
-  //   message: `I heard what you told the head of design. Rough for them.`,
-  //   sender: SENDER_CTO,
-  //   options: {
-  //     yes: {
-  //       message: ``,
-  //       reducers: {
-  //         money: r(0),
-  //         innovation: r(0),
-  //         crunchy: r(0),
-  //         reputation: r(0)
-  //       }
-  //     },
-  //     no: {
-  //       message: ``,
-  //       reducers: {
-  //         money: r(0),
-  //         innovation: r(0),
-  //         crunchy: r(0),
-  //         reputation: r(0)
-  //       }
-  //     }
-  //   },
-  //   getScore: showWithFixedScore(STANDARD_SCORE),
-  // },
   
   celebrityReachingOut: {
     message: `Hey, I heard you were looking around for someone to showcase your awesome product. I'd love to work with you. Here's my number: (555) 555-5551.`,
@@ -801,7 +776,7 @@ export default {
         reducers: {}
       }
     },
-    getScore: showWithFixedScore(STANDARD_SCORE),
+    getScore: showWithFixedScore(LONGER_STORY_SCORE),
   },
   
   stupidEngineerQuestion_2: {
@@ -906,6 +881,8 @@ export default {
     getScore: showAfterSpecificChoice("stupidEngineerQuestion_5", "yes"),
   },
   
+  
+  // TODO LONGER_STORY_SCORE
   hireNewGradsOrSeniorPeople: {
     message: `Should we hire new college grads or senior people this quarter?`,
     sender: SENDER_RECRUITING,
@@ -928,6 +905,7 @@ export default {
     getScore: showWithFixedScore(STANDARD_SCORE),
   },
   
+  // TODO LONGER_STORY_SCORE
   brainstormingSession: {
     message: `I think we should block a week for a big brainstorming session which will really help us figure out what to do.`,
     sender: SENDER_CTO,
@@ -968,7 +946,7 @@ export default {
         }
       }
     },
-    getScore: showWithFixedScore(STANDARD_SCORE),
+    getScore: showWithFixedScore(LONGER_STORY_SCORE),
   },
   
   tweetLateAtNight_2: {

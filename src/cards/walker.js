@@ -1,5 +1,6 @@
 import {
   STANDARD_SCORE,
+  LONGER_STORY_SCORE,
   SENDER_CTO,
   SENDER_CHEF,
   SENDER_INVESTOR_INNOVATION,
@@ -35,7 +36,7 @@ export default {
         },
       },
     },
-    getScore: showWithFixedScore(STANDARD_SCORE),
+    getScore: showWithFixedScore(LONGER_STORY_SCORE),
   },
 
   employeeMeatProblems_2: {
@@ -289,7 +290,7 @@ export default {
         },
       },
     },
-    getScore: showWithFixedScore(STANDARD_SCORE),
+    getScore: showWithFixedScore(LONGER_STORY_SCORE),
   },
 
   outsourceEngineering_2: {
@@ -342,7 +343,7 @@ export default {
         },
       },
     },
-    getScore: showWithFixedScore(STANDARD_SCORE),
+    getScore: showWithFixedScore(LONGER_STORY_SCORE),
   },
 
   toiletPaper_2_standingDesks: {
@@ -396,7 +397,7 @@ export default {
         },
       },
     },
-    getScore: showWithFixedScore(STANDARD_SCORE),
+    getScore: showWithFixedScore(LONGER_STORY_SCORE),
   },
 
   reputation_holidayParty2: {
@@ -565,7 +566,7 @@ export default {
         },
       },
     },
-    getScore: showWithFixedScore(STANDARD_SCORE),
+    getScore: showWithFixedScore(LONGER_STORY_SCORE),
   },
 
   reputation_vodkaTap_2: {
