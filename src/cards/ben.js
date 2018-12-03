@@ -96,7 +96,7 @@ export default {
         }
       }
     },
-    getScore: showSomeTimeAfterAllChoices(["innovationInvestorFlavorOfTheMonth_ai"], ["yes"], 0.3)
+    getScore: showSomeTimeAfterAllChoices(["innovationInvestorFlavorOfTheMonth_ai", "crunchyWeirdness_createUnions_4"], ["yes", "yes"], 0.6)
   },
   
   aiThatKnowsTooMuch_2: {
@@ -114,7 +114,7 @@ export default {
         reducers: {}
       }
     },
-    getScore: showSomeTimeAfterSpecificChoice("aiThatKnowsTooMuch", "yes"),
+    getScore: showAfterSpecificChoice("aiThatKnowsTooMuch", "yes"),
   },
   
   aiThatKnowsTooMuch_3: {
@@ -296,7 +296,7 @@ export default {
         }
       }
     },
-    getScore: showSomeTimeAfterSpecificChoice("investInCoal", "yes", 0.2),
+    getScore: showSomeTimeAfterSpecificChoice("investInCoal", "yes", 0.4),
   },
   
   embarassingQuestionDuringAllHands_2: {
@@ -317,7 +317,7 @@ export default {
         reducers: {}
       }
     },
-    getScore: showSomeTimeAfterSpecificCard("aiThatKnowsTooMuch", 0.1),
+    getScore: showSomeTimeAfterSpecificCard("aiThatKnowsTooMuch", 0.4),
   },
 
   embarassingQuestionDuringAllHands_3: {
@@ -607,7 +607,7 @@ export default {
         }
       }
     },
-    getScore: showSomeTimeAfterSpecificChoice("researchDevelopment_1", "yes", 0.2),
+    getScore: showSomeTimeAfterSpecificChoice("researchDevelopment_1", "yes", 0.4),
   },
   
   researchDevelopment_3: {
@@ -649,7 +649,7 @@ export default {
         }
       }
     },
-    getScore: showSomeTimeAfterSpecificCard("researchDevelopment_3", 0.1),
+    getScore: showSomeTimeAfterSpecificCard("researchDevelopment_3", 0.4),
   },
   
   researchDevelopment_5: {
@@ -670,7 +670,7 @@ export default {
         }
       }
     },
-    getScore: showSomeTimeAfterSpecificChoice("researchDevelopment_2", "no", 0.1),
+    getScore: showSomeTimeAfterSpecificChoice("researchDevelopment_2", "no", 0.4),
   },
   
   researchDevelopment_6: {
@@ -692,7 +692,7 @@ export default {
         }
       }
     },
-    getScore: showSomeTimeAfterSpecificChoice("researchDevelopment_4", "yes", 0.1),
+    getScore: showSomeTimeAfterSpecificChoice("researchDevelopment_4", "yes", 0.4),
   },
   
   notEnoughGlutenInCookies: {
@@ -993,7 +993,7 @@ export default {
         }
       }
     },
-    getScore: showWithFixedScoreIfChoiceHasNotBeenMade("notEnoughGrapefruitLacroix", "yes", STANDARD_SCORE),
+    getScore: showWithFixedScoreIfChoiceHasNotBeenMade("notEnoughGrapefruitLacroix", "yes", LONGER_STORY_SCORE),
   },
   
   crunchyWeirdness_2: {
@@ -1086,7 +1086,7 @@ export default {
         }
       }
     },
-    getScore: showSomeTimeAfterSpecificChoice("crunchyWeirdness_createUnions", "yes", 0.4),
+    getScore: showSomeTimeAfterSpecificChoice("crunchyWeirdness_createUnions", "yes", 0.6),
   },
   
   crunchyWeirdness_createUnions_3: {
@@ -1231,7 +1231,7 @@ export default {
         }
       }
     },
-    getScore: showSomeTimeAfterSpecificChoice('notEnoughGrapefruitLacroix', 'yes', 0.3)
+    getScore: showSomeTimeAfterSpecificChoice('notEnoughGrapefruitLacroix', 'yes', 0.4)
   },
   
   newsArticle_5: {
@@ -1252,7 +1252,7 @@ export default {
         }
       }
     },
-    getScore: showSomeTimeAfterSpecificChoice("communityProblems_2", "yes", 0.3),
+    getScore: showSomeTimeAfterSpecificChoice("communityProblems_2", "yes", 0.4),
   },
   
   

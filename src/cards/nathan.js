@@ -8,6 +8,7 @@ import {
   STANDARD_SCORE,
   showWithFixedScore,
   SENDER_ILYENKOVICH,
+  r,
 } from "./shared";
 
 export default {
@@ -22,15 +23,15 @@ export default {
       yes: {
         message: `Hey, money is money!`,
         reducers: {
-          money: val => val + 0.4,
-          crunchy: val => val - 0.3,
-          reputation: val => val + 0.3,
+          money: r(+0.4),
+          crunchy: r(-0.3),
+          reputation: r(+0.3),
         },
       },
       no: {
         message: `Hmm, I'm not about that vampire life.`,
         reducers: {
-          crunchy: val => val + 0.3,
+          crunchy: r(+0.3),
         },
       },
     },
@@ -48,16 +49,16 @@ export default {
       yes: {
         message: `I know some of those words!`,
         reducers: {
-          money: val => val + 0.3,
-          innovation: val => val + 0.2,
-          reputation: val => val + 0.2,
+          money: r(+0.3),
+          innovation: r(+0.2),
+          reputation: r(+0.2),
         },
       },
       no: {
         message: `Endo-what? No.`,
         reducers: {
-          innovation: val => val - 0.1,
-          reputation: val => val - 0.2,
+          innovation: r(-0.1),
+          reputation: r(-0.2),
         },
       },
     },
@@ -73,15 +74,15 @@ export default {
       yes: {
         message: `How you say: Da, comrade!`,
         reducers: {
-          money: val => val + 0.4,
-          reputation: val => val + 0.2,
-          crunchy: val => val - 0.4,
+          money: r(+0.4),
+          reputation: r(+0.2),
+          crunchy: r(-0.4),
         }
       },
       no: {
         message: `Mm that's a hard nyet from me.`,
         reducers: {
-          crunchy: val => val + 0.1,
+          crunchy: r(+0.1),
         }
       },
     },
@@ -97,14 +98,14 @@ export default {
       yes: {
         message: `I don't see anything wrong with that!`,
         reducers: {
-          money: val => val + 0.3,
-          crunchy: val => val - 0.2,
+          money: r(+0.3),
+          crunchy: r(-0.2),
         }
       },
       no: {
         message: `I'm generally anti-orb, actually...`,
         reducers: {
-          crunchy: val => val + 0.1,
+          crunchy: r(+0.1),
         }
       },
     },
@@ -120,15 +121,15 @@ export default {
       yes: {
         message: `Uh, I guess I can!`,
         reducers: {
-          money: val => val - 0.3,
-          crunchy: val => val + 0.3,
-          innovation: val => val - 0.3,
+          money: r(-0.3),
+          crunchy: r(+0.3),
+          innovation: r(-0.3),
         },
       },
       no: {
         message: `Umm, sorry... We're trying to get things ready for the launch.`,
         reducers: {
-          crunchy: val => val - 0.3,
+          crunchy: r(-0.3),
         },
       },
     },
@@ -145,15 +146,15 @@ export default {
       yes: {
         message: `Great! Maybe we can steal their ideas while we're at it.`,
         reducers: {
-          money: val => val + 0.3,
-          innovation: val => val + 0.3,
-          reputation: val => val + 0.2,
+          money: r(+0.3),
+          innovation: r(+0.3),
+          reputation: r(+0.2),
         }
       },
       no: {
         message: `Eeh, blockchain's not really our thing.`,
         reducers: {
-          innovation: val => val - 0.3,
+          innovation: r(-0.3),
         }
       },
     },
@@ -171,15 +172,15 @@ export default {
       yes: {
         message: `Winner winner, chicken dinner!`,
         reducers: {
-          money: val => val + 0.2,
-          crunchy: val => val - 0.2,
-          reputation: val => val + 0.3,
+          money: r(+0.2),
+          crunchy: r(-0.2),
+          reputation: r(+0.3),
         }
       },
       no: {
         message: `Wait, how's that relevant to our product?`,
         reducers: {
-          reputation: val => val - 0.3,
+          reputation: r(-0.3),
         }
       },
     },
@@ -196,17 +197,17 @@ export default {
       yes: {
         message: `Engineers of course!`,
         reducers: {
-          reputation: val => val - 0.1,
-          crunchy: val => val - 0.1,
-          innovation: val => val + 0.2,
+          reputation: r(-0.1),
+          crunchy: r(-0.1),
+          innovation: r(+0.2),
         }
       },
       no: {
         message: `Actually, I kinda like designers better...`,
         reducers: {
-          reputation: val => val + 0.1,
-          crunchy: val => val + 0.1,
-          innovation: val => val - 0.2,
+          reputation: r(+0.1),
+          crunchy: r(+0.1),
+          innovation: r(-0.2),
         }
       },
     },
@@ -222,8 +223,8 @@ export default {
       yes: {
         message: `Sounds great, which letter sounds best? X? Z? R?`,
         reducers: {
-          money: val => val - 0.3,
-          innovation: val => val + 0.3,
+          money: r(-0.3),
+          innovation: r(+0.3),
         }
       },
       no: {
@@ -243,14 +244,14 @@ export default {
       yes: {
         message: `Let me give that a like and subscribe!`,
         reducers: {
-          money: val => val - 0.1,
-          reputation: val => val + 0.2,
+          money: r(-0.1),
+          reputation: r(+0.2),
         }
       },
       no: {
         message: `Mmm, I'm gonna have to downvote that.`,
         reducers: {
-          reputation: val => val - 0.1,
+          reputation: r(-0.1),
         }
       },
     },
@@ -266,14 +267,14 @@ export default {
       yes: {
         message: `You're right, let's do it!`,
         reducers: {
-          money: val => val - 0.7,
-          innovation: val => val + 0.4,
+          money: r(-0.7),
+          innovation: r(+0.4),
         }
       },
       no: {
         message: `Woah, let's slow down a few clock cycles, buddy.`,
         reducers: {
-          innovation: val => val - 0.2,
+          innovation: r(-0.2),
         }
       },
     },

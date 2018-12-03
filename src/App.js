@@ -16,7 +16,7 @@ import Modal from './Modal';
 function formatQuarters(quarters) {
   let numberOfYears = Math.floor(quarters / 4);
   
-  return "Year " + (numberOfYears + 1) + ", Q " + (quarters % 4 + 1);
+  return "Year " + (numberOfYears + 1) + ", Q" + (quarters % 4 + 1);
 }
 
 function getDeathCardID(stateSlices) {
@@ -183,6 +183,8 @@ class App extends Component {
         }), {});
     }
     
+    let shouldIPO = quarters >= 40;
+    
     let [newCompanyName, newProductName] = isDead ? [generateCompanyName(), generateProductName()] : ["", ""];
     
     return (
@@ -191,13 +193,14 @@ class App extends Component {
         width: 1120,
         position: "absolute",
         top: "50%",
-        left: "50%"
+        left: "50%",
       }}>
         <div style={{ 
           display: 'flex',
           position: "absolute",
           transform: "translate(-50%, -50%)",
-          width: "100%"
+          width: "100%",
+          backgroundColor: 'white',
         }}>
         <div
           style={{
@@ -206,7 +209,7 @@ class App extends Component {
             fontSize: 16,
             flex: '0 0 250px',
             padding: 10,
-            filter: firstTimePlaying ? "blur(4px)" : undefined
+            filter: firstTimePlaying || shouldIPO ? "blur(4px)" : undefined
           }}
         >
           <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -250,7 +253,7 @@ class App extends Component {
           </div>
         </div>
         <div style={{
-          filter: firstTimePlaying || isDead ? "blur(4px)" : undefined,
+          filter: firstTimePlaying || isDead || shouldIPO ? "blur(4px)" : undefined,
           flexGrow: 1.0,
           height: 560,
           display: "flex",
@@ -311,6 +314,16 @@ class App extends Component {
             <div>Luckily, your side gig working on <b>{sideGigProductName}</b> at <b>{sideGigCompanyName}</b> is blowing up.</div>
             <br />
             <BasicButton onClick={() => this.restart(sideGigCompanyName, sideGigProductName)}>Join New Channel</BasicButton>
+          </Modal>
+        }
+        {
+          !shouldIPO ? null :
+          <Modal>
+            <div style={{fontSize: 20}}>Congratulations your company reached its IPO!</div>
+            <br />
+            <div>You <i>could</i> retire on your private island, but your <b>{sideGigProductName}</b> at <b>{sideGigCompanyName}</b> is blowing up.</div>
+            <br />
+            <BasicButton>Join New Channel</BasicButton>
           </Modal>
         }
       </div>
