@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/ludum-dare-43/precache-manifest.2899423bf764b14be204eb54c70b38b5.js"
+  "/ludum-dare-43/precache-manifest.1b4788825d88b16bb385b5e66260d779.js"
 );
 
 workbox.clientsClaim();
