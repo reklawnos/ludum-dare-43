@@ -96,6 +96,29 @@ function generateProductName() {
   return `${randomAdjective} ${randomNoun}${randomTrailer}`;
 }
 
+function generateCompanyName() {
+  let mainWords = [
+    "Wholebooks",
+    "Amazong",
+    "Shopliftfy",
+    "Hoolio.io",
+    "Spliblr",
+    "Guber",
+    "Wamboo",
+    "Instacrush",
+    "Polywhopper",
+    "Oddio",
+    "Skwimbot",
+    "Wink.ly",
+    "Qualiteeb",
+    "Innovenovoto",
+    "Busy.ly",
+    "Vendomo",
+  ];
+
+  return mainWords[Math.floor(Math.random() * mainWords.length)];
+}
+
 function getReasonOfDeath(state) {
   return "You're too much of an asshole";
 }
@@ -171,7 +194,7 @@ class App extends Component {
       innovation: 0.5,
     };
     return {
-      companyName: "Tableify",
+      companyName: generateCompanyName(),
       productName: generateProductName(),
       pastChoices: [],
       stateSlices,
@@ -251,9 +274,7 @@ class App extends Component {
             </div>
           </div>
           <div style={{ marginTop: 10 }}>
-            <div>
-              Corporate Account
-            </div>
+            <div>{companyName}'s Corporate Account</div>
             <div style={{ color: 'white', fontSize: '22px'}}>
               <MetricMeter
                 prefix="$"
