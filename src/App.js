@@ -278,10 +278,12 @@ class App extends Component {
               borderRadius: 5,
               boxShadow: "0 2px 10px 0 rgba(0,0,0,.2)"
             }}>
-              <div style={{fontSize: 20}}>Congratulations!!</div>
-              <div><b>{companyName}</b>, has been doing very well with its new product: {productName}. You now have 3 investors to keep happy. </div>
+              <div style={{fontSize: 20}}>Congratulations!</div>
+              <div>
+                Three angel investors decided to fund your company, <b>{companyName}.</b> Turns out there actually <i>is</i> a lot of money in <b>{productName}!</b>
+              </div>
             <br />
-            <button onClick={() => this.setState({firstTimePlaying: false})}>Enter Quack Channel</button>
+            <button onClick={() => this.setState({firstTimePlaying: false})}>Join Quack channel</button>
             </div>
           </div>
         }
