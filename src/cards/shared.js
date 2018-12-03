@@ -3,6 +3,7 @@ import InvestorBro from "../avatars/templates/investors/investor_bro";
 import InvestorFuturist from "../avatars/templates/investors/investor_futurist";
 import InvestorHippie from "../avatars/templates/investors/investor_hippie";
 import ChirperIcon from "../avatars/ChirperIcon.jsx";
+import WwnIcon from "../avatars/WwnIcon";
 
 export const MUST_SHOW_SCORE = Infinity;
 export const DO_NOT_SHOW_SCORE = 0;
@@ -308,7 +309,11 @@ export const SENDER_RECRUITING = {
 
 export const SENDER_CNN = {
   name: "Worldly World News Bot",
-  face: getRandomFace(), // TODO
+  face: {
+    Component: WwnIcon,
+    bgcolor: "#d40000",
+    props: {},
+  },
 };
 
 export const SENDER_MYSTERIOUS1 = {
