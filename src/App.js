@@ -15,9 +15,8 @@ import Modal from './Modal';
 
 function formatQuarters(quarters) {
   let numberOfYears = Math.floor(quarters / 4);
-  if (numberOfYears === 0) return "Q " + (quarters + 1) + "/4";
   
-  return "Year " + numberOfYears + ", Q " + (quarters % 4 + 1) + "/4";
+  return "Year " + (numberOfYears + 1) + ", Q " + (quarters % 4 + 1);
 }
 
 function getDeathCardID(stateSlices) {
@@ -102,6 +101,8 @@ class App extends Component {
     return {
       companyName: !!companyName ? companyName : generateCompanyName(),
       productName: !!productName ? productName : generateProductName(),
+      sideGigCompanyName: generateCompanyName(),
+      sideGigProductName: generateProductName(),
       pastChoices: [],
       stateSlices,
       currentCardId: getNextCard({ pastChoices: [], stateSlices, firstTimePlaying }),
@@ -113,8 +114,8 @@ class App extends Component {
     };
   };
   
-  restart = (companyName, productName) => {
-    this.setState(this.getNewStartState(false, companyName, productName));
+  restart = () => {
+    this.setState(this.getNewStartState(false, this.state.sideGigCompanyName, this.state.sideGigProductName));
   };
 
   chooseItem = (optionId) => {
@@ -167,6 +168,8 @@ class App extends Component {
       isDead,
       quarters,
       firstTimePlaying,
+      sideGigCompanyName,
+      sideGigProductName,
     } = this.state;
     const currentCard = cards[currentCardId];
      
@@ -304,9 +307,11 @@ class App extends Component {
           <Modal>
             <div style={{fontSize: 20}}>You've been <b style={{color: "red"}}>banned</b> from this Quack channel.</div>
             <br />
-            <div>Luckily, your side gig working on <b>{productName}</b> at <b>{companyName}</b> is blowing up.</div>
+            <div>Your tenure at <b>{companyName}</b> lasted for a good {quarters} quarters.</div>
             <br />
-            <BasicButton onClick={() => this.restart(newCompanyName, newProductName)}>Join New Channel</BasicButton>
+            <div>Luckily, your side gig working on <b>{sideGigProductName}</b> at <b>{sideGigCompanyName}</b> is blowing up.</div>
+            <br />
+            <BasicButton onClick={() => this.restart(sideGigCompanyName, sideGigProductName)}>Join New Channel</BasicButton>
           </Modal>
         }
       </div>

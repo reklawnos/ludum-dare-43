@@ -1,6 +1,6 @@
 import {
   STANDARD_SCORE,
-  SENDER_CNN,
+  SENDER_EMAIL,
   SENDER_EMPLOYEE,
   SENDER_COMMUNICATIONS,
   SENDER_INVESTOR_INNOVATION,
@@ -64,17 +64,17 @@ export default {
     getScore: showAfterSpecificChoice("productRecall_1", "yes"),
   },
   congress_start: {
-    message: `The U.S. Congress wants you to testify in front of a committee investigating the company's marketing towards children.`,
+    message: `We got this strange subpoena from the U.S. Congress. Says they want you to testify about some emails. Something about "My Little Zebra"?`,
     sender: SENDER_LEGAL,
     options: {
       go: {
-        message: `Go to Washington`,
+        message: `I'll go to Washington to do my civic duty`,
         reducers: {
           money: r(-0.2),
         },
       },
       skip: {
-        message: `Ignore subpoena`,
+        message: `Ignore the subpoena`,
         reducers: {
         },
       },
@@ -139,39 +139,39 @@ export default {
     getScore: showSomeTimeAfterSpecificChoice("congress_skipped", "bribe", 0.6),
   },
   congress_attended: {
-    message: `Are you aware that your products are being marketed during children's Saturday morning cartoons?`,
+    message: `As you know, it's our Constitutional duty as Senators to investigate anything related to emails. Recent news reports have revealed that the "My Little Zebra" fan club's email list was just a front for Russian propaganda. Do you know anything about this?`,
     sender: getRandomSenator(),
     options: {
       yes: {
-        message: `Yes, what's wrong with that?`,
-        reducers: {
-          crunchy: r(-0.2),
-          reputation: r(0.1)
-        },
-      },
-      no: {
-        message: `No, not at all`,
+        message: `Yes, of course`,
         reducers: {
           reputation: r(-0.2),
           crunchy: r(0.1),
+        },
+      },
+      no: {
+        message: `(Lie) I've never heard about "My Little Zebra" before`,
+        reducers: {
+          reputation: r(0.1),
+          crunchy: r(-0.2),
         },
       },
     },
     getScore: showAfterSpecificChoice("congress_start", "go"),
   },
   congress_tweet_start: {
-    message: `Hmmm, but you posted this message on Chirper yesterday: "Can't wait for the world premiere of our new ad during @MyLittleZebraAnimatedSeries this morning! #hype #blessed #hustle"`,
+    message: `Hmmm, but I see here that you received an email three days ago from <featherflutter@mylittlezebrafanclub.com>. How do you explain that?`,
     sender: getRandomSenator(),
     options: {
       weasel: {
-        message: `Whoa, "My Little Zebra" isn't just a kids show`,
+        message: `I just appreciate "My Little Zebra", I didn't know anything about any Russians`,
         reducers: {
           reputation: r(-0.2),
           crunchy: r(0.1),
         },
       },
-      ambien: {
-        message: `It was the Ambien I took`,
+      hacked: {
+        message: `My emails were hacked`,
         reducers: {
           reputation: r(0.2),
           crunchy: r(-0.2),
@@ -180,27 +180,29 @@ export default {
     },
     getScore: showAfterSpecificChoice("congress_attended", "no"),
   },
-  congress_tweet_ambien: {
-      message: (companyName) => `News Alert: CEO of ${companyName} being investigated for erratic behavior under the influence of Ambien`,
-      sender: SENDER_CNN,
-      options: {
-        flip_channel: {
-          message: `Switch the TV channel`,
-          reducers: {
-            reputation: r(0.1),
-          },
-        },
-        take_more_ambien: {
-          message: `Take another Ambien`,
-          reducers: {
-            money: r(-0.1),
-          },
+  congress_tweet_hacked: {
+    message: `I'm a reporter from Worldly World News. Based on some emails from a recent hack, it seems like you're involved in some really weird conspiracy theories. "We need to stop these lizard-people who've infiltrated the government", one of the emails reads. Do you have any comment?`,
+    sender: SENDER_EMAIL,
+    options: {
+      deny: {
+        message: `I didn't write any of those emails`,
+        reducers: {
+          reputation: r(0.1),
+          innovation: r(-0.1),
         },
       },
-      getScore: showSomeTimeAfterSpecificChoice("congress_tweet_start", "ambien", 0.6),
+      admit: {
+        message: `We need to stop these lizard-people who are posing as senators before they destroy us all`,
+        reducers: {
+          reputation: r(-0.1),
+          innovation: r(0.1),
+        },
+      },
+    },
+    getScore: showSomeTimeAfterSpecificChoice("congress_tweet_start", "hacked", 0.6),
   },
   congress_tweet_weasel: {
-    message: `"My Little Zebra" is my daughter's favorite show. Are you saying that you watch the same cartoons as a 9-year-old girl?`,
+    message: `Wait, so you're actually a fan of "My Little Zebra"? That's my daughter's favorite show. Are you saying that you watch the same cartoons as a 9-year-old girl?`,
     sender: getRandomSenator(),
     options: {
       yes: {
@@ -217,7 +219,7 @@ export default {
     getScore: showAfterSpecificChoice("congress_tweet_start", "weasel"),
   },
   congress_tweet_peta: {
-    message: `Parents for Ethical Toon Advertising (PETA) is upset that you dodged Congress's questions at the recent hearing on Capitol Hill.`,
+    message: `Parents for Ethical Toon Advocacy (PETA) is upset that you dodged Congress's questions about "My Little Zebra" at the recent Capitol Hill hearing. What should we do?`,
     sender: SENDER_COMMUNICATIONS,
     options: {
       pay_off: {
@@ -228,7 +230,7 @@ export default {
         },
       },
       ignore: {
-        message: `Ignore PETA`,
+        message: `Just ignore them`,
         reducers: {
           reputation: r(0.1),
           innovation: r(-0.1),
@@ -274,7 +276,7 @@ export default {
     getScore: showSomeTimeAfterSpecificChoice("congress_tweet_weasel", "yes", 0.6),
   },
   congress_admitted: {
-    message: `I'm shocked at your cavalier attitude. It seems like the whole industry is a wild west in need of regulation.`,
+    message: (companyName, productName) => `I'm shocked that you can be so calm about these dangerous emails. Maybe we need to start regulating the use of emails in the ${productName} industry.`,
     sender: getRandomSenator(),
     options: {
       regulate: {
@@ -402,7 +404,7 @@ export default {
     getScore: showSomeTimeAfterSpecificChoice("plasticStraws", "paper", 0.6),
   },
   greenProduction: {
-    message: (companyName, productName) => `My shaman was telling me about this greener production process for ${productName}? It uses essence of myrrh and powdered wolfsbane.`,
+    message: (companyName, productName) => `My shaman was telling me about this greener process for producing ${productName}? It uses essence of myrrh and powdered wolfsbane.`,
     sender: SENDER_INVESTOR_CRUNCHY,
     options: {
       switch: {
