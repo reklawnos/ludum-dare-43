@@ -1193,7 +1193,7 @@ export default {
   },
   
   newsArticle_3: {
-    message: companyName => `CEO and Cofounder Of ${companyName} Chirps Maybe Too Late At Night.`,
+    message: companyName => `CEO and Cofounder Of ${companyName} Chirps Late Into The Night.`,
     sender: SENDER_CNN,
     options: {
       yes: {
