@@ -10,6 +10,8 @@ import { SENDER_INVESTOR_REPUTATION, SENDER_INVESTOR_CRUNCHY, SENDER_INVESTOR_IN
 import generateProductName from './generateProductName';
 import generateCompanyName from './generateCompanyName';
 import BasicButton from './BasicButton';
+import Modal from './Modal';
+
 
 function formatQuarters(quarters) {
   let numberOfYears = Math.floor(quarters / 4);
@@ -90,7 +92,7 @@ class App extends Component {
     this.state = this.getNewStartState(true);
   };
   
-  getNewStartState = (firstTimePlaying) => {
+  getNewStartState = (firstTimePlaying, companyName, productName) => {
     const stateSlices = {
       money: 2,
       reputation: 0.5,
@@ -98,8 +100,8 @@ class App extends Component {
       innovation: 0.5,
     };
     return {
-      companyName: generateCompanyName(),
-      productName: generateProductName(),
+      companyName: !!companyName ? companyName : generateCompanyName(),
+      productName: !!productName ? productName : generateProductName(),
       pastChoices: [],
       stateSlices,
       currentCardId: getNextCard({ pastChoices: [], stateSlices, firstTimePlaying }),
@@ -111,8 +113,8 @@ class App extends Component {
     };
   };
   
-  restart = () => {
-    this.setState(this.getNewStartState());
+  restart = (companyName, productName) => {
+    this.setState(this.getNewStartState(false, companyName, productName));
   };
 
   chooseItem = (optionId) => {
@@ -177,9 +179,23 @@ class App extends Component {
           [k]: newStateSlices[k] - stateSlices[k],
         }), {});
     }
-
+    
+    let [newCompanyName, newProductName] = isDead ? [generateCompanyName(), generateProductName()] : ["", ""];
+    
     return (
-      <div style={{ display: 'flex' }}>
+
+      <div style={{ 
+        width: 1120,
+        position: "absolute",
+        top: "50%",
+        left: "50%"
+      }}>
+        <div style={{ 
+          display: 'flex',
+          position: "absolute",
+          transform: "translate(-50%, -50%)",
+          width: "100%"
+        }}>
         <div
           style={{
             backgroundColor: '#703960',
@@ -230,18 +246,26 @@ class App extends Component {
             <div>{formatQuarters(quarters)}</div>
           </div>
         </div>
-        <div style={{filter: firstTimePlaying || isDead ? "blur(4px)" : undefined, flexGrow: 1.0 }}>
-          <div style={{ height: 350, position: 'relative', overflow: 'hidden'}}>
+        <div style={{
+          filter: firstTimePlaying || isDead ? "blur(4px)" : undefined,
+          flexGrow: 1.0,
+          height: 560,
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "flex-end",
+          overflow: 'hidden'
+        }}>
+          <div style={{position: 'relative'}}>
             <div style={{ position: 'absolute', bottom: 0, width: "100%" }}>
-              {pastChoices.slice(-3).map(({ cardId, optionId }) => (
-                <>
+              {pastChoices.slice(-3).map(({ cardId, optionId }, i) => (
+                <div key={cardId}>
                   <SenderMessage card={cards[cardId]} companyName={companyName} productName={productName} />
                   <BasicMessage face={playerFace} name="Me" message={cards[cardId].options[optionId].message} isHighlighted />
-                </>
+                </div>
               ))}
             </div>
           </div>
-          <SenderMessage card={currentCard} companyName={companyName} productName={productName} />
+          <SenderMessage key={currentCardId} isNewMessage={true} card={currentCard} companyName={companyName} productName={productName} />
           <div
             style={{
               margin: 10,
@@ -264,39 +288,27 @@ class App extends Component {
         </div>
         {
           !firstTimePlaying ? null :
-          <div style={{
-            position: "fixed",
-            left: 0,
-            right: 0, top: 0, bottom: 0, width: "100%", height: "100%"}}>
-            <div style={{ 
-              position: "relative", 
-              padding: "12px 12px 12px 12px", 
-              left: "50%", top: "50%",
-              backgroundColor: "#ccc",
-              width: "420px",
-              transform: "translate(-50%, -50%)",
-              borderRadius: 5,
-              boxShadow: "0 2px 10px 0 rgba(0,0,0,.2)"
-            }}>
-              <div style={{fontSize: 20}}>Congratulations!</div>
-              <div>
+          <Modal>
+            <div style={{fontSize: 20}}>Congratulations!</div>
+            <br />
+            <div>
                 Three angel investors decided to fund your company, <b>{companyName}.</b> Turns out there actually <i>is</i> a lot of money in <b>{productName}!</b>
               </div>
             <br />
-            <button onClick={() => this.setState({firstTimePlaying: false})}>Join Quack channel</button>
-            </div>
-          </div>
+            <BasicButton onClick={() => this.setState({firstTimePlaying: false})}>Join Quack Channel</BasicButton>
+          </Modal>
         }
         {
           !isDead ? null :
-          <div style={{position: "fixed", left: 0, right: 0, top: 0, bottom: 0, width: "100%", height: "100%"}}>
-            <div style={{ position: "relative", padding: "12px 12px 12px 12px", left: "50%", top: "50%",  backgroundColor: "#ccc", width: "220px", transform: "translate(-50%, -50%)"}}>
-            <div style={{fontSize: 20}}>You've been banned from this Quack channel.</div>
+          <Modal>
+            <div style={{fontSize: 20}}>You've been <b style={{color: "red"}}>banned</b> from this Quack channel.</div>
             <br />
-            <button onClick={this.restart}>Restart</button>
-            </div>
-          </div>
+            <div>Luckily, your side gig working on <b>{productName}</b> at <b>{companyName}</b> is blowing up.</div>
+            <br />
+            <BasicButton onClick={() => this.restart(newCompanyName, newProductName)}>Join New Channel</BasicButton>
+          </Modal>
         }
+      </div>
       </div>
     );
   }

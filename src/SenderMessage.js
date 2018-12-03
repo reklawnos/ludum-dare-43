@@ -6,9 +6,10 @@ export default function SenderMessage({
   card,
   companyName,
   productName,
+  isNewMessage
 }) {
   const message = typeof card.message === "function" ? card.message(companyName, productName) : card.message;
   return (
-    <BasicMessage face={card.sender.face} name={card.sender.name} message={message} />
+    <BasicMessage isNewMessage={isNewMessage} face={card.sender.face} name={card.sender.name} message={message} />
   );
 }
