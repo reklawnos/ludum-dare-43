@@ -6,6 +6,7 @@ import {
   SENDER_CTO,
   SENDER_CFO,
   SENDER_EMPLOYEE,
+  SENDER_EMPLOYEE2,
   SENDER_JUDIE,
   SENDER_CHINESE_MANUFACTURER,
   SENDER_TWITTER,
@@ -1254,4 +1255,58 @@ export default {
     },
     getScore: showSomeTimeAfterSpecificChoice("communityProblems_2", "yes", 0.4),
   },
+  
+  fireAllOfHR: {
+    message: `We should fire all of HR. They're incompetent and we don't need them to continue to innovate.`,
+    sender: SENDER_INVESTOR_INNOVATION,
+    options: {
+      yes: {
+        message: `That's a reasonable way to move forward. I forsee no problem arising from this.`,
+        reducers: {
+          money: r(0.4),
+          innovation: r(0),
+          crunchy: r(-0.3),
+          reputation: r(0)
+        }
+      },
+      no: {
+        message: `Are you out of your mind!? Who are people going to complain to about how loud their coworkers are when eating chips?`,
+        reducers: {
+          money: r(0),
+          innovation: r(-0.2),
+          crunchy: r(0.1),
+          reputation: r(0)
+        }
+      }
+    },
+    getScore: showWithFixedScore(LONGER_STORY_SCORE),
+  },
+  
+  fireAllOfHR_2: {
+    message: `Hey I don't know who to complain about this to, but my coworkers are so so loud when they eat them chips.`,
+    sender: SENDER_EMPLOYEE2,
+    options: {
+      yes: {
+        message: `Sigh, ok if they bother you we should fire them immediately.`,
+        reducers: {
+          money: r(0.2),
+          innovation: r(0.1),
+          crunchy: r(-0.2),
+          reputation: r(0)
+        }
+      },
+      no: {
+        message: `Ok we need HR back!`,
+        reducers: {
+          money: r(-0.4),
+          innovation: r(0),
+          crunchy: r(0.2),
+          reputation: r(0)
+        }
+      }
+    },
+    getScore: showSomeTimeAfterSpecificChoice("fireAllOfHR", "yes", 0.6),
+  },
+  
+  
 }
