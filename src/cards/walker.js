@@ -667,8 +667,8 @@ export default {
         reducers: {},
       },
     },
-    getScore: ({ isFirstTimePlaying }) => {
-      if (isFirstTimePlaying) {
+    getScore: ({ firstTimePlaying }) => {
+      if (firstTimePlaying) {
         return MUST_SHOW_SCORE;
       }
       return DO_NOT_SHOW_SCORE;
