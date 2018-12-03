@@ -11,7 +11,89 @@ import { SENDER_INVESTOR_REPUTATION, SENDER_INVESTOR_CRUNCHY, SENDER_INVESTOR_IN
 console.log(Object.keys(cards).length);
 
 function generateProductName() {
-  return "[Product Name]";
+  const adjectives = [
+    "cloud-based",
+    "blockchain",
+    "Web 3.0",
+    "responsive",
+    "GDPR-compliant",
+    "HIPAA-compliant",
+    "high-performance",
+    "dynamic-range",
+    "socially-conscious",
+    "ultra-HD",
+    "eco-friendly",
+    "green",
+    "IOT-enabled",
+    "plug-and-play",
+    "enterprise",
+    "organic",
+    "free-range",
+    "biomedical",
+    "handheld",
+    "free-to-play",
+    "high-throughput",
+    "A.I.",
+    "B2B",
+    "B2C",
+    "bespoke",
+    "pharmaceutical",
+    "gigabit",
+    "Uber for",
+    "Airbnb for",
+    "Tinder for",
+    "augmented reality",
+    "quantum",
+  ];
+  const nouns = [
+    "funeral systems",
+    "solutions",
+    "sprockets",
+    "widgets",
+    "information systems",
+    "board games",
+    "tools",
+    "hardware",
+    "software",
+    "consulting services",
+    "devices",
+    "platforms",
+    "vehicles",
+    "cars",
+    "weapons",
+    "cameras",
+    "furniture",
+    "juice pressers",
+    "blenders",
+    "jackets",
+    "sunglasses",
+    "Bluetooth speakers",
+    "fitness trackers",
+    "VR headsets",
+    "cannabis",
+    "banking",
+    "scooter",
+    "gene editing",
+    "networking services",
+    "social networks",
+    "hoodies",
+    "marketplaces",
+    "chatbots",
+  ];
+  const trailers = [
+    "",
+    "",
+    "",
+    " as a service",
+    " on demand",
+    " delivery",
+    " for millennials",
+    " powered by ML",
+  ];
+  const randomAdjective = adjectives[Math.floor(Math.random() * adjectives.length)];
+  const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
+  const randomTrailer = trailers[Math.floor(Math.random() * trailers.length)];
+  return `${randomAdjective} ${randomNoun}${randomTrailer}`;
 }
 
 function getReasonOfDeath(state) {
