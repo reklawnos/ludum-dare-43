@@ -25,6 +25,7 @@ import {
   showSomeTimeAfterAllChoices,
   showSomeTimeAfterAnyChoices,
   showSomeTimeAfterSpecificChoice,      
+  showAfterAnyChoices,
   showAfterSpecificChoice,
   showAfterWithFixedScore,
   showWithFixedScore,
@@ -1112,7 +1113,7 @@ export default {
         }
       }
     },
-    getScore: showAfterSpecificChoice("crunchyWeirdness_createUnions_2", "no"),
+    getScore: showAfterAnyChoices(["crunchyWeirdness_createUnions_2", "crunchyWeirdness_createUnions_4"], ["no", "no"]),
   },
   
   
@@ -1139,29 +1140,7 @@ export default {
     getScore: showSomeTimeAfterSpecificChoice("crunchyWeirdness_createUnions", "yes", 0.2),
   },
 
-  // crunchyWeirdness_createUnions_5: {
-  //   message: ``,
-  //   sender: SENDER_UNIONS,
-  //   options: {
-  //     yes: {
-  //       message: ``,
-  //       reducers: {
-  //         money: r(0),
-  //         innovation: r(0),
-  //         crunchy: r(0),
-  //         reputation: r(0)
-  //       }
-  //     },
-  //     no: {
-  //       message: ``,
-  //       reducers: {
-  //         crunchy: r(0.1),
-  //         reputation: r(-0.2)
-  //       }
-  //     }
-  //   },
-  //   getScore: showAfterSpecificChoice("crunchyWeirdness_createUnions_4", "no"),
-  // },
+    
   
   
   
