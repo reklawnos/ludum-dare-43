@@ -302,7 +302,7 @@ export default {
     sender: SENDER_INVESTOR_INNOVATION,
     options: {
       yes: {
-        message: `Surfs up`,
+        message: `Get the implants ready!`,
         reducers: {
           money: r(-0.4),
           crunchy: r(-0.1),
@@ -574,8 +574,9 @@ export default {
 
   reputation_exoticDancers: {
     message: `
-      Ok so I got us a sweeeeet connect with some "exotic dancers"
-      who can "perform" at our "launch event" next week, what's the number on your corporate card?
+      Ok so I got us a sweeeeet connection with some "exotic dancers" who
+      can "perform" at our "launch event" next week, what's the number on
+      your corporate card (and the three digits on the back)?
     `,
     sender: SENDER_INVESTOR_REPUTATION,
     options: {
@@ -642,7 +643,6 @@ export default {
         message: `Eesh, let's keep those taps off until after 4 PM.`,
         reducers: {
           money: r(0.1),
-          crunchy: r(0.1),
         },
       },
     },
