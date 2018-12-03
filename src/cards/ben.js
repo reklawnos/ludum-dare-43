@@ -1089,7 +1089,7 @@ export default {
         }
       }
     },
-    getScore: showSomeTimeAfterSpecificChoice("crunchyWeirdness_createUnions", "yes", 0.2),
+    getScore: showSomeTimeAfterSpecificChoice("crunchyWeirdness_createUnions", "yes", 0.4),
   },
   
   crunchyWeirdness_createUnions_3: {
@@ -1125,7 +1125,7 @@ export default {
         message: `What... Ok I'll make that our #1 priority.`,
         reducers: {
           money: r(-0.4),
-          innovation: r(-0.2),
+          innovation: r(0.2),
           crunchy: r(0.1),
         }
       },
@@ -1137,7 +1137,7 @@ export default {
         }
       }
     },
-    getScore: showSomeTimeAfterSpecificChoice("crunchyWeirdness_createUnions", "yes", 0.2),
+    getScore: showSomeTimeAfterSpecificChoice("crunchyWeirdness_createUnions", "yes", 0.4),
   },
 
     
