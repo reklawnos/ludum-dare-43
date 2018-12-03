@@ -188,13 +188,14 @@ class App extends Component {
         width: 1120,
         position: "absolute",
         top: "50%",
-        left: "50%"
+        left: "50%",
       }}>
         <div style={{ 
           display: 'flex',
           position: "absolute",
           transform: "translate(-50%, -50%)",
-          width: "100%"
+          width: "100%",
+          backgroundColor: 'white',
         }}>
         <div
           style={{
