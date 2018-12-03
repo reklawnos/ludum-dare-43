@@ -742,7 +742,8 @@ export default {
   },
   
   celebrityReachingOut: {
-    message: `Hey, I heard you were looking around for someone to showcase your awesome product. I'd love to work with you. Here's my number: (555) 555-5551.`,
+    message: `
+      Hey, I heard you were looking around for someone to endorse your awesome product. I'd love to work with you. Here's my number if you want to make a deal: (555) 555-5551.`,
     sender: SENDER_CELEBRITY1,
     options: {
       yes: {

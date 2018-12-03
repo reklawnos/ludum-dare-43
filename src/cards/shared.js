@@ -303,7 +303,7 @@ export const SENDER_HR = {
 };
 
 export const SENDER_CELEBRITY1 = {
-  name: "Bumblebee Crumplehorn, Hollywood Celebrity.",
+  name: "Bumblebee Crumplehorn, Hollywood Celebrity",
   face: getRandomFace(),
 };
 

@@ -121,14 +121,14 @@ export default {
       yes: {
         message: `I mean, we're not a real startup if we don't have our own font.`,
         reducers: {
-          crunchy: r(0.1),
+          reputation: r(0.1),
           money: r(-0.3),
         },
       },
       no: {
         message: `Psh, let's just use Times New Roman instead.`,
         reducers: {
-          reputation: r(0.1),
+          reputation: r(-0.1),
         },
       },
     },

@@ -93,21 +93,22 @@ export default {
   },
 
   innovationInvestorFlavorOfTheMonth_electricCars: {
-    message: `
-      Yoooo so we should really get into that electric car game, it's the wave of the future!
+    message: (companyName) => `
+      In the future, our weak, meaty bodies will be shuttled from place to place via
+      autonomous electric vehicles. ${companyName} is not doing enough to compete in this space.
+      You must address this now.
     `,
     sender: SENDER_INVESTOR_INNOVATION,
     options: {
       yes: {
-        message: `Yeah, electric cars really DO fit into our roadmap!`,
+        message: `You know what, self-driving cars really DO fit into our roadmap!`,
         reducers: {
           money: r(-0.3),
           innovation: r(0.3),
-          reputation: r(-0.1),
         },
       },
       no: {
-        message: `Hmm this might not be the best time`,
+        message: `Hmm, this might not be the best time.`,
         reducers: {
           innovation: r(-0.3),
         },
