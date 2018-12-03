@@ -30,7 +30,7 @@ export default {
         message: `Of course, the safety of our customers is paramount!`,
         reducers: {
           crunchy: r(0.1),
-          money: r(-0.2),
+          money: r(-0.3),
         },
       },
       no: {
@@ -50,7 +50,7 @@ export default {
         message: `Sure`,
         reducers: {
           reputation: r(0.2),
-          money: r(-0.1),
+          money: r(-0.2),
         },
       },
       no: {
@@ -68,7 +68,7 @@ export default {
       go: {
         message: `Go to Washington`,
         reducers: {
-          money: r(-0.1),
+          money: r(-0.2),
         },
       },
       skip: {
@@ -120,7 +120,7 @@ export default {
       pay_fine: {
         message: `Pay the fine to make it go away`,
         reducers: {
-          money: r(-0.1),
+          money: r(-0.3),
           reputation: r(-0.1),
           crunchy: r(0.1),
           innovation: r(0.1),
@@ -129,7 +129,7 @@ export default {
       lawyer_up: {
         message: `Hire some lawyers to take care of this`,
         reducers: {
-          money: r(-0.1),
+          money: r(-0.3),
           reputation: r(0.1),
         },
       },
@@ -143,14 +143,14 @@ export default {
       yes: {
         message: `Yes, what's wrong with that?`,
         reducers: {
-          crunchy: r(-0.1),
+          crunchy: r(-0.2),
           reputation: r(0.1)
         },
       },
       no: {
         message: `No, not at all`,
         reducers: {
-          reputation: r(-0.1),
+          reputation: r(-0.2),
           crunchy: r(0.1),
         },
       },
@@ -172,7 +172,7 @@ export default {
         message: `It was the Ambien I took`,
         reducers: {
           reputation: r(0.2),
-          crunchy: r(-0.1),
+          crunchy: r(-0.2),
         },
       },
     },
@@ -221,7 +221,7 @@ export default {
       pay_off: {
         message: `Pledge donation to PETA`,
         reducers: {
-          money: r(-0.1),
+          money: r(-0.2),
           reputation: r(-0.1),
         },
       },
@@ -366,7 +366,7 @@ export default {
       paper: {
         message: `Switch to paper straws`,
         reducers: {
-          money: r(-0.1),
+          money: r(-0.2),
           crunchy: r(0.2),
         }, 
       },
@@ -386,7 +386,7 @@ export default {
       paper: {
         message: `Stick with paper straws`,
         reducers: {
-          money: r(-0.1),
+          money: r(-0.2),
         },
       },
       plastic: {
@@ -413,7 +413,7 @@ export default {
       skip: {
         message: `It's too expensive for us`,
         reducers: {
-          crunchy: r(-0.1),
+          crunchy: r(-0.2),
         },
       },
     },
@@ -505,7 +505,7 @@ export default {
         message: `I have to be honest with you, the yogi was kind of a creep`,
         reducers: {
           money: r(-0.5),
-          crunchy: r(-0.2),
+          crunchy: r(-0.3),
           reputation: r(0.2),
         },
       },
@@ -513,7 +513,7 @@ export default {
         message: `I don't think Transcendental Meditation was for me`,
         reducers: {
           money: r(-0.2),
-          crunchy: r(-0.1),
+          crunchy: r(-0.2),
         },
       },
     },
