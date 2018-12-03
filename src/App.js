@@ -19,14 +19,15 @@ function formatQuarters(quarters) {
   return "Year " + (numberOfYears + 1) + ", Q" + (quarters % 4 + 1);
 }
 
+const MIN_THRESHOLD = 0.01;
 function getDeathCardID(stateSlices) {
-  if (stateSlices.money <= 0) {
+  if (stateSlices.money <= MIN_THRESHOLD) {
     return "moneyDeath";
-  } else if (stateSlices.reputation <= 0) {
+  } else if (stateSlices.reputation <= MIN_THRESHOLD) {
     return "reputationInvestorDeath";
-  } else if (stateSlices.crunchy <= 0) {
+  } else if (stateSlices.crunchy <= MIN_THRESHOLD) {
     return "crunchyInvestorDeath";
-  } else if (stateSlices.innovation <= 0) {
+  } else if (stateSlices.innovation <= MIN_THRESHOLD) {
     return "innovationInvestorDeath";
   }
 }

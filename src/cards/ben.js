@@ -56,24 +56,23 @@ export default {
   
   moreDataOnBackend_2: {
     message: `
-      Oh we just need to know their deepest fears... and whether they're pooping or not.
-      If that's not possible, we can get away with knowing their sexual preferences though.`,
+      Oh, we just need to know their deepest fears... and whether they're pooping or not.
+      If that's not possible, we can probably get 90% of the way there with their sexual preferences.`,
     sender: SENDER_CTO,
     options: {
       yes: {
         message: `Oh yeah that's totally reasonable, what can go wrong, let's do it.`,
         reducers: {
           innovation: r(0.1),
-          money: r(0.1),
-          reputation: r(-0.2),
+          money: r(0.3),
+          crunchy: r(-0.3),
         },
       },
       no: {
-        message: `No I think [insert something stupid about privacy], let's make our product worse.`,
+        message: `We need to stand up for our customers' privacy. Plus, it gives us good excuses for our product being worse.`,
         reducers: {
-          reputation: r(0.1),
-          money: r(0.1),
-          innovation: r(-0.2)
+          crunchy: r(0.1),
+          innovation: r(-0.1),
         }
       }
     },
@@ -480,18 +479,16 @@ export default {
       yes: {
         message: `Oh I know, we should reuse some of our technology in a contrived way and go help these people!`,
         reducers: {
-          money: r(-0.1),
-          innovation: r(0),
+          money: r(-0.2),
+          innovation: r(0.1),
           crunchy: r(0.1),
-          reputation: r(-0.2)
+          reputation: r(0.1)
         }
       },
       no: {
         message: `Mmh I wish someone would help the poor guy.`,
         reducers: {
-          money: r(0),
-          innovation: r(0.1),
-          crunchy: r(0),
+          crunchy: r(-0.2),
           reputation: r(-0.1)
         }
       }

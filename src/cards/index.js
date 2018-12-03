@@ -13,10 +13,10 @@ import {
   SENDER_CTO,
   SENDER_COMMUNICATIONS,
   SENDER_THOUGHT_LEADER,
-  SENDER_EMAIL,
   SENDER_TRANSLATOR,
   SENDER_DESIGNER,
   SENDER_TWITTER,
+  SENDER_ASSISTANT,
 } from "./shared";
 import Walker from './walker';
 import Ben from './ben';
@@ -153,7 +153,7 @@ export default {
       no: {
         message: `The current design works. If it ain't broke don't fix it.`,
         reducers: {
-          crunchy: r(-0.3),
+          reputation: r(0.2),
         },
       },
     },
@@ -190,7 +190,7 @@ export default {
         reducers: {}
       },
       no: {
-        message: `Nah, I don't have time for this`,
+        message: `Nah, I don't have time for this.`,
         reducers: {
           innovation: r(-0.2)
         }
@@ -285,15 +285,15 @@ export default {
   },
   
   linkedInPhishing: {
-    message: `LinkedIn: You have a new connection from Blarb Shurl`,
-    sender: SENDER_EMAIL,
+    message: `Hey, you got a LinkedIn request from someone named "Blarb Shurl," do you want to accept?`,
+    sender: SENDER_ASSISTANT,
     options: {
       yes: {
-        message: `Accept connection`,
+        message: `Sure!`,
         reducers: {}
       },
       no: {
-        message: `Refuse connection`,
+        message: `Mmm, I'd rather not.`,
         reducers: {}
       }
     },

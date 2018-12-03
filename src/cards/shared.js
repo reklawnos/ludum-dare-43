@@ -175,8 +175,13 @@ export const SENDER_COMMUNICATIONS = {
   face: getRandomFace(),
 };
 
-export const SENDER_EMAIL = {
-  name: 'Mail',
+export const SENDER_ASSISTANT = {
+  name: 'Personal Assistant',
+  face: getRandomFace(),
+};
+
+export const SENDER_REPORTER = {
+  name: 'Taylor Taylorton, WWN Reporter',
   face: getRandomFace(),
 };
 

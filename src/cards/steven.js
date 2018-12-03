@@ -1,6 +1,5 @@
 import {
   STANDARD_SCORE,
-  SENDER_EMAIL,
   SENDER_EMPLOYEE,
   SENDER_COMMUNICATIONS,
   SENDER_INVESTOR_INNOVATION,
@@ -21,6 +20,7 @@ import {
   showAfterAnyChoices,
   SENDER_TWITTER,
   getTwitterHandleFromCompanyName,
+  SENDER_REPORTER,
 } from "./shared";
 
 export default {
@@ -86,7 +86,7 @@ export default {
     sender: SENDER_LEGAL,
     options: {
       bribe: {
-        message: `Let's sent him a check.`,
+        message: `Let's send him a check.`,
         reducers: {
           money: r(-0.4),
         },
@@ -182,7 +182,7 @@ export default {
   },
   congress_tweet_hacked: {
     message: `I'm a reporter from Worldly World News. Based on some emails from a recent hack, it seems like you're involved in some really weird conspiracy theories. "We need to stop these lizard-people who've infiltrated the government", one of the emails reads. Do you have any comment?`,
-    sender: SENDER_EMAIL,
+    sender: SENDER_REPORTER,
     options: {
       deny: {
         message: `I didn't write any of those emails`,
@@ -404,18 +404,22 @@ export default {
     getScore: showSomeTimeAfterSpecificChoice("plasticStraws", "paper", 0.6),
   },
   greenProduction: {
-    message: (companyName, productName) => `My shaman was telling me about this greener process for producing ${productName}? It uses essence of myrrh and powdered wolfsbane.`,
+    message: (companyName, productName) => `
+      My shaman was telling me about this greener process for producing ${productName}
+      that uses essence of myrrh and powdered wolfsbane instead of silicon. I want ${companyName}
+      to be the first to market with spiritually-balanced products!
+    `,
     sender: SENDER_INVESTOR_CRUNCHY,
     options: {
       switch: {
-        message: `Sounds good, we should switch to it`,
+        message: `Sounds good, I'll get my spice-sourcer on the phone.`,
         reducers: {
           money: r(-0.2),
           crunchy: r(0.1),
         },
       },
       skip: {
-        message: `It's too expensive for us`,
+        message: `Silicon is expensive, but that stuff sounds REALLY expensive...`,
         reducers: {
           crunchy: r(-0.2),
         },
