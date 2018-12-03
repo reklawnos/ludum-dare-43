@@ -8,7 +8,8 @@ export default function MetricMeter({
   sizeOfEffect,
   minForFlashing,
 }) {
-  let valueStr = (value * 1000000).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+  // https://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
+  let valueStr = (value * 1000000).toFixed().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   return (
     <div
       style={{ display: 'flex' }}
