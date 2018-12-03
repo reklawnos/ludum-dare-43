@@ -7,97 +7,26 @@ import BasicMessage from './BasicMessage';
 import QuackIcon from './QuackIcon';
 import InvestorMeter from './InvestorMeter';
 import { SENDER_INVESTOR_REPUTATION, SENDER_INVESTOR_CRUNCHY, SENDER_INVESTOR_INNOVATION } from './cards/shared';
+import generateProductName from './generateProductName';
+import generateCompanyName from './generateCompanyName';
 
-console.log(Object.keys(cards).length);
-
-function generateProductName() {
-  const adjectives = [
-    "cloud-based",
-    "blockchain",
-    "Web 3.0",
-    "responsive",
-    "GDPR-compliant",
-    "HIPAA-compliant",
-    "high-performance",
-    "dynamic-range",
-    "socially-conscious",
-    "ultra-HD",
-    "eco-friendly",
-    "green",
-    "IOT-enabled",
-    "plug-and-play",
-    "enterprise",
-    "organic",
-    "free-range",
-    "biomedical",
-    "handheld",
-    "free-to-play",
-    "high-throughput",
-    "A.I.",
-    "B2B",
-    "B2C",
-    "bespoke",
-    "pharmaceutical",
-    "gigabit",
-    "Uber for",
-    "Airbnb for",
-    "Tinder for",
-    "augmented reality",
-    "quantum",
-  ];
-  const nouns = [
-    "funeral systems",
-    "solutions",
-    "sprockets",
-    "widgets",
-    "information systems",
-    "board games",
-    "tools",
-    "hardware",
-    "software",
-    "consulting services",
-    "devices",
-    "platforms",
-    "vehicles",
-    "cars",
-    "weapons",
-    "cameras",
-    "furniture",
-    "juice pressers",
-    "blenders",
-    "jackets",
-    "sunglasses",
-    "Bluetooth speakers",
-    "fitness trackers",
-    "VR headsets",
-    "cannabis",
-    "banking",
-    "scooter",
-    "gene editing",
-    "networking services",
-    "social networks",
-    "hoodies",
-    "marketplaces",
-    "chatbots",
-  ];
-  const trailers = [
-    "",
-    "",
-    "",
-    " as a service",
-    " on demand",
-    " delivery",
-    " for millennials",
-    " powered by ML",
-  ];
-  const randomAdjective = adjectives[Math.floor(Math.random() * adjectives.length)];
-  const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
-  const randomTrailer = trailers[Math.floor(Math.random() * trailers.length)];
-  return `${randomAdjective} ${randomNoun}${randomTrailer}`;
+function formatQuarters(quarters) {
+  let numberOfYears = Math.floor(quarters / 4);
+  if (numberOfYears === 0) return "Q " + (quarters + 1) + "/4";
+  
+  return "Year " + numberOfYears + ", Q " + (quarters % 4 + 1) + "/4";
 }
 
-function getReasonOfDeath(state) {
-  return "You're too much of an asshole";
+function getDeathCardID(stateSlices) {
+  if (stateSlices.money <= 0) {
+    return "moneyDeath";
+  } else if (stateSlices.reputation <= 0) {
+    return "reputationInvestorDeath";
+  } else if (stateSlices.crunchy <= 0) {
+    return "crunchyInvestorDeath";
+  } else if (stateSlices.innovation <= 0) {
+    return "innovationInvestorDeath";
+  }
 }
 
 function getNextCard(state) {
@@ -135,12 +64,10 @@ function getNextCard(state) {
     }
   }
 
-  throw new Error({
-    message: 'could not decide on a card',
-    state,
-    randomVal,
-    allScores,
+  console.log({
+    state, randomVal, allScores
   });
+  throw new Error('could not decide on a card');
 }
 
 function applyOptionReducers(stateSlices, cardId, optionId) {
@@ -171,13 +98,15 @@ class App extends Component {
       innovation: 0.5,
     };
     return {
-      companyName: "Tableify",
+      companyName: generateCompanyName(),
       productName: generateProductName(),
       pastChoices: [],
       stateSlices,
       currentCardId: getNextCard({ pastChoices: [], stateSlices }),
       hoverOptionId: null,
       playerFace: getRandomFace(),
+      isDead: false,
+      quarters: 0
     };
   };
   
@@ -186,15 +115,31 @@ class App extends Component {
   };
 
   chooseItem = (optionId) => {
-    this.setState(({ pastChoices, currentCardId, stateSlices }) => {
+    this.setState(({ pastChoices, currentCardId, stateSlices, quarters }) => {
+      let wasPlayerDead = 
+        stateSlices.money <= 0
+         || stateSlices.reputation <= 0
+         || stateSlices.crunchy <= 0
+         || stateSlices.innovation <= 0;
+
       const newPastChoices = [...pastChoices, { cardId: currentCardId, optionId }];
       const newStateSlices = applyOptionReducers(stateSlices, currentCardId, optionId);
-      const nextCardId = getNextCard({ pastChoices: newPastChoices, stateSlices: newStateSlices });
+      let isPlayerDead = 
+        newStateSlices.money <= 0
+         || newStateSlices.reputation <= 0
+         || newStateSlices.crunchy <= 0
+         || newStateSlices.innovation <= 0;
+         
+      const nextCardId = isPlayerDead 
+        ? getDeathCardID(newStateSlices)
+        : getNextCard({ pastChoices: newPastChoices, stateSlices: newStateSlices });
       return {
         pastChoices: newPastChoices,
         currentCardId: nextCardId,
         stateSlices: newStateSlices,
         hoverOptionId: null,
+        isDead: wasPlayerDead ? true : false,
+        quarters: quarters + 1,
       };
     });
   };
@@ -208,19 +153,18 @@ class App extends Component {
   };
 
   render() {
-    console.log(this.state);
-    const { currentCardId, stateSlices, hoverOptionId, companyName, productName, pastChoices, playerFace } = this.state;
+    const { 
+      currentCardId,
+      stateSlices,
+      hoverOptionId,
+      companyName,
+      productName,
+      pastChoices,
+      playerFace,
+      isDead,
+      quarters
+    } = this.state;
     const currentCard = cards[currentCardId];
-
-    console.log(currentCard, currentCardId);
-    
-    let isPlayerDead = 
-      stateSlices.money <= 0
-       || stateSlices.reputation <= 0
-       || stateSlices.crunchy <= 0
-       || stateSlices.innovation <= 0;
-     
-    let reasonOfDeath = isPlayerDead ? getReasonOfDeath(this.state) : "";
      
     let sliceDiffs = [];
     if (hoverOptionId) {
@@ -230,7 +174,6 @@ class App extends Component {
           ...acc,
           [k]: newStateSlices[k] - stateSlices[k],
         }), {});
-      console.log(sliceDiffs, newStateSlices, stateSlices);
     }
 
     return (
@@ -251,9 +194,7 @@ class App extends Component {
             </div>
           </div>
           <div style={{ marginTop: 10 }}>
-            <div>
-              Corporate Account
-            </div>
+            <div>{companyName}'s Corporate Account</div>
             <div style={{ color: 'white', fontSize: '22px'}}>
               <MetricMeter
                 prefix="$"
@@ -283,9 +224,10 @@ class App extends Component {
               value={stateSlices.innovation}
               sizeOfEffect={sliceDiffs['innovation']}
             />
+            <div>{formatQuarters(quarters)}</div>
           </div>
         </div>
-        <div style={{filter: isPlayerDead ? "blur(4px)" : undefined, flexGrow: 1.0 }}>
+        <div style={{filter: isDead ? "blur(4px)" : undefined, flexGrow: 1.0 }}>
           <div style={{ height: 350, position: 'relative', overflow: 'hidden'}}>
             <div style={{ position: 'absolute', bottom: 0, width: "100%" }}>
               {pastChoices.slice(-3).map(({ cardId, optionId }) => (
@@ -328,12 +270,12 @@ class App extends Component {
           </div>
         </div>
         {
-          !isPlayerDead ? null :
+          !isDead ? null :
           <div style={{position: "fixed", left: 0, right: 0, top: 0, bottom: 0, width: "100%", height: "100%"}}>
             <div style={{ position: "relative", padding: "12px 12px 12px 12px", left: "50%", top: "50%",  backgroundColor: "#ccc", width: "220px", transform: "translate(-50%, -50%)"}}>
             <div style={{fontSize: 20}}>You've been banned from this Quack channel.</div>
             <br />
-            <b>Reason</b>: {reasonOfDeath}
+            {/*<b>Reason</b>: {reasonOfDeath}*/}
             <br />
             <button onClick={this.restart}>Restart</button>
             </div>

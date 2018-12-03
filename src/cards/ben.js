@@ -1,6 +1,7 @@
 import {
   r,
   STANDARD_SCORE,
+  LONGER_STORY_SCORE,
   SENDER_AI,
   SENDER_CTO,
   SENDER_CFO,
@@ -20,6 +21,7 @@ import {
   SENDER_LEGAL,
   SENDER_INVESTOR_CRUNCHY,
   SENDER_UNIONS,
+  SENDER_INVESTOR_INNOVATION,
   showWithFixedScoreIfChoiceHasNotBeenMade,
   showSomeTimeAfterSpecificCard,
   showSomeTimeAfterAllChoices,
@@ -48,7 +50,7 @@ export default {
         reducers: {}
       }
     },
-    getScore: showWithFixedScore(STANDARD_SCORE),
+    getScore: showWithFixedScore(LONGER_STORY_SCORE),
   },
   
   moreDataOnBackend_2: {
@@ -270,7 +272,7 @@ export default {
         }
       }
     },
-    getScore: showWithFixedScore(STANDARD_SCORE),
+    getScore: showWithFixedScore(LONGER_STORY_SCORE),
   },
 
   embarassingQuestionDuringAllHands: {
@@ -367,7 +369,7 @@ export default {
         }
       }
     },
-    getScore: showWithFixedScore(0.5),
+    getScore: showWithFixedScore(STANDARD_SCORE),
   },
   
   chineseFactory_1: {
@@ -404,7 +406,7 @@ export default {
     sender: SENDER_TWITTER,
     options: {
       yes: {
-        message: `Dear god, this person's a genius. Somneone find them and bring them to me.`,
+        message: `Dear god, this person's a genius. Someone find them and bring them to me.`,
         reducers: {
           money: r(-0.1),
           innovation: r(0),
@@ -413,12 +415,11 @@ export default {
         }
       },
       no: {
-        message: `Can someone report this chirp?`,
+        message: `Can someone report this spammer to Chirper?`,
         reducers: {
           money: r(0),
-          innovation: r(0),
-          crunchy: r(0),
-          reputation: r(0.1)
+          innovation: r(0.1),
+          crunchy: r(-0.1),
         }
       }
     },
@@ -432,10 +433,7 @@ export default {
       yes: {
         message: `We should reply and figure out what their fleshed out perspective is!`,
         reducers: {
-          money: r(0),
-          innovation: r(0),
-          crunchy: r(0),
-          reputation: r(-0.2)
+          money: r(-0.1),
         }
       },
       no: {
@@ -448,7 +446,29 @@ export default {
         }
       }
     },
-    getScore: showWithFixedScore(STANDARD_SCORE),
+    getScore: showWithFixedScore(LONGER_STORY_SCORE),
+  },
+  
+  tweet_2_1: {
+    message: `@NeverWrongOnTheInternet says that their problem with our product was mostly an issue because they forgot to plug it in, they say they actually like it now.`,
+    sender: SENDER_COMMUNICATIONS,
+    options: {
+      yes: {
+        message: `We need to make our reputation better, let's make fun of them in a PR campaign`,
+        reducers: {
+          money: r(-0.2),
+          crunchy: r(-0.1),
+          reputation: r(0.2)
+        }
+      },
+      no: {
+        message: `Our products require being plugged in?!?`,
+        reducers: {
+          innovation: r(-0.2),
+        }
+      }
+    },
+    getScore: showAfterSpecificChoice("tweet_2", "yes"),
   },
   
   tweet_3: {
@@ -545,7 +565,7 @@ export default {
         }
       }
     },
-    getScore: showWithFixedScore(STANDARD_SCORE),
+    getScore: showWithFixedScore(LONGER_STORY_SCORE),
   },
   
   researchDevelopment_1: {
@@ -717,34 +737,8 @@ export default {
         }
       }
     },
-    getScore: showWithFixedScore(STANDARD_SCORE),
+    getScore: showWithFixedScore(LONGER_STORY_SCORE),
   },
-
-  // designersVsEngineers_2: {
-  //   message: `I heard what you told the head of design. Rough for them.`,
-  //   sender: SENDER_CTO,
-  //   options: {
-  //     yes: {
-  //       message: ``,
-  //       reducers: {
-  //         money: r(0),
-  //         innovation: r(0),
-  //         crunchy: r(0),
-  //         reputation: r(0)
-  //       }
-  //     },
-  //     no: {
-  //       message: ``,
-  //       reducers: {
-  //         money: r(0),
-  //         innovation: r(0),
-  //         crunchy: r(0),
-  //         reputation: r(0)
-  //       }
-  //     }
-  //   },
-  //   getScore: showWithFixedScore(STANDARD_SCORE),
-  // },
   
   celebrityReachingOut: {
     message: `Hey, I heard you were looking around for someone to showcase your awesome product. I'd love to work with you. Here's my number: (555) 555-5551.`,
@@ -782,7 +776,7 @@ export default {
         reducers: {}
       }
     },
-    getScore: showWithFixedScore(STANDARD_SCORE),
+    getScore: showWithFixedScore(LONGER_STORY_SCORE),
   },
   
   stupidEngineerQuestion_2: {
@@ -887,6 +881,8 @@ export default {
     getScore: showAfterSpecificChoice("stupidEngineerQuestion_5", "yes"),
   },
   
+  
+  // TODO LONGER_STORY_SCORE
   hireNewGradsOrSeniorPeople: {
     message: `Should we hire new college grads or senior people this quarter?`,
     sender: SENDER_RECRUITING,
@@ -909,6 +905,7 @@ export default {
     getScore: showWithFixedScore(STANDARD_SCORE),
   },
   
+  // TODO LONGER_STORY_SCORE
   brainstormingSession: {
     message: `I think we should block a week for a big brainstorming session which will really help us figure out what to do.`,
     sender: SENDER_CTO,
@@ -949,7 +946,7 @@ export default {
         }
       }
     },
-    getScore: showWithFixedScore(STANDARD_SCORE),
+    getScore: showWithFixedScore(LONGER_STORY_SCORE),
   },
   
   tweetLateAtNight_2: {
@@ -1256,5 +1253,55 @@ export default {
       }
     },
     getScore: showSomeTimeAfterSpecificChoice("communityProblems_2", "yes", 0.3),
+  },
+  
+  
+  // Death
+  crunchyInvestorDeath: {
+    message: ``,
+    sender: SENDER_INVESTOR_CRUNCHY,
+    options: {
+      yes: {
+        message: `What do you mean?`,
+        reducers: {}
+      }
+    },
+    getScore: showWithFixedScore(DO_NOT_SHOW_SCORE),
+  },
+  
+  innovationInvestorDeath: {
+    message: `[TODO DEATH MESSAGE]`,
+    sender: SENDER_INVESTOR_INNOVATION,
+    options: {
+      yes: {
+        message: `What do you mean?`,
+        reducers: {}
+      }
+    },
+    getScore: showWithFixedScore(DO_NOT_SHOW_SCORE),
+  },
+  
+  reputationInvestorDeath: {
+    message: `[TODO DEATH MESSAGE]`,
+    sender: SENDER_INVESTOR_REPUTATION,
+    options: {
+      yes: {
+        message: `What do you mean?`,
+        reducers: {}
+      }
+    },
+    getScore: showWithFixedScore(DO_NOT_SHOW_SCORE),
+  },
+  
+  moneyDeath: {
+    message: `[TODO DEATH MESSAGE]`,
+    sender: SENDER_CFO,
+    options: {
+      yes: {
+        message: `What do you mean?`,
+        reducers: {}
+      }
+    },
+    getScore: showWithFixedScore(DO_NOT_SHOW_SCORE),
   },
 }

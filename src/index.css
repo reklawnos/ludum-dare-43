@@ -91,13 +91,39 @@ button:focus {
 
 .fly-in-animation {
   animation: fly-in 0.2s ease-out;
+  opacity: 1;
 }
 
 @keyframes fly-in {
   0% {
     transform: translate(300px, 0);
+    opacity: 0;
+  }
+  1% {
+    opacity: 1;
   }
   100% {
+    opacity: 1;
     transform: translate(0, 0);
+  }
+}
+
+.fly-out-animation {
+  animation: fly-out 0.2s ease-out;
+  opacity: 0;
+  transform: translate(300px, 0);
+}
+
+@keyframes fly-out {
+  0% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+  99% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(300px, 0);
   }
 }
