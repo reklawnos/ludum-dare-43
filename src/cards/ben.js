@@ -1035,7 +1035,7 @@ export default {
         }
       },
       no: {
-        message: `Oh that's what that was. Yeah I love it. It holds my door open really well.`,
+        message: `Oh, you mean that paperweight? I gave it to an intern...`,
         reducers: {
           crunchy: r(-0.1),
         }

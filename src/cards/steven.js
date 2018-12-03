@@ -68,13 +68,13 @@ export default {
     sender: SENDER_LEGAL,
     options: {
       go: {
-        message: `I'll go to Washington to do my civic duty`,
+        message: `By George, I must go to Washington to do my civic duty!`,
         reducers: {
           money: r(-0.2),
         },
       },
       skip: {
-        message: `Ignore the subpoena`,
+        message: `I don't know what a "sub-peena" is but it seems like something I should ignore.`,
         reducers: {
         },
       },
@@ -86,13 +86,13 @@ export default {
     sender: SENDER_LEGAL,
     options: {
       bribe: {
-        message: `Send him a check`,
+        message: `Let's sent him a check.`,
         reducers: {
           money: r(-0.4),
         },
       },
       ignore: {
-        message: `Ignore it`,
+        message: `Eh, next week is Infrastructure Week, so he'll probably forget about it.`,
         reducers: {
           reputation: r(-0.2),
           crunchy: r(-0.2),
@@ -530,7 +530,7 @@ export default {
     sender: SENDER_TWITTER,
     options: {
       yes: {
-        message: `Let me get my checkbook out`,
+        message: `Definitely, Katie! Let me find my checkbook...`,
         reducers: {
           money: r(-0.4),
           crunchy: r(0.3),
@@ -538,7 +538,7 @@ export default {
         },
       },
       no: {
-        message: `You're not a big enough influencer`,
+        message: `Um, who are you, even?`,
         reducers: {
           crunchy: r(-0.3),
           reputation: r(-0.3),

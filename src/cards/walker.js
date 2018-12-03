@@ -527,7 +527,7 @@ export default {
   reputation_dadParty: {
     message: `
       Yoooo home-friend let's get blasted at my dad's house in the Hamptons this weekend,
-      lots of good connect you could set-it-ty-set up you know? Don't be a square!
+      lots of good connections you could set-it-ty-set up you know? Don't be a square!
     `,
     sender: SENDER_INVESTOR_REPUTATION,
     options: {
