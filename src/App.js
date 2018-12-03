@@ -181,7 +181,7 @@ class App extends Component {
     }
     
     let [newCompanyName, newProductName] = isDead ? [generateCompanyName(), generateProductName()] : ["", ""];
-
+    
     return (
 
       <div style={{ 
@@ -257,15 +257,15 @@ class App extends Component {
         }}>
           <div style={{position: 'relative'}}>
             <div style={{ position: 'absolute', bottom: 0, width: "100%" }}>
-              {pastChoices.slice(-3).map(({ cardId, optionId }) => (
-                <>
+              {pastChoices.slice(-3).map(({ cardId, optionId }, i) => (
+                <div key={cardId}>
                   <SenderMessage card={cards[cardId]} companyName={companyName} productName={productName} />
                   <BasicMessage face={playerFace} name="Me" message={cards[cardId].options[optionId].message} isHighlighted />
-                </>
+                </div>
               ))}
             </div>
           </div>
-          <SenderMessage card={currentCard} companyName={companyName} productName={productName} />
+          <SenderMessage key={currentCardId} isNewMessage={true} card={currentCard} companyName={companyName} productName={productName} />
           <div
             style={{
               margin: 10,

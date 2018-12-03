@@ -6,9 +6,10 @@ export default function BasicMessage({
   name,
   message,
   isHighlighted,
+  isNewMessage,
 }) {
   return (
-    <div style={{ display: 'flex', padding: 10, backgroundColor: isHighlighted ? 'rgba(0, 0, 0, 0.06)' : null }}>
+    <div style={{ display: 'flex', padding: 10, backgroundColor: isHighlighted ? 'rgba(0, 0, 0, 0.06)' : null }} className={isNewMessage ? "new-message": ""}>
       <div style={{ marginRight: 10 }}>
         <CirclePortrait face={face} size={60} />
       </div>
