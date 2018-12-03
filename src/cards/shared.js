@@ -232,6 +232,16 @@ export const SENDER_EMPLOYEE = {
   face: getRandomFace(),
 };
 
+export const SENDER_EMPLOYEE2 = {
+  name: getEmployeeName(),
+  face: getRandomFace(),
+};
+
+export const SENDER_EMPLOYEE3 = {
+  name: getEmployeeName(),
+  face: getRandomFace(),
+};
+
 export const SENDER_JUDIE = {
   name: "Judie",
   face: getRandomFace(),
