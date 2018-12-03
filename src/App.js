@@ -7,123 +7,14 @@ import BasicMessage from './BasicMessage';
 import QuackIcon from './QuackIcon';
 import InvestorMeter from './InvestorMeter';
 import { SENDER_INVESTOR_REPUTATION, SENDER_INVESTOR_CRUNCHY, SENDER_INVESTOR_INNOVATION } from './cards/shared';
-
-console.log(Object.keys(cards).length);
+import generateProductName from './generateProductName';
+import generateCompanyName from './generateCompanyName';
 
 function formatQuarters(quarters) {
   let numberOfYears = Math.floor(quarters / 4);
   if (numberOfYears === 0) return "Q " + (quarters + 1) + "/4";
   
   return "Year " + numberOfYears + ", Q " + (quarters % 4 + 1) + "/4";
-}
-
-function generateProductName() {
-  const adjectives = [
-    "cloud-based",
-    "blockchain",
-    "Web 3.0",
-    "responsive",
-    "GDPR-compliant",
-    "HIPAA-compliant",
-    "high-performance",
-    "dynamic-range",
-    "socially-conscious",
-    "ultra-HD",
-    "eco-friendly",
-    "green",
-    "IOT-enabled",
-    "plug-and-play",
-    "enterprise",
-    "organic",
-    "free-range",
-    "biomedical",
-    "handheld",
-    "free-to-play",
-    "high-throughput",
-    "A.I.",
-    "B2B",
-    "B2C",
-    "bespoke",
-    "pharmaceutical",
-    "gigabit",
-    "Uber for",
-    "Airbnb for",
-    "Tinder for",
-    "augmented reality",
-    "quantum",
-  ];
-  const nouns = [
-    "funeral systems",
-    "solutions",
-    "sprockets",
-    "widgets",
-    "information systems",
-    "board games",
-    "tools",
-    "hardware",
-    "software",
-    "consulting services",
-    "devices",
-    "platforms",
-    "vehicles",
-    "cars",
-    "weapons",
-    "cameras",
-    "furniture",
-    "juice pressers",
-    "blenders",
-    "jackets",
-    "sunglasses",
-    "Bluetooth speakers",
-    "fitness trackers",
-    "VR headsets",
-    "cannabis",
-    "banking",
-    "scooter",
-    "gene editing",
-    "networking services",
-    "social networks",
-    "hoodies",
-    "marketplaces",
-    "chatbots",
-  ];
-  const trailers = [
-    "",
-    "",
-    "",
-    " as a service",
-    " on demand",
-    " delivery",
-    " for millennials",
-    " powered by ML",
-  ];
-  const randomAdjective = adjectives[Math.floor(Math.random() * adjectives.length)];
-  const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
-  const randomTrailer = trailers[Math.floor(Math.random() * trailers.length)];
-  return `${randomAdjective} ${randomNoun}${randomTrailer}`;
-}
-
-function generateCompanyName() {
-  let mainWords = [
-    "Wholebooks",
-    "Amazong",
-    "Shopliftfy",
-    "Hoolio.io",
-    "Spliblr",
-    "Guber",
-    "Wamboo",
-    "Instacrush",
-    "Polywhopper",
-    "Oddio",
-    "Skwimbot",
-    "Wink.ly",
-    "Qualiteeb",
-    "Innovenovoto",
-    "Busy.ly",
-    "Vendomo",
-  ];
-
-  return mainWords[Math.floor(Math.random() * mainWords.length)];
 }
 
 function getDeathCardID(stateSlices) {
@@ -173,12 +64,10 @@ function getNextCard(state) {
     }
   }
 
-  throw new Error({
-    message: 'could not decide on a card',
-    state,
-    randomVal,
-    allScores,
+  console.log({
+    state, randomVal, allScores
   });
+  throw new Error('could not decide on a card');
 }
 
 function applyOptionReducers(stateSlices, cardId, optionId) {
@@ -264,7 +153,6 @@ class App extends Component {
   };
 
   render() {
-    console.log(this.state);
     const { 
       currentCardId,
       stateSlices,
@@ -277,10 +165,6 @@ class App extends Component {
       quarters
     } = this.state;
     const currentCard = cards[currentCardId];
-
-    console.log(currentCard, currentCardId);
-     
-    // let reasonOfDeath = isDead ? getDeathCardID(this.state) : "";
      
     let sliceDiffs = [];
     if (hoverOptionId) {
@@ -290,7 +174,6 @@ class App extends Component {
           ...acc,
           [k]: newStateSlices[k] - stateSlices[k],
         }), {});
-      console.log(sliceDiffs, newStateSlices, stateSlices);
     }
 
     return (
