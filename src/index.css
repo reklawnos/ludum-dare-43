@@ -127,3 +127,7 @@ button:focus {
     transform: translate(300px, 0);
   }
 }
+
+.clicky-button:hover {
+  box-shadow: 0 0 8px -4px #703960;
+}

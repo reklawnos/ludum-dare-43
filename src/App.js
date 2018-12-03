@@ -9,6 +9,7 @@ import InvestorMeter from './InvestorMeter';
 import { SENDER_INVESTOR_REPUTATION, SENDER_INVESTOR_CRUNCHY, SENDER_INVESTOR_INNOVATION } from './cards/shared';
 import generateProductName from './generateProductName';
 import generateCompanyName from './generateCompanyName';
+import BasicButton from './BasicButton';
 
 function formatQuarters(quarters) {
   let numberOfYears = Math.floor(quarters / 4);
@@ -250,24 +251,14 @@ class App extends Component {
             }}
           >
             {Object.keys(currentCard.options).map(optionId => (
-              <button
-                style={{
-                  margin: 5,
-                  padding: 8,
-                  borderRadius: 3,
-                  border: '1px solid rgb(215, 218, 224)',
-                  boxShadow: hoverOptionId === optionId ? 
-                    '0 0 8px -4px #703960' : undefined,
-                  background: 'linear-gradient(rgba(253, 253, 253, 1) 0%, rgb(245, 245, 245) 85%, rgb(224, 226, 230) 100%)',
-                  color: 'black'
-                }}
+              <BasicButton
                 key={optionId + currentCardId}
                 onClick={() => this.chooseItem(optionId)}
                 onMouseOver={() => this.enterHoverOverOption(optionId)}
                 onMouseOut={() => this.leaveHoverOverOption()}
               >
                 {typeof currentCard.options[optionId].message === "function" ? currentCard.options[optionId].message(companyName, productName) : currentCard.options[optionId].message}
-              </button>
+              </BasicButton>
             ))}
           </div>
         </div>
