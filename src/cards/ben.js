@@ -20,6 +20,7 @@ import {
   SENDER_LEGAL,
   SENDER_INVESTOR_CRUNCHY,
   SENDER_UNIONS,
+  SENDER_INVESTOR_INNOVATION,
   showWithFixedScoreIfChoiceHasNotBeenMade,
   showSomeTimeAfterSpecificCard,
   showSomeTimeAfterAllChoices,
@@ -1274,5 +1275,55 @@ export default {
       }
     },
     getScore: showSomeTimeAfterSpecificChoice("communityProblems_2", "yes", 0.3),
+  },
+  
+  
+  // Death
+  crunchyInvestorDeath: {
+    message: ``,
+    sender: SENDER_INVESTOR_CRUNCHY,
+    options: {
+      yes: {
+        message: `What do you mean?`,
+        reducers: {}
+      }
+    },
+    getScore: showWithFixedScore(DO_NOT_SHOW_SCORE),
+  },
+  
+  innovationInvestorDeath: {
+    message: `[TODO DEATH MESSAGE]`,
+    sender: SENDER_INVESTOR_INNOVATION,
+    options: {
+      yes: {
+        message: `What do you mean?`,
+        reducers: {}
+      }
+    },
+    getScore: showWithFixedScore(DO_NOT_SHOW_SCORE),
+  },
+  
+  reputationInvestorDeath: {
+    message: `[TODO DEATH MESSAGE]`,
+    sender: SENDER_INVESTOR_REPUTATION,
+    options: {
+      yes: {
+        message: `What do you mean?`,
+        reducers: {}
+      }
+    },
+    getScore: showWithFixedScore(DO_NOT_SHOW_SCORE),
+  },
+  
+  moneyDeath: {
+    message: `[TODO DEATH MESSAGE]`,
+    sender: SENDER_CFO,
+    options: {
+      yes: {
+        message: `What do you mean?`,
+        reducers: {}
+      }
+    },
+    getScore: showWithFixedScore(DO_NOT_SHOW_SCORE),
   },
 }

@@ -10,6 +10,13 @@ import { SENDER_INVESTOR_REPUTATION, SENDER_INVESTOR_CRUNCHY, SENDER_INVESTOR_IN
 
 console.log(Object.keys(cards).length);
 
+function formatQuarters(quarters) {
+  let numberOfYears = Math.floor(quarters / 4);
+  if (numberOfYears === 0) return "Q " + (quarters + 1) + "/4";
+  
+  return "Year " + numberOfYears + ", Q " + (quarters % 4 + 1) + "/4";
+}
+
 function generateProductName() {
   const adjectives = [
     "cloud-based",
@@ -119,8 +126,16 @@ function generateCompanyName() {
   return mainWords[Math.floor(Math.random() * mainWords.length)];
 }
 
-function getReasonOfDeath(state) {
-  return "You're too much of an asshole";
+function getDeathCardID(stateSlices) {
+  if (stateSlices.money <= 0) {
+    return "moneyDeath";
+  } else if (stateSlices.reputation <= 0) {
+    return "reputationInvestorDeath";
+  } else if (stateSlices.crunchy <= 0) {
+    return "crunchyInvestorDeath";
+  } else if (stateSlices.innovation <= 0) {
+    return "innovationInvestorDeath";
+  }
 }
 
 function getNextCard(state) {
@@ -201,6 +216,8 @@ class App extends Component {
       currentCardId: getNextCard({ pastChoices: [], stateSlices }),
       hoverOptionId: null,
       playerFace: getRandomFace(),
+      isDead: false,
+      quarters: 0
     };
   };
   
@@ -209,15 +226,31 @@ class App extends Component {
   };
 
   chooseItem = (optionId) => {
-    this.setState(({ pastChoices, currentCardId, stateSlices }) => {
+    this.setState(({ pastChoices, currentCardId, stateSlices, quarters }) => {
+      let wasPlayerDead = 
+        stateSlices.money <= 0
+         || stateSlices.reputation <= 0
+         || stateSlices.crunchy <= 0
+         || stateSlices.innovation <= 0;
+
       const newPastChoices = [...pastChoices, { cardId: currentCardId, optionId }];
       const newStateSlices = applyOptionReducers(stateSlices, currentCardId, optionId);
-      const nextCardId = getNextCard({ pastChoices: newPastChoices, stateSlices: newStateSlices });
+      let isPlayerDead = 
+        newStateSlices.money <= 0
+         || newStateSlices.reputation <= 0
+         || newStateSlices.crunchy <= 0
+         || newStateSlices.innovation <= 0;
+         
+      const nextCardId = isPlayerDead 
+        ? getDeathCardID(newStateSlices)
+        : getNextCard({ pastChoices: newPastChoices, stateSlices: newStateSlices });
       return {
         pastChoices: newPastChoices,
         currentCardId: nextCardId,
         stateSlices: newStateSlices,
         hoverOptionId: null,
+        isDead: wasPlayerDead ? true : false,
+        quarters: quarters + 1,
       };
     });
   };
@@ -232,18 +265,22 @@ class App extends Component {
 
   render() {
     console.log(this.state);
-    const { currentCardId, stateSlices, hoverOptionId, companyName, productName, pastChoices, playerFace } = this.state;
+    const { 
+      currentCardId,
+      stateSlices,
+      hoverOptionId,
+      companyName,
+      productName,
+      pastChoices,
+      playerFace,
+      isDead,
+      quarters
+    } = this.state;
     const currentCard = cards[currentCardId];
 
     console.log(currentCard, currentCardId);
-    
-    let isPlayerDead = 
-      stateSlices.money <= 0
-       || stateSlices.reputation <= 0
-       || stateSlices.crunchy <= 0
-       || stateSlices.innovation <= 0;
      
-    let reasonOfDeath = isPlayerDead ? getReasonOfDeath(this.state) : "";
+    // let reasonOfDeath = isDead ? getDeathCardID(this.state) : "";
      
     let sliceDiffs = [];
     if (hoverOptionId) {
@@ -304,9 +341,10 @@ class App extends Component {
               value={stateSlices.innovation}
               sizeOfEffect={sliceDiffs['innovation']}
             />
+            <div>{formatQuarters(quarters)}</div>
           </div>
         </div>
-        <div style={{filter: isPlayerDead ? "blur(4px)" : undefined, flexGrow: 1.0 }}>
+        <div style={{filter: isDead ? "blur(4px)" : undefined, flexGrow: 1.0 }}>
           <div style={{ height: 350, position: 'relative', overflow: 'hidden'}}>
             <div style={{ position: 'absolute', bottom: 0, width: "100%" }}>
               {pastChoices.slice(-3).map(({ cardId, optionId }) => (
@@ -349,12 +387,12 @@ class App extends Component {
           </div>
         </div>
         {
-          !isPlayerDead ? null :
+          !isDead ? null :
           <div style={{position: "fixed", left: 0, right: 0, top: 0, bottom: 0, width: "100%", height: "100%"}}>
             <div style={{ position: "relative", padding: "12px 12px 12px 12px", left: "50%", top: "50%",  backgroundColor: "#ccc", width: "220px", transform: "translate(-50%, -50%)"}}>
             <div style={{fontSize: 20}}>You've been banned from this Quack channel.</div>
             <br />
-            <b>Reason</b>: {reasonOfDeath}
+            {/*<b>Reason</b>: {reasonOfDeath}*/}
             <br />
             <button onClick={this.restart}>Restart</button>
             </div>

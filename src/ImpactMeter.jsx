@@ -3,9 +3,7 @@ import React from 'react';
 export default function ImpactMeter({
   sizeOfEffect,
 }) {
-  if (!sizeOfEffect || Math.abs(sizeOfEffect) <= 0) {
-    return null;
-  }
+  let className = !sizeOfEffect || Math.abs(sizeOfEffect) <= 0 ? "fly-out-animation" : "fly-in-animation";
 
   return (
     <div
@@ -14,7 +12,7 @@ export default function ImpactMeter({
         marginLeft: 5,
         verticalAlign: 'bottom',
       }}
-      className="fly-in-animation"
+      className={className}
     >
       <div
         style={{
