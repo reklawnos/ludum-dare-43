@@ -86,10 +86,10 @@ class App extends Component {
   constructor(props) {
     super(props);
     
-    this.state = this.getNewStartState();
+    this.state = this.getNewStartState(true);
   };
   
-  getNewStartState = () => {
+  getNewStartState = (firstTimePlaying) => {
     const stateSlices = {
       money: 2,
       reputation: 0.5,
@@ -101,11 +101,12 @@ class App extends Component {
       productName: generateProductName(),
       pastChoices: [],
       stateSlices,
-      currentCardId: getNextCard({ pastChoices: [], stateSlices }),
+      currentCardId: getNextCard({ pastChoices: [], stateSlices, firstTimePlaying }),
       hoverOptionId: null,
       playerFace: getRandomFace(),
       isDead: false,
-      quarters: 0
+      quarters: 0,
+      firstTimePlaying: !!firstTimePlaying
     };
   };
   
@@ -161,7 +162,8 @@ class App extends Component {
       pastChoices,
       playerFace,
       isDead,
-      quarters
+      quarters,
+      firstTimePlaying,
     } = this.state;
     const currentCard = cards[currentCardId];
      
@@ -184,6 +186,7 @@ class App extends Component {
             fontSize: 16,
             flex: '0 0 250px',
             padding: 10,
+            filter: firstTimePlaying ? "blur(4px)" : undefined
           }}
         >
           <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -226,7 +229,7 @@ class App extends Component {
             <div>{formatQuarters(quarters)}</div>
           </div>
         </div>
-        <div style={{filter: isDead ? "blur(4px)" : undefined, flexGrow: 1.0 }}>
+        <div style={{filter: firstTimePlaying || isDead ? "blur(4px)" : undefined, flexGrow: 1.0 }}>
           <div style={{ height: 350, position: 'relative', overflow: 'hidden'}}>
             <div style={{ position: 'absolute', bottom: 0, width: "100%" }}>
               {pastChoices.slice(-3).map(({ cardId, optionId }) => (
@@ -269,12 +272,33 @@ class App extends Component {
           </div>
         </div>
         {
+          !firstTimePlaying ? null :
+          <div style={{
+            position: "fixed",
+            left: 0,
+            right: 0, top: 0, bottom: 0, width: "100%", height: "100%"}}>
+            <div style={{ 
+              position: "relative", 
+              padding: "12px 12px 12px 12px", 
+              left: "50%", top: "50%",
+              backgroundColor: "#ccc",
+              width: "420px",
+              transform: "translate(-50%, -50%)",
+              borderRadius: 5,
+              boxShadow: "0 2px 10px 0 rgba(0,0,0,.2)"
+            }}>
+              <div style={{fontSize: 20}}>Congratulations!!</div>
+              <div><b>{companyName}</b>, has been doing very well with its new product: {productName}. You now have 3 investors to keep happy. </div>
+            <br />
+            <button onClick={() => this.setState({firstTimePlaying: false})}>Enter Quack Channel</button>
+            </div>
+          </div>
+        }
+        {
           !isDead ? null :
           <div style={{position: "fixed", left: 0, right: 0, top: 0, bottom: 0, width: "100%", height: "100%"}}>
             <div style={{ position: "relative", padding: "12px 12px 12px 12px", left: "50%", top: "50%",  backgroundColor: "#ccc", width: "220px", transform: "translate(-50%, -50%)"}}>
             <div style={{fontSize: 20}}>You've been banned from this Quack channel.</div>
-            <br />
-            {/*<b>Reason</b>: {reasonOfDeath}*/}
             <br />
             <button onClick={this.restart}>Restart</button>
             </div>
