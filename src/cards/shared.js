@@ -352,10 +352,7 @@ export const SENDER_ILYENKOVICH = {
 };
 
 export function r(quantity) {
-  if (quantity >= 0.5) {
-    quantity = quantity - 0.2; // 0.5 -> 0.3
-  }
-  else if (quantity >= 0.3) {
+  if (quantity >= 0.3) {
     quantity = quantity - 0.1; // 0.4 -> 0.3, 0.3 -> 0.2, 
   }
   return (val) => val + quantity;
