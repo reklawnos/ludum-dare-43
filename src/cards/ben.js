@@ -1093,7 +1093,7 @@ export default {
     sender: SENDER_UNIONS,
     options: {
       yes: {
-        message: `Fuck`,
+        message: `Hah! We'll see how long you last without free yoga classes and organic potato chips.`,
         reducers: {
           money: r(0),
           innovation: r(0),

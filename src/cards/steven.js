@@ -80,7 +80,7 @@ export default {
         },
       },
     },
-    getScore: showWithFixedScore(STANDARD_SCORE),
+    getScore: showWithFixedScore(LONGER_STORY_SCORE),
   },
   congress_skipped: {
     message: `Senator McBob is upset that you ignored the Congressional investigation. Should we send him a "campaign donation" to make him forget about it?`,
@@ -342,7 +342,7 @@ export default {
         },
       },
     },
-    getScore: showWithFixedScore(STANDARD_SCORE),
+    getScore: showWithFixedScore(LONGER_STORY_SCORE),
   },
   patentInfringement_2: {
     message: `Remember that patent that we never licensed? The inventors just filed a lawsuit.`,
