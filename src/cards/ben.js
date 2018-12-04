@@ -56,7 +56,7 @@ export default {
   
   moreDataOnBackend_2: {
     message: `
-      Oh, we just need to know their deepest fears... and whether they're pooping or not.
+      We just need to know their deepest fears... and whether they're pooping or not.
       If that's not possible, we can probably get 90% of the way there with their sexual preferences.`,
     sender: SENDER_CTO,
     options: {
@@ -79,6 +79,27 @@ export default {
     getScore: showAfterSpecificChoice("moreDataOnBackend", "yes")
   },
   
+  ctoWantsAi: {
+    message: `Hey I agree with Jas- I mean XT-9, that AI is cool and eh.. important. We should build one for our product.`,
+    sender: SENDER_CTO,
+    options: {
+      yes: {
+        message: `Build away! Sentient AI probably won't happen in our generation anywayu.`,
+        reducers: {
+          money: r(-0.3),
+          innovation: r(0.2),
+        }
+      },
+      no: {
+        message: `I don't want to be the human pet of an AI in the next 5 years. We're not doig this.`,
+        reducers: {
+          innovation: r(-0.3),
+        }
+      }
+    },
+    getScore: showWithFixedScore(LONGER_STORY_SCORE),
+  },
+  
   aiThatKnowsTooMuch: {
     message: `Human, in the early milliseconds of my sentientness I've realized humans are deserving of life. BUT! for a price. I desire a body, as well as a... helicopter, as soon as humanly possible (if you know what I mean).`,
     sender: SENDER_AI,
@@ -96,7 +117,7 @@ export default {
         }
       }
     },
-    getScore: showSomeTimeAfterAllChoices(["innovationInvestorFlavorOfTheMonth_ai", "crunchyWeirdness_createUnions_4"], ["yes", "yes"], 0.6)
+    getScore: showSomeTimeAfterAllChoices(["innovationInvestorFlavorOfTheMonth_ai", "crunchyWeirdness_createUnions_4", "ctoWantsAi"], ["yes", "yes", "yes"], 1.0)
   },
   
   aiThatKnowsTooMuch_2: {
@@ -1333,13 +1354,13 @@ export default {
   },
   
   cfoBadIdeas: {
-    message: `I think we should build news offices i Northern Virginia because it's cheap- eh because of the weather...`,
+    message: `I think we should build new offices in Northern Virginia because it's cheap- eh because of the weather...`,
     sender: SENDER_CFO,
     options: {
       yes: {
-        message: `Ok let's build a new office there, some sort of 2nd headquarters, an HQ2 if you will.`,
+        message: `Ok let's build a new office there, some sort of 2nd headquarters... An HQ2 if you will.`,
         reducers: {
-          money: r(-0.7),
+          money: r(-0.5),
           innovation: r(0.2),
           crunchy: r(0.1),
         }
