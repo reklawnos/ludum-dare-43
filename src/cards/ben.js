@@ -525,7 +525,7 @@ export default {
         message: `Oh no, let's reach out to her PR team and get them to fix this. This is a catastrophe`,
         reducers: {
           money: r(-0.3),
-          reputation: r(-0.2)
+          reputation: r(0.1)
         }
       },
       no: {

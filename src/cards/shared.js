@@ -7,7 +7,7 @@ import WwnIcon from "../avatars/WwnIcon";
 
 export const MUST_SHOW_SCORE = Infinity;
 export const DO_NOT_SHOW_SCORE = 0;
-export const STANDARD_SCORE = 1;
+export const STANDARD_SCORE = 0.6;
 
 export const LONGER_STORY_SCORE = 1.5;
 
