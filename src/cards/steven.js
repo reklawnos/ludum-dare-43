@@ -328,14 +328,14 @@ export default {
     sender: SENDER_LEGAL,
     options: {
       yes: {
-        message: `License the patent`,
+        message: `Oh geez, we should probably license the patent then, right?`,
         reducers: {
           money: r(-0.3),
           innovation: r(0.1)
         },
       },
       no: {
-        message: `It's anonymous, so we can just ignore it, right?`,
+        message: `It's anonymous, so it's probably just a troll. Ignore it.`,
         reducers: {
           money: r(0.1),
           innovation: r(-0.1)

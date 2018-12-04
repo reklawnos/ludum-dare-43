@@ -973,7 +973,7 @@ export default {
   
   // Crunchy
   crunchyWeirdness: {
-    message: `Heyyyyy my Yogi instructor just noticed you weren't drinking nearly enough water. I'd suggest getting the app for that.`,
+    message: `Hey my Yogi just noticed you weren't drinking nearly enough water. I'd suggest getting the app for that.`,
     sender: SENDER_INVESTOR_CRUNCHY,
     options: {
       yes: {
@@ -996,7 +996,7 @@ export default {
   },
   
   crunchyWeirdness_2: {
-    message: `Heyyyyy my Yogi instructor says I'm too stressed and I should take the ENTIRE quarter off. Does that sound good?`,
+    message: `Hi there, my Spirit Guide says I'm too stressed and I should take the ENTIRE quarter off. Does that sound good?`,
     sender: SENDER_INVESTOR_CRUNCHY,
     options: {
       yes: {
@@ -1008,7 +1008,7 @@ export default {
         }
       },
       no: {
-        message: `Not possible, we're under tight deadlines. I actually need you to come on weekedns, thanksgiving and christmas.`,
+        message: `Not possible, we're under tight deadlines. I actually need you to come on weekends, thanksgiving and christmas.`,
         reducers: {
           money: r(0),
           innovation: r(0),
@@ -1021,7 +1021,7 @@ export default {
   },
   
   crunchyWeirdness_3: {
-    message: `Heyo, just wanted to make sure you received my Crystal of Positivity. Hope you like it.`,
+    message: `Hello friend, just wanted to make sure you received my Crystal of Positivity. Hope you like it.`,
     sender: SENDER_INVESTOR_CRUNCHY,
     options: {
       yes: {
@@ -1043,7 +1043,7 @@ export default {
   },
   
   crunchyWeirdness_createUnions: {
-    message: `Heyyyyy, so what's your take on unions?`,
+    message: `Hi, quick question – what's your take on unions?`,
     sender: SENDER_INVESTOR_CRUNCHY,
     options: {
       yes: {

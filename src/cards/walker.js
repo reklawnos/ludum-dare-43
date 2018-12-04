@@ -144,7 +144,7 @@ export default {
 
   innovationInvestorFlavorOfTheMonth_blockchain: {
     message: (companyName) => `
-      I attended a "future of BDSM" conference I came away impressed by the potential of both blocks and chains.
+      I attended a "future of BDSM" conference. I came away impressed by the potential of both blocks and chains.
       ${companyName} should invest more in blockchain technology.
     `,
     sender: SENDER_INVESTOR_INNOVATION,

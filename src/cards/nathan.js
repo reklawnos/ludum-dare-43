@@ -99,6 +99,7 @@ export default {
         message: `I don't see anything wrong with that!`,
         reducers: {
           money: r(+0.3),
+          reputation: r(+0.1),
           crunchy: r(0.1),
         }
       },
