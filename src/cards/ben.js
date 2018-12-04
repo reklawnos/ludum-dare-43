@@ -330,7 +330,7 @@ export default {
           money: r(0),
           innovation: r(0),
           crunchy: r(0.1),
-          reputation: r(0.1)
+          reputation: r(-0.1)
         }
       },
       no: {
@@ -339,7 +339,7 @@ export default {
           money: r(0),
           innovation: r(0),
           crunchy: r(0),
-          reputation: r(-0.2)
+          reputation: r(0.2)
         }
       }
     },
@@ -1331,5 +1331,97 @@ export default {
     },
     getScore: showWithFixedScore(STANDARD_SCORE),
   },
+  
+  cfoBadIdeas: {
+    message: `I think we should build news offices i Northern Virginia because it's cheap- eh because of the weather...`,
+    sender: SENDER_CFO,
+    options: {
+      yes: {
+        message: `Ok let's build a new office there, some sort of 2nd headquarters, an HQ2 if you will.`,
+        reducers: {
+          money: r(-0.7),
+          innovation: r(0.2),
+          crunchy: r(0.1),
+        }
+      },
+      no: {
+        message: `If only we had billions of dollars from selling books... No we can't do this now.`,
+        reducers: {
+          innovation: r(-0.3),
+          reputation: r(-0.1)
+        }
+      }
+    },
+    getScore: showWithFixedScore(STANDARD_SCORE),
+  },
+  
+  cfoBadIdeas_2: {
+    message: `I was inspecting the books and saw that we were hosting yoga classes twice a day, every day of the week. We need to stop this needless spending immediately.`,
+    sender: SENDER_CFO,
+    options: {
+      yes: {
+        message: `I never liked Yoga anyway.`,
+        reducers: {
+          money: r(0.4),
+          crunchy: r(-0.3),
+        }
+      },
+      no: {
+        message: `NO, YOGA MATTERS. It's the only way I have to temporary dull out the pain of existence.`,
+        reducers: {
+          innovation: r(-0.1),
+          crunchy: r(0.1),
+        }
+      }
+    },
+    getScore: showWithFixedScore(LONGER_STORY_SCORE),
+  },
+  
+  crunchyWeirdness_4: {
+    message: `Heyyyyy, so I was walking in the office this morning at 5am for my Lunar Yoga class and there was a sign on the door that said "all classes cancelled". I can only assume it's a mistake?`,
+    sender: SENDER_INVESTOR_CRUNCHY,
+    options: {
+      yes: {
+        message: `Aah, sorry about that. We needed the extra cash to build all of our unisex bathrooms. But you're right, Yoga matters, let's revert that effort.`,
+        reducers: {
+          money: r(-0.3),
+          crunchy: r(-0.2),
+          reputation: r(0.2)
+        }
+      },
+      no: {
+        message: `Not a mistake. But don't worry, we've built a new wrestling ring for any of you who want to exercise.`,
+        reducers: {
+          money: r(-0.1),
+          crunchy: r(-0.2),
+          reputation: r(0.2)
+        }
+      }
+    },
+    getScore: showSomeTimeAfterSpecificChoice("cfoBadIdeas_2", "yes", 0.6),
+  },
+  
+  ctoBadIdea: {
+    message: `Yo yo, my engineers have figured out how to bring internet to all the third world countries at once, the only problem is they can only use our product on that network.`,
+    sender: SENDER_CTO,
+    options: {
+      yes: {
+        message: `Oh well, at least we're bringing them a reliable internet! Ship it.`,
+        reducers: {
+          money: r(0.5),
+          innovation: r(0.2),
+          crunchy: r(-0.2),
+        }
+      },
+      no: {
+        message: `I don't want to help third world countries, even if we can afford it, they should figure how to get internet by themselves.`,
+        reducers: {
+          innovation: r(-0.2),
+        }
+      }
+    },
+    getScore: showWithFixedScore(STANDARD_SCORE),
+  },
+  
   
 }
