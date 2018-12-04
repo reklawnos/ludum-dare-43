@@ -1,5 +1,6 @@
 import {
   STANDARD_SCORE,
+  LONGER_STORY_SCORE,
   SENDER_EMPLOYEE,
   SENDER_COMMUNICATIONS,
   SENDER_INVESTOR_INNOVATION,
@@ -74,7 +75,7 @@ export default {
         },
       },
       skip: {
-        message: `I don't know what a "sub-peena" is but it seems like something I should ignore.`,
+        message: `I don't know what a "sub-peena" is, but it seems like something I should ignore.`,
         reducers: {
         },
       },
@@ -348,14 +349,14 @@ export default {
     sender: SENDER_LEGAL,
     options: {
       yes: {
-        message: `Fight them in court`,
+        message: `Send our best lawyers to fight them in court`,
         reducers: {
           money: r(-0.4),
           reputation: r(-0.2),
         },
       },
       no: {
-        message: `Settle out of court`,
+        message: `I'm sure a small monetary settlement will change their minds`,
         reducers: {
           money: r(-0.6),
         },
@@ -368,14 +369,14 @@ export default {
     sender: SENDER_INVESTOR_CRUNCHY,
     options: {
       paper: {
-        message: `Switch to paper straws`,
+        message: `I love dolphins! We're switching to paper.`,
         reducers: {
           money: r(-0.2),
           crunchy: r(0.2),
         }, 
       },
       plastic: {
-        message: `Keep plastic straws`,
+        message: `I'm not sure, let's just stick with the plastic ones for now`,
         reducers: {
           crunchy: r(-0.2),
         },
@@ -388,13 +389,13 @@ export default {
     sender: SENDER_EMPLOYEE,
     options: {
       paper: {
-        message: `Stick with paper straws`,
+        message: `Think of the poor dolphins! We have to stick with paper.`,
         reducers: {
           money: r(-0.2),
         },
       },
       plastic: {
-        message: `Go back to plastic straws`,
+        message: `So that's why my Diet Coke has been tasting weird lately. Let's go back to plastic.`,
         reducers: {
           money: r(0.1),
           crunchy: r(-0.4),
@@ -446,7 +447,7 @@ export default {
         },
       },
     },
-    getScore: showWithFixedScore(STANDARD_SCORE,)
+    getScore: showWithFixedScore(LONGER_STORY_SCORE)
   },
   meditation_cult_1: {
     message: `Hey, do you think that yogi friend of Sandra's is a bit... cult-leader-y?`,

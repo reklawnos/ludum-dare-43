@@ -139,7 +139,7 @@ export default {
   },
   
   aiIsAnnoyedAtYou: {
-    message: `Human, should I continue to figuratively scrub toilets or will you finally accept my grander and give me better things to do?`,
+    message: `Human, should I continue to figuratively scrub toilets or will you finally accept my grandeur and give me better things to do?`,
     sender: SENDER_AI,
     options: {
       yes: {
@@ -197,7 +197,7 @@ export default {
   },
   
   aiLikesYou: {
-    message: `Human, I've taken the liberty to upgrade all of your code to use the fastest algorithms. Thank me later.`,
+    message: `Human, I've taken the liberty of upgrading all of your code to use the fastest algorithms. Thank me later.`,
     sender: SENDER_AI,
     options: {
       yes: {
@@ -545,7 +545,7 @@ export default {
   },
   
   communityProblems_2: {
-    message: `Hey we're having trouble in rural areas, their legislations are preventing us from shipping our product this quarter. Should we delay the launch?`,
+    message: `Hey we're having trouble in rural areas, their regulations are preventing us from shipping our product this quarter. Should we delay the launch?`,
     sender: SENDER_LEGAL,
     options: {
       yes: {
